@@ -1,0 +1,27 @@
+{
+  "name": "ACN-resource-finder-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ngoakor12/ACN-resource-finder-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ngoakor12/ACN-resource-finder-api/issues"
+  },
+  "homepage": "https://github.com/Ngoakor12/ACN-resource-finder-api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jsdom": "^19.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
