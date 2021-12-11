@@ -1,1 +1,1 @@
-# ACN-Resource-finder-api
+# ACN-resource-finder-api
