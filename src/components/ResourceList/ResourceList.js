@@ -1,15 +1,21 @@
 const ResourceList = (props) => {
   return (
-    <main>
+    <div className="resource-list">
       {props.resources.map((resource) => {
         return (
-          <a href={resource.url}>
-            <h3>{resource.title}</h3>
-            <span>{resource.type}</span>
+          <a
+            key={resource.url}
+            href={resource.url}
+            target="_blank"
+            rel="noreferrer"
+            className="resource"
+          >
+            <h3 className="resource-title">{resource.title}</h3>
+            <span className="resource-type">{resource.type}</span>
           </a>
         );
       })}
-    </main>
+    </div>
   );
 };
 
