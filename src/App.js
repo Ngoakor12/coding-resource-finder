@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
+import ResourceList from "./components/ResourceList/ResourceList";
 
 function App() {
   const [resources, setResources] = useState([]);
@@ -14,18 +15,16 @@ function App() {
   }, []);
 
   async function getResources() {
-    await fetch("https://acn-resource-finder-api.herokuapp.com/", {
-      method: "GET", // The method
-      mode: "no-cors", // It can be no-cors, cors, same-origin
-    }).then((data) => setResources(data));
+    await fetch("https://acn-resource-finder-api.herokuapp.com/")
+      .then((response) => response.json())
+      .then((data) => setResources(data.resources));
   }
 
-  console.log(resources);
-
   return (
-    <div className="App">
+    <>
       <Header />
-    </div>
+      <ResourceList resources={resources} />
+    </>
   );
 }
 
