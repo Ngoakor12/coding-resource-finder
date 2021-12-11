@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Ngoakor12/ACN-resource-finder-api#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsdom": "^19.0.0"
   },
