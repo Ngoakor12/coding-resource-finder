@@ -12,8 +12,7 @@ const {
 app.use(cors());
 
 const customError = {
-  message:
-    "Error: Something went wrong, please double check that your url is correct",
+  message: "Error: Please double check that the URL is correct.",
 };
 
 app.get("/", (req, res) => {
