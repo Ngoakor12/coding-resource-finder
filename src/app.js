@@ -14,7 +14,14 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.json({
     all_resources: "https://acn-resource-finder-api.herokuapp.com/all",
-    topics: "https://acn-resource-finder-api.herokuapp.com/topics",
+    all_topics: "https://acn-resource-finder-api.herokuapp.com/topics",
+    all_projects: "https://acn-resource-finder-api.herokuapp.com/projects",
+    specific_page_from_all_resources:
+      "https://acn-resource-finder-api.herokuapp.com/all/{page}",
+    specific_page_from_all_topics:
+      "https://acn-resource-finder-api.herokuapp.com/all/topics/{page}",
+    specific_page_from_all_projects:
+      "https://acn-resource-finder-api.herokuapp.com/all/projects/{page}",
   });
 });
 
