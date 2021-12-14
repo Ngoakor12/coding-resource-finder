@@ -26,24 +26,21 @@ app.get("/", (req, res) => {
 });
 
 // get all topics and projects
-app.get("/all", (req, res) => {
-  getResources().then((allResources) =>
-    res.json({ number_of_resources: allResources.length, data: allResources })
-  );
+app.get("/all", async (req, res) => {
+  const resources = await getResources();
+  res.json({ number_of_resources: resources.length, data: resources });
 });
 
 // get all available topics
-app.get("/all/topics", (req, res) => {
-  getTopics().then((topics) =>
-    res.json({ num_of_topics: topics.length, data: topics })
-  );
+app.get("/all/topics", async (req, res) => {
+  const topics = await getTopics();
+  res.json({ num_of_topics: topics.length, data: topics });
 });
 
 // get all available projects
-app.get("/all/projects", (req, res) => {
-  getProjects().then((projects) =>
-    res.json({ num_of_projects: projects.length, data: projects })
-  );
+app.get("/all/projects", async (req, res) => {
+  const projects = await getProjects();
+  res.json({ num_of_projects: projects.length, data: projects });
 });
 
 // get specific resource
