@@ -11,6 +11,11 @@ const {
 
 app.use(cors());
 
+const customError = {
+  message:
+    "Error: Something went wrong, please double check that your url is correct",
+};
+
 app.get("/", (req, res) => {
   res.json({
     all_resources: "https://acn-resource-finder-api.herokuapp.com/all",
@@ -27,59 +32,65 @@ app.get("/", (req, res) => {
 
 // get all topics and projects
 app.get("/all", async (req, res) => {
-  const resources = await getResources();
-  res.json({ number_of_resources: resources.length, data: resources });
+  try {
+    const resources = await getResources();
+    res.json({ number_of_resources: resources.length, data: resources });
+  } catch (error) {
+    throw error;
+  }
 });
 
 // get all available topics
 app.get("/all/topics", async (req, res) => {
-  const topics = await getTopics();
-  res.json({ num_of_topics: topics.length, data: topics });
+  try {
+    const topics = await getTopics();
+    res.json({ num_of_topics: topics.length, data: topics });
+  } catch (error) {
+    throw error;
+  }
 });
 
 // get all available projects
 app.get("/all/projects", async (req, res) => {
-  const projects = await getProjects();
-  res.json({ num_of_projects: projects.length, data: projects });
+  try {
+    const projects = await getProjects();
+    res.json({ num_of_projects: projects.length, data: projects });
+  } catch (error) {
+    throw error;
+  }
 });
 
 // get specific resource
 app.get("/all/:page", async (req, res) => {
-  let page = req.params.page;
-  page = Number(page);
-
-  const customError = {
-    message: "Error: Check that your page is a number and in range",
-  };
-  const data = await getPageData(getResources, page);
-
-  res.json(data ? { current_page: page, data: data } : customError);
+  const page = req.params.page;
+  try {
+    const data = await getPageData(getResources, page);
+    res.json(data ? { current_page: Number(page), data: data } : customError);
+  } catch (error) {
+    throw error;
+  }
 });
 
 // get specific topic pages
 app.get("/all/topics/:page", async (req, res) => {
-  let page = req.params.page;
-  page = Number(page);
-
-  const customError = {
-    message: "Error: Check that your page is a number and in range",
-  };
-  const data = await getPageData(getTopics, page);
-
-  res.json(data ? { current_page: page, data: data } : customError);
+  const page = req.params.page;
+  try {
+    const data = await getPageData(getTopics, page);
+    res.json(data ? { current_page: Number(page), data: data } : customError);
+  } catch (error) {
+    throw error;
+  }
 });
 
 // get specific project pages
 app.get("/all/projects/:page", async (req, res) => {
-  let page = req.params.page;
-  page = Number(page);
-
-  const customError = {
-    message: "Error: Check that your page is a number and in range",
-  };
-  const data = await getPageData(getProjects, page);
-
-  res.json(data ? { current_page: page, data: data } : customError);
+  const page = req.params.page;
+  try {
+    const data = await getPageData(getProjects, page);
+    res.json(data ? { current_page: Number(page), data: data } : customError);
+  } catch (error) {
+    throw error;
+  }
 });
 
 app.listen(port, () => {
