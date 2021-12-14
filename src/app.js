@@ -2,12 +2,82 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 2856;
-const { getResources } = require("./resources");
+const {
+  getResources,
+  getTopics,
+  getProjects,
+  getPageData,
+} = require("./resources");
 
 app.use(cors());
 
 app.get("/", (req, res) => {
-  getResources().then((resources) => res.json({ resources: resources }));
+  res.json({
+    all_resources: "https://acn-resource-finder-api.herokuapp.com/all",
+    topics: "https://acn-resource-finder-api.herokuapp.com/topics",
+  });
 });
 
-app.listen(port);
+// get all topics and projects
+app.get("/all", (req, res) => {
+  getResources().then((allResources) =>
+    res.json({ number_of_resources: allResources.length, data: allResources })
+  );
+});
+
+// get all available topics
+app.get("/all/topics", (req, res) => {
+  getTopics().then((topics) =>
+    res.json({ num_of_topics: topics.length, data: topics })
+  );
+});
+
+// get all available projects
+app.get("/all/projects", (req, res) => {
+  getProjects().then((projects) =>
+    res.json({ num_of_projects: projects.length, data: projects })
+  );
+});
+
+// get specific resource
+app.get("/all/:page", async (req, res) => {
+  let page = req.params.page;
+  page = Number(page);
+
+  const customError = {
+    message: "Error: Check that your page is a number and in range",
+  };
+  const data = await getPageData(getResources, page);
+
+  res.json(data ? { current_page: page, data: data } : customError);
+});
+
+// get specific topic pages
+app.get("/all/topics/:page", async (req, res) => {
+  let page = req.params.page;
+  page = Number(page);
+
+  const customError = {
+    message: "Error: Check that your page is a number and in range",
+  };
+  const data = await getPageData(getTopics, page);
+
+  res.json(data ? { current_page: page, data: data } : customError);
+});
+
+// get specific project pages
+app.get("/all/projects/:page", async (req, res) => {
+  let page = req.params.page;
+  page = Number(page);
+
+  const customError = {
+    message: "Error: Check that your page is a number and in range",
+  };
+  const data = await getPageData(getProjects, page);
+
+  res.json(data ? { current_page: page, data: data } : customError);
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
