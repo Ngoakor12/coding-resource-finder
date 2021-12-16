@@ -9,6 +9,7 @@ const Nav = (props) => {
         };
         return (
           <button
+            key={tab.title}
             className="nav-item"
             name="resources"
             onClick={props.toggleActiveTab}
