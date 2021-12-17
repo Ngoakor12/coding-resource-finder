@@ -5,7 +5,6 @@ const SearchForm = (props) => {
         type="text"
         className="search-input"
         placeholder="search a resource..."
-        value={props.searchTerm}
         onInput={props.setSearchTerm}
         onChange={props.handleSearch}
       />

@@ -8,6 +8,7 @@ import SearchForm from "./components/SearchForm/SearchForm";
 
 function App() {
   const [resources, setResources] = useState([]);
+  const [renderedResources, setRenderedResources] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [tabs, setTabs] = useState([
     { title: "Resources", isActive: true },
@@ -26,18 +27,23 @@ function App() {
   async function getResources() {
     await fetch("https://acn-resource-finder-api.herokuapp.com/all/")
       .then((response) => response.json())
-      .then((data) => setResources(data.data));
+      .then((data) => {
+        setResources(data.data);
+        setRenderedResources(data.data);
+      });
   }
 
-  function handleSearch(e) {
-    // let term = e.target.value.toLowerCase();
-    // // console.log(term);
-    // let result = [];
-    // result = resources.filter((data) => {
-    //   // return data.title.search(term) != -1 ? resources : data;
-    //   return data.title.search(term) != -1;
-    // });
-    // setResources(result);
+  function handleSearch() {
+    let result = [];
+    result = resources.filter((data) => {
+      return data.title.toLowerCase().includes(searchTerm);
+    });
+    if (result.length > 0) {
+      setRenderedResources(result);
+      result = [];
+    } else {
+      setRenderedResources(resources);
+    }
   }
 
   function toggleActiveTab(e) {
@@ -73,16 +79,14 @@ function App() {
         </aside>
         <section className="main-content">
           <SearchForm
-            searchTerm={searchTerm}
             setSearchTerm={(e) => {
-              e.preventDefault();
               setSearchTerm(e.target.value);
             }}
-            handleSearch={(e) => handleSearch(e)}
+            handleSearch={handleSearch}
           />
 
           {activeTab === "Resources" ? (
-            <ResourceList resources={resources} />
+            <ResourceList resources={renderedResources} />
           ) : (
             <BookmarkList />
           )}
