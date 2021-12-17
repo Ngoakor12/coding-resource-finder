@@ -36,7 +36,9 @@ function App() {
   function handleSearch() {
     let result = [];
     result = resources.filter((data) => {
-      return data.title.toLowerCase().includes(searchTerm);
+      return data.title
+        .toLowerCase()
+        .includes(searchTerm.toLocaleLowerCase().trim());
     });
     if (result.length > 0) {
       setRenderedResources(result);
