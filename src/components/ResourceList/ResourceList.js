@@ -4,16 +4,18 @@ const ResourceList = (props) => {
       {props.resources.length !== 0 ? (
         props.resources.map((resource) => {
           return (
-            <a
-              key={resource.url}
-              href={resource.url}
-              target="_blank"
-              rel="noreferrer"
-              className="resource"
-            >
-              <h3 className="resource-title">{resource.title}</h3>
-              <span className="resource-type">{resource.type}</span>
-            </a>
+            <div className="resource-wrapper" key={resource.url}>
+              <a
+                href={resource.url}
+                target="_blank"
+                rel="noreferrer"
+                className="resource"
+              >
+                <h3 className="resource-title">{resource.title}</h3>
+                <span className="resource-type">{resource.type}</span>
+              </a>
+              <button className="bookmark-button">+</button>
+            </div>
           );
         })
       ) : (
