@@ -14,7 +14,12 @@ const ResourceList = (props) => {
                 <h3 className="resource-title">{resource.title}</h3>
                 <span className="resource-type">{resource.type}</span>
               </a>
-              <button className="bookmark-button">+</button>
+              <button
+                className="bookmark-button"
+                onClick={props.toggleIsBookmarked}
+              >
+                +
+              </button>
             </div>
           );
         })

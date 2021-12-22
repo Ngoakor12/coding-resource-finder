@@ -1,7 +1,34 @@
-const BookmarkList = () => {
+const BookmarkList = (props) => {
   return (
-    <div className="bookmark-list">
-      <h2 className="content-placeholder">Nothing bookmarked yet</h2>
+    <div className="resource-list">
+      {/* {props.resources.length !== 0 ? ( */}
+      {props.bookmarks.length !== 0 ? (
+        props.resources
+          .filter((resource) => resource.isBookmarked)
+          .map((resource) => {
+            return (
+              <div className="resource-wrapper" key={resource.url}>
+                <a
+                  href={resource.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="resource"
+                >
+                  <h3 className="resource-title">{resource.title}</h3>
+                  <span className="resource-type">{resource.type}</span>
+                </a>
+                <button
+                  className="bookmark-button"
+                  onClick={props.toggleIsBookmarked}
+                >
+                  +
+                </button>
+              </div>
+            );
+          })
+      ) : (
+        <h2 className="content-placeholder">No bookmarks yet...</h2>
+      )}
     </div>
   );
 };

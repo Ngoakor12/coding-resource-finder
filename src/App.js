@@ -15,6 +15,7 @@ function App() {
     { title: "Bookmarks", isActive: false },
   ]);
   const [activeTab, setActiveTab] = useState("Resources");
+  const [bookmarks, setBookmarks] = useState([]);
 
   useEffect(() => {
     try {
@@ -28,10 +29,14 @@ function App() {
     await fetch("https://acn-resource-finder-api.herokuapp.com/all/")
       .then((response) => response.json())
       .then((data) => {
-        setResources(data.data);
-        setRenderedResources(data.data);
+        const finalData = data.data.map((resource) => {
+          return { ...resource, isBookmarked: false };
+        });
+        setRenderedResources(finalData);
+        setResources(finalData);
       });
   }
+  // console.log(resources);
 
   function handleSearch() {
     let result = [];
@@ -68,6 +73,24 @@ function App() {
     });
   }
 
+  function toggleIsBookmarked(e) {
+    const clickedResourceURL = e.target.parentNode.children[0].href;
+    console.log(clickedResourceURL);
+    setResources((prevResources) => {
+      return prevResources.map((resource) => {
+        if (clickedResourceURL === resource.url) {
+          return {
+            ...resource,
+            isBookmarked: !resource.isBookmarked,
+          };
+        } else {
+          return resource;
+        }
+      });
+    });
+    setRenderedResources(resources);
+  }
+
   return (
     <>
       <Header />
@@ -88,9 +111,12 @@ function App() {
           />
 
           {activeTab === "Resources" ? (
-            <ResourceList resources={renderedResources} />
+            <ResourceList
+              resources={renderedResources}
+              toggleIsBookmarked={toggleIsBookmarked}
+            />
           ) : (
-            <BookmarkList />
+            <BookmarkList resources={resources} bookmarks={bookmarks} />
           )}
         </section>
       </main>
