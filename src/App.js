@@ -36,7 +36,6 @@ function App() {
         setResources(finalData);
       });
   }
-  // console.log(resources);
 
   function handleSearch() {
     let result = [];
@@ -75,7 +74,6 @@ function App() {
 
   function toggleIsBookmarked(e) {
     const clickedResourceURL = e.target.parentNode.children[0].href;
-    console.log(clickedResourceURL);
     setResources((prevResources) => {
       return prevResources.map((resource) => {
         if (clickedResourceURL === resource.url) {
