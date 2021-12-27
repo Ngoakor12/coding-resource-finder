@@ -17,7 +17,7 @@ const BookmarkList = (props) => {
               </a>
               <button
                 className="remove-bookmark-button"
-                onClick={props.removeBookmark}
+                onClick={props.toggleIsBookmarked}
               >
                 +
               </button>

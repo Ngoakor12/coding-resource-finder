@@ -114,7 +114,10 @@ function App() {
               toggleIsBookmarked={toggleIsBookmarked}
             />
           ) : (
-            <BookmarkList resources={resources} bookmarks={bookmarks} />
+            <BookmarkList
+              resources={renderedResources}
+              toggleIsBookmarked={toggleIsBookmarked}
+            />
           )}
         </section>
       </main>

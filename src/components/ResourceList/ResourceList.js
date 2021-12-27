@@ -15,7 +15,12 @@ const ResourceList = (props) => {
                 <span className="resource-type">{resource.type}</span>
               </a>
               <button
-                className="bookmark-button"
+                className={
+                  // resource.isBookmarked
+                  //   ? "remove-bookmark-button"
+                    // : 
+                    "bookmark-button"
+                }
                 onClick={props.toggleIsBookmarked}
               >
                 +
