@@ -13,7 +13,7 @@
   },
   "homepage": "https://ngoakor12.github.io/acn-resource-finder",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "deploy": "npm run build && gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
