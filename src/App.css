@@ -234,6 +234,10 @@ body {
   transform: scale(108%) rotate(45deg);
 }
 
+.nav>*{
+  text-decoration: none;
+}
+
 @media (min-width: 800px) {
   body {
     display: flex;

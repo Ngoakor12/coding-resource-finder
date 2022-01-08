@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { Routes, Route } from "react-router-dom";
 import { Context } from "./Context";
 import "./App.css";
 import BookmarkList from "./components/BookmarkList/BookmarkList";
@@ -56,25 +57,25 @@ function App() {
     }
   }
 
-  function toggleActiveTab(e) {
-    const tabVal = e.target;
-    setTabs((prevTabs) => {
-      return prevTabs.map((tab) => {
-        if (tabVal.innerHTML === tab.title) {
-          setActiveTab(tab.title);
-          return {
-            ...tab,
-            isActive: true,
-          };
-        } else {
-          return {
-            ...tab,
-            isActive: false,
-          };
-        }
-      });
-    });
-  }
+  // function toggleActiveTab(e) {
+  //   const tabVal = e.target;
+  //   setTabs((prevTabs) => {
+  //     return prevTabs.map((tab) => {
+  //       if (tabVal.innerHTML === tab.title) {
+  //         setActiveTab(tab.title);
+  //         return {
+  //           ...tab,
+  //           isActive: true,
+  //         };
+  //       } else {
+  //         return {
+  //           ...tab,
+  //           isActive: false,
+  //         };
+  //       }
+  //     });
+  //   });
+  // }
 
   function toggleIsBookmarked(e) {
     const clickedResourceURL = e.target.parentNode.children[0].href;
@@ -99,9 +100,9 @@ function App() {
       <main className="main">
         <aside className="aside-nav">
           <Nav
-            toggleActiveTab={(e) => toggleActiveTab(e)}
-            tabs={tabs}
-            setActiveTab={setActiveTab}
+          // toggleActiveTab={(e) => toggleActiveTab(e)}
+          // tabs={tabs}
+          // setActiveTab={setActiveTab}
           />
         </aside>
         <section className="main-content">
@@ -112,17 +113,27 @@ function App() {
             handleSearch={handleSearch}
           />
 
-          {activeTab === "Resources" ? (
-            <ResourceList
-              resources={resources}
-              toggleIsBookmarked={toggleIsBookmarked}
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={
+                <ResourceList
+                  resources={resources}
+                  toggleIsBookmarked={toggleIsBookmarked}
+                />
+              }
             />
-          ) : (
-            <BookmarkList
-              resources={resources}
-              toggleIsBookmarked={toggleIsBookmarked}
+            <Route
+              path="/bookmarks"
+              element={
+                <BookmarkList
+                  resources={resources}
+                  toggleIsBookmarked={toggleIsBookmarked}
+                />
+              }
             />
-          )}
+          </Routes>
         </section>
       </main>
     </>
