@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState, useContext } from "react";
+import { Context } from "./Context";
 import "./App.css";
 import BookmarkList from "./components/BookmarkList/BookmarkList";
 import Header from "./components/Header/Header";
@@ -7,35 +8,38 @@ import ResourceList from "./components/ResourceList/ResourceList";
 import SearchForm from "./components/SearchForm/SearchForm";
 
 function App() {
-  const [resources, setResources] = useState([]);
-  const [renderedResources, setRenderedResources] = useState([]);
+  // console.log(Context)
+  const { resources, setResources } = useContext(Context);
+  // console.log(resources)
+  // const [resources, setResources] = useState([]);
+  // const [renderedResources, setRenderedResources] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [tabs, setTabs] = useState([
     { title: "Resources", isActive: true },
     { title: "Bookmarks", isActive: false },
   ]);
   const [activeTab, setActiveTab] = useState("Resources");
-  const [bookmarks, setBookmarks] = useState([]);
+  // const [bookmarks, setBookmarks] = useState([]);
 
-  useEffect(() => {
-    try {
-      getResources();
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  // useEffect(() => {
+  //   try {
+  //     getResources();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
 
-  async function getResources() {
-    await fetch("https://acn-resource-finder-api.herokuapp.com/all/")
-      .then((response) => response.json())
-      .then((data) => {
-        const finalData = data.data.map((resource) => {
-          return { ...resource, isBookmarked: false };
-        });
-        setRenderedResources(finalData);
-        setResources(finalData);
-      });
-  }
+  // async function getResources() {
+  //   await fetch("https://acn-resource-finder-api.herokuapp.com/all/")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       const finalData = data.data.map((resource) => {
+  //         return { ...resource, isBookmarked: false };
+  //       });
+  //       setRenderedResources(finalData);
+  //       setResources(finalData);
+  //     });
+  // }
 
   function handleSearch() {
     let result = [];
@@ -45,10 +49,10 @@ function App() {
         .includes(searchTerm.toLocaleLowerCase().trim());
     });
     if (result.length > 0) {
-      setRenderedResources(result);
+      setResources(result);
       result = [];
     } else {
-      setRenderedResources(resources);
+      setResources(resources);
     }
   }
 
@@ -86,7 +90,7 @@ function App() {
         }
       });
     });
-    setRenderedResources(resources);
+    setResources(resources);
   }
 
   return (
@@ -110,12 +114,12 @@ function App() {
 
           {activeTab === "Resources" ? (
             <ResourceList
-              resources={renderedResources}
+              resources={resources}
               toggleIsBookmarked={toggleIsBookmarked}
             />
           ) : (
             <BookmarkList
-              resources={renderedResources}
+              resources={resources}
               toggleIsBookmarked={toggleIsBookmarked}
             />
           )}
