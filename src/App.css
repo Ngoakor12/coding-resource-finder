@@ -236,13 +236,11 @@ body {
   outline: #8fffab 3px solid;
 }
 
-.bookmark-button:active {
-  transform: scale(108%);
+.bookmark-button:active,.remove-bookmark-button:active {
+  transform: scale(95%);
+  transform-origin: center;
 }
 
-.remove-bookmark-button:active {
-  transform: scale(108%);
-}
 
 .nav > * {
   text-decoration: none;
