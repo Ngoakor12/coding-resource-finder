@@ -1,4 +1,1 @@
-[build]
-  command = "npm run build"
-  publish="/build"
-  base = ""
+/*    /index.html   200
