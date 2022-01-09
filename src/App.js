@@ -11,11 +11,11 @@ import SearchForm from "./components/SearchForm/SearchForm";
 function App() {
   const { resources, setResources } = useContext(Context);
   const [searchTerm, setSearchTerm] = useState("");
-  const [tabs, setTabs] = useState([
-    { title: "Resources", isActive: true },
-    { title: "Bookmarks", isActive: false },
-  ]);
-  const [activeTab, setActiveTab] = useState("Resources");
+  // const [tabs, setTabs] = useState([
+  //   { title: "Resources", isActive: true },
+  //   { title: "Bookmarks", isActive: false },
+  // ]);
+  // const [activeTab, setActiveTab] = useState("Resources");
 
   function handleSearch() {
     let result = [];
