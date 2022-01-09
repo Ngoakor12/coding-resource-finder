@@ -21,7 +21,6 @@ function ContextProvider({ children }) {
       console.log(error);
     }
   }
-  console.log(resources)
 
   function addBookmark(resourceURL) {
     const newBookmark = resources.find(
@@ -40,11 +39,8 @@ function ContextProvider({ children }) {
     const newBookmarks = bookmarks.filter(
       (bookmark) => bookmark.url !== bookmarkURL
     );
-    console.log(newBookmarks);
     setBookmarks(newBookmarks);
   }
-
-  console.log(bookmarks);
 
   return (
     <Context.Provider
