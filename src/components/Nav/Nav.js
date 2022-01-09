@@ -1,52 +1,31 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../../Context";
+
 const Nav = () => {
+  const { tabs, toggleActiveTab } = useContext(Context);
+  
   return (
     <nav className="nav">
-      {/* const styles = {
+      {tabs.map((tab) => {
+        const styles = {
           color: tab.isActive ? "white" : "",
           backgroundColor: tab.isActive ? "rgb(27, 27, 27)" : "",
           fontStyle: tab.isActive ? "italic" : "",
-        }; */}
-
-      <Link
-        to="/"
-        className="nav-item"
-        name="resources"
-        // onClick={props.toggleActiveTab}
-        // style={styles}
-      >
-        Resources
-      </Link>
-      <Link
-        to="/bookmarks"
-        className="nav-item"
-        name="resources"
-        // onClick={props.toggleActiveTab}
-        // style={styles}
-      >
-        Bookmarks
-      </Link>
+        };
+        return (
+          <Link
+            key={tab.title}
+            className="nav-item"
+            to={tab.path}
+            onClick={() => toggleActiveTab(tab.title)}
+            style={styles}
+          >
+            {tab.title}
+          </Link>
+        );
+      })}
     </nav>
-    // <nav className="nav">
-    //   {props.tabs.map((tab) => {
-    //     const styles = {
-    //       color: tab.isActive ? "white" : "",
-    //       backgroundColor: tab.isActive ? "rgb(27, 27, 27)" : "",
-    //       fontStyle: tab.isActive ? "italic" : "",
-    //     };
-    //     return (
-    //       <button
-    //         key={tab.title}
-    //         className="nav-item"
-    //         name="resources"
-    //         onClick={props.toggleActiveTab}
-    //         style={styles}
-    //       >
-    //         {tab.title}
-    //       </button>
-    //     );
-    //   })}
-    // </nav>
   );
 };
 

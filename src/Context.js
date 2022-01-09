@@ -5,6 +5,11 @@ const Context = createContext();
 function ContextProvider({ children }) {
   const [resources, setResources] = useState([]);
   const [bookmarks, setBookmarks] = useState([]);
+  const [tabs, setTabs] = useState([
+    { title: "Resources", isActive: true, path: "/" },
+    { title: "Bookmarks", isActive: false, path: "/bookmarks" },
+  ]);
+  // const [activeTab, setActiveTab] = useState("Resources");
 
   useEffect(() => {
     getResources();
@@ -42,6 +47,25 @@ function ContextProvider({ children }) {
     setBookmarks(newBookmarks);
   }
 
+  function toggleActiveTab(tabName) {
+    setTabs((prevTabs) => {
+      return prevTabs.map((tab) => {
+        if (tabName === tab.title) {
+          return {
+            ...tab,
+            isActive: true,
+          };
+        } else {
+          return {
+            ...tab,
+            isActive: false,
+          };
+        }
+      });
+    });
+  }
+
+
   return (
     <Context.Provider
       value={{
@@ -50,6 +74,8 @@ function ContextProvider({ children }) {
         bookmarks,
         addBookmark,
         removeBookmark,
+        tabs,
+        toggleActiveTab,
       }}
     >
       {children}

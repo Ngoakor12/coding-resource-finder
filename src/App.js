@@ -11,12 +11,7 @@ import SearchForm from "./components/SearchForm/SearchForm";
 function App() {
   const { resources, setResources } = useContext(Context);
   const [searchTerm, setSearchTerm] = useState("");
-  // const [tabs, setTabs] = useState([
-  //   { title: "Resources", isActive: true },
-  //   { title: "Bookmarks", isActive: false },
-  // ]);
-  // const [activeTab, setActiveTab] = useState("Resources");
-
+  
   function handleSearch() {
     let result = [];
     result = resources.filter((data) => {
@@ -31,27 +26,7 @@ function App() {
       setResources(resources);
     }
   }
-
-  // function toggleActiveTab(e) {
-  //   const tabVal = e.target;
-  //   setTabs((prevTabs) => {
-  //     return prevTabs.map((tab) => {
-  //       if (tabVal.innerHTML === tab.title) {
-  //         setActiveTab(tab.title);
-  //         return {
-  //           ...tab,
-  //           isActive: true,
-  //         };
-  //       } else {
-  //         return {
-  //           ...tab,
-  //           isActive: false,
-  //         };
-  //       }
-  //     });
-  //   });
-  // }
-
+  
   return (
     <>
       <Header />
