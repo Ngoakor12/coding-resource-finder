@@ -171,6 +171,7 @@ body {
 }
 
 .bookmark-button {
+  color: rgb(255, 255, 131);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,9 +183,11 @@ body {
   height: 30px;
   border: 0;
   border-radius: 100%;
-  background-color: rgb(255, 255, 131);
+  background-color: transparent;
+  border: 2px solid rgb(255, 255, 131);
   cursor: pointer;
   line-height: 100%;
+  transition: background-color 300ms ease;
 }
 
 .remove-bookmark-button {
@@ -200,23 +203,25 @@ body {
   border: 0;
   border-radius: 100%;
   background-color: rgb(255, 255, 131);
-  transform: rotate(45deg);
   cursor: pointer;
+  transition: background-color 200ms ease;
 }
 
 .resource-wrapper:hover .bookmark-button {
-  background-color: hsl(135, 100%, 78%);
+  color: hsl(135, 100%, 78%);
+  border: 2px solid hsl(135, 100%, 78%);
 }
 
 .resource-wrapper:hover .bookmark-button:hover {
+  color: rgb(27, 27, 27);
   background-color: hsl(135, 40%, 60%);
+  background-color: hsl(135, 100%, 78%);
 }
 
 .resource-wrapper:hover .remove-bookmark-button {
+  color: hsl(0, 100%, 78%);
   background-color: hsl(0, 100%, 78%);
-}
-.resource-wrapper:hover .remove-bookmark-button:hover {
-  background-color: hsl(0, 40%, 60%);
+  color: rgb(27, 27, 27);
 }
 
 .resource-wrapper:hover .resource {
@@ -226,15 +231,20 @@ body {
   font-style: italic;
 }
 
+.bookmark-button:focus-visible,
+.remove-bookmark-button:focus-visible {
+  outline: #8fffab 3px solid;
+}
+
 .bookmark-button:active {
   transform: scale(108%);
 }
 
 .remove-bookmark-button:active {
-  transform: scale(108%) rotate(45deg);
+  transform: scale(108%);
 }
 
-.nav>*{
+.nav > * {
   text-decoration: none;
 }
 
