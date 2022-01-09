@@ -15,12 +15,13 @@ function ContextProvider({ children }) {
       await fetch("https://acn-resource-finder-api.herokuapp.com/all/")
         .then((response) => response.json())
         .then((data) => {
-          setResources(data);
+          setResources(data.data);
         });
     } catch (error) {
       console.log(error);
     }
   }
+  console.log(resources)
 
   function addBookmark(resourceURL) {
     const newBookmark = resources.find(
