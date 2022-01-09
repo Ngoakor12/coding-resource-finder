@@ -9,38 +9,13 @@ import ResourceList from "./components/ResourceList/ResourceList";
 import SearchForm from "./components/SearchForm/SearchForm";
 
 function App() {
-  // console.log(Context)
   const { resources, setResources } = useContext(Context);
-  // console.log(resources)
-  // const [resources, setResources] = useState([]);
-  // const [renderedResources, setRenderedResources] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [tabs, setTabs] = useState([
     { title: "Resources", isActive: true },
     { title: "Bookmarks", isActive: false },
   ]);
   const [activeTab, setActiveTab] = useState("Resources");
-  // const [bookmarks, setBookmarks] = useState([]);
-
-  // useEffect(() => {
-  //   try {
-  //     getResources();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, []);
-
-  // async function getResources() {
-  //   await fetch("https://acn-resource-finder-api.herokuapp.com/all/")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       const finalData = data.data.map((resource) => {
-  //         return { ...resource, isBookmarked: false };
-  //       });
-  //       setRenderedResources(finalData);
-  //       setResources(finalData);
-  //     });
-  // }
 
   function handleSearch() {
     let result = [];
@@ -77,33 +52,12 @@ function App() {
   //   });
   // }
 
-  function toggleIsBookmarked(e) {
-    const clickedResourceURL = e.target.parentNode.children[0].href;
-    setResources((prevResources) => {
-      return prevResources.map((resource) => {
-        if (clickedResourceURL === resource.url) {
-          return {
-            ...resource,
-            isBookmarked: !resource.isBookmarked,
-          };
-        } else {
-          return resource;
-        }
-      });
-    });
-    setResources(resources);
-  }
-
   return (
     <>
       <Header />
       <main className="main">
         <aside className="aside-nav">
-          <Nav
-          // toggleActiveTab={(e) => toggleActiveTab(e)}
-          // tabs={tabs}
-          // setActiveTab={setActiveTab}
-          />
+          <Nav />
         </aside>
         <section className="main-content">
           <SearchForm
@@ -114,25 +68,8 @@ function App() {
           />
 
           <Routes>
-            <Route
-              exact
-              path="/"
-              element={
-                <ResourceList
-                  resources={resources}
-                  toggleIsBookmarked={toggleIsBookmarked}
-                />
-              }
-            />
-            <Route
-              path="/bookmarks"
-              element={
-                <BookmarkList
-                  resources={resources}
-                  toggleIsBookmarked={toggleIsBookmarked}
-                />
-              }
-            />
+            <Route exact path="/" element={<ResourceList />} />
+            <Route path="/bookmarks" element={<BookmarkList />} />
           </Routes>
         </section>
       </main>

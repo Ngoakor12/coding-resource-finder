@@ -1,23 +1,26 @@
-const BookmarkList = (props) => {
+import { useContext } from "react";
+import { Context } from "../../Context";
+const BookmarkList = () => {
+  const{bookmarks,removeBookmark}=useContext(Context)
+  
   return (
     <div className="resource-list">
-      {props.resources
-        .filter((resource) => resource.isBookmarked)
-        .map((resource) => {
+      {bookmarks
+        .map((bookmark) => {
           return (
-            <div className="resource-wrapper" key={resource.url}>
+            <div className="resource-wrapper" key={bookmark.url}>
               <a
-                href={resource.url}
+                href={bookmark.url}
                 target="_blank"
                 rel="noreferrer"
                 className="resource"
               >
-                <h3 className="resource-title">{resource.title}</h3>
-                <span className="resource-type">{resource.type}</span>
+                <h3 className="resource-title">{bookmark.title}</h3>
+                <span className="resource-type">{bookmark.type}</span>
               </a>
               <button
                 className="remove-bookmark-button"
-                onClick={props.toggleIsBookmarked}
+                onClick={()=>removeBookmark(bookmark.url)}
               >
                 +
               </button>

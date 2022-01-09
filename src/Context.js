@@ -4,28 +4,57 @@ const Context = createContext();
 
 function ContextProvider({ children }) {
   const [resources, setResources] = useState([]);
+  const [bookmarks, setBookmarks] = useState([]);
 
   useEffect(() => {
-    try {
-      getResources();
-    } catch (error) {
-      console.log(error)
-    }
+    getResources();
   }, []);
 
   async function getResources() {
-    await fetch("https://acn-resource-finder-api.herokuapp.com/all/")
-      .then((response) => response.json())
-      .then((data) => {
-        const finalData = data.data.map((resource) => {
-          return { ...resource, isBookmarked: false };
+    try {
+      await fetch("https://acn-resource-finder-api.herokuapp.com/all/")
+        .then((response) => response.json())
+        .then((data) => {
+          setResources(data);
         });
-        setResources(finalData);
-      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
+  function addBookmark(resourceURL) {
+    const newBookmark = resources.find(
+      (resource) => resource.url === resourceURL
+    );
+    const isBookmarked = bookmarks.some(
+      (bookmark) => bookmark.url === newBookmark.url
+    );
+
+    if (!isBookmarked) {
+      setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
+    }
+  }
+
+  function removeBookmark(bookmarkURL) {
+    const newBookmarks = bookmarks.filter(
+      (bookmark) => bookmark.url !== bookmarkURL
+    );
+    console.log(newBookmarks);
+    setBookmarks(newBookmarks);
+  }
+
+  console.log(bookmarks);
+
   return (
-    <Context.Provider value={{  resources,setResources }}>
+    <Context.Provider
+      value={{
+        resources,
+        setResources,
+        bookmarks,
+        addBookmark,
+        removeBookmark,
+      }}
+    >
       {children}
     </Context.Provider>
   );
