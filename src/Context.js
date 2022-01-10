@@ -6,8 +6,8 @@ function ContextProvider({ children }) {
   const [resources, setResources] = useState([]);
   const [bookmarks, setBookmarks] = useState([]);
   const [tabs, setTabs] = useState([
-    { title: "Resources", isActive: true, path: "/" },
-    { title: "Bookmarks", isActive: false, path: "/bookmarks" },
+    { title: "Resources", isActive: true, path: "/acn-resource-finder" },
+    { title: "Bookmarks", isActive: false, path: "/acn-resource-finder/bookmarks" },
   ]);
   // const [activeTab, setActiveTab] = useState("Resources");
 

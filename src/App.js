@@ -11,7 +11,7 @@ import SearchForm from "./components/SearchForm/SearchForm";
 function App() {
   const { resources, setResources } = useContext(Context);
   const [searchTerm, setSearchTerm] = useState("");
-  
+
   function handleSearch() {
     let result = [];
     result = resources.filter((data) => {
@@ -26,7 +26,7 @@ function App() {
       setResources(resources);
     }
   }
-  
+
   return (
     <>
       <Header />
@@ -43,8 +43,15 @@ function App() {
           />
 
           <Routes>
-            <Route exact path="/" element={<ResourceList />} />
-            <Route path="/bookmarks" element={<BookmarkList />} />
+            <Route
+              exact
+              path="/acn-resource-finder"
+              element={<ResourceList />}
+            />
+            <Route
+              path="/acn-resource-finder/bookmarks"
+              element={<BookmarkList />}
+            />
           </Routes>
         </section>
       </main>
