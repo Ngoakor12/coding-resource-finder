@@ -236,11 +236,21 @@ body {
   outline: #8fffab 3px solid;
 }
 
-.bookmark-button:active,.remove-bookmark-button:active {
+.bookmark-button:active,
+.remove-bookmark-button:active {
   transform: scale(95%);
   transform-origin: center;
 }
 
+.clear-bookmarks {
+  cursor: pointer;
+  color: rgb(255, 255, 131);
+  align-self: flex-end;
+}
+
+.clear-bookmarks:hover {
+  color: hsl(0, 100%, 78%);
+}
 
 .nav > * {
   text-decoration: none;
