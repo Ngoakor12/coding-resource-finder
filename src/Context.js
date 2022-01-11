@@ -81,6 +81,7 @@ function ContextProvider({ children }) {
         bookmarks,
         addBookmark,
         removeBookmark,
+        setBookmarks,
         tabs,
         toggleActiveTab,
       }}
