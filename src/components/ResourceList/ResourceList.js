@@ -1,11 +1,14 @@
 import { useContext } from "react";
 import { Context } from "../../Context";
+import SearchForm from "../SearchForm/SearchForm";
+
 const ResourceList = () => {
   const { resources, addBookmark, bookmarks, removeBookmark } =
     useContext(Context);
 
   return (
     <div className="resource-list">
+      <SearchForm/>      
       {resources.length !== 0 ? (
         resources.map((resource) => {
           const isBookmarked = bookmarks.find(

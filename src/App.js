@@ -1,32 +1,11 @@
-import { useState, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Context } from "./Context";
 import "./App.css";
 import BookmarkList from "./components/BookmarkList/BookmarkList";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import ResourceList from "./components/ResourceList/ResourceList";
-import SearchForm from "./components/SearchForm/SearchForm";
 
 function App() {
-  const { resources, setResources } = useContext(Context);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  function handleSearch() {
-    let result = [];
-    result = resources.filter((data) => {
-      return data.title
-        .toLowerCase()
-        .includes(searchTerm.toLocaleLowerCase().trim());
-    });
-    if (result.length > 0) {
-      setResources(result);
-      result = [];
-    } else {
-      setResources(resources);
-    }
-  }
-
   return (
     <>
       <Header />
@@ -35,13 +14,6 @@ function App() {
           <Nav />
         </aside>
         <section className="main-content">
-          <SearchForm
-            setSearchTerm={(e) => {
-              setSearchTerm(e.target.value);
-            }}
-            handleSearch={handleSearch}
-          />
-
           <Routes>
             <Route
               exact
