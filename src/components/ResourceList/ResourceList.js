@@ -4,23 +4,21 @@ import SearchForm from "../SearchForm/SearchForm";
 
 const ResourceList = () => {
   const {
-    resources,
-    renderedResources,
     addBookmark,
     bookmarks,
     removeBookmark,
     searchTerm,
+    resourceGroup,
   } = useContext(Context);
-  const resourceGroup = searchTerm.trim() ? renderedResources : resources;
 
   return (
     <div className="resource-list">
       <SearchForm />
       {resourceGroup.length !== 0 ? (
         resourceGroup.map((resource) => {
-          const isBookmarked = bookmarks.find(
-            (bookmark) => bookmark.url === resource.url
-          );
+          const isBookmarked = bookmarks.find((bookmark) => {
+            return bookmark.url === resource.url;
+          });
           const icon = isBookmarked ? (
             <button
               className={"remove-bookmark-button"}

@@ -20,8 +20,15 @@ function ContextProvider({ children }) {
   ]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // this is to determine which state of resources to use
+  const resourceGroup = searchTerm.trim().length
+  ? renderedResources
+  : resources;
+
+
   useEffect(() => {
     getResources();
+    setRenderedResources(resources)
   }, []);
 
   useEffect(() => {
@@ -41,7 +48,7 @@ function ContextProvider({ children }) {
   }
 
   function addBookmark(resourceURL) {
-    const newBookmark = renderedResources.find(
+    const newBookmark = resourceGroup.find(
       (resource) => resource.url === resourceURL
     );
     setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
@@ -80,6 +87,7 @@ function ContextProvider({ children }) {
         resources,
         setResources,
         renderedResources,
+        resourceGroup,
         setRenderedResources,
         bookmarks,
         addBookmark,
