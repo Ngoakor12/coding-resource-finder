@@ -22,12 +22,11 @@ body {
   position: relative;
 }
 
-.header {
-  padding-bottom: 20px;
-}
+
 
 .header-title {
   font-size: 50px;
+  line-height: 100%;
 }
 .header-description {
   font-size: 16px;
@@ -268,6 +267,7 @@ body {
 
   .header {
     text-align: center;
+    padding-bottom: 30px;
   }
 
   .main {
