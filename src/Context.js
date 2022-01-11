@@ -4,16 +4,28 @@ const Context = createContext();
 
 function ContextProvider({ children }) {
   const [resources, setResources] = useState([]);
-  const [bookmarks, setBookmarks] = useState([]);
+  const [bookmarks, setBookmarks] = useState(() => {
+    const saved = localStorage.getItem("bookmarks");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
   const [tabs, setTabs] = useState([
     { title: "Resources", isActive: true, path: "/acn-resource-finder" },
-    { title: "Bookmarks", isActive: false, path: "/acn-resource-finder/bookmarks" },
+    {
+      title: "Bookmarks",
+      isActive: false,
+      path: "/acn-resource-finder/bookmarks",
+    },
   ]);
   // const [activeTab, setActiveTab] = useState("Resources");
 
   useEffect(() => {
     getResources();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  }, [bookmarks]);
 
   async function getResources() {
     try {
@@ -31,13 +43,8 @@ function ContextProvider({ children }) {
     const newBookmark = resources.find(
       (resource) => resource.url === resourceURL
     );
-    const isBookmarked = bookmarks.some(
-      (bookmark) => bookmark.url === newBookmark.url
-    );
-
-    if (!isBookmarked) {
-      setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
-    }
+    setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   }
 
   function removeBookmark(bookmarkURL) {
@@ -45,6 +52,7 @@ function ContextProvider({ children }) {
       (bookmark) => bookmark.url !== bookmarkURL
     );
     setBookmarks(newBookmarks);
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   }
 
   function toggleActiveTab(tabName) {
@@ -64,7 +72,6 @@ function ContextProvider({ children }) {
       });
     });
   }
-
 
   return (
     <Context.Provider
