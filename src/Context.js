@@ -4,6 +4,7 @@ const Context = createContext();
 
 function ContextProvider({ children }) {
   const [resources, setResources] = useState([]);
+  const [renderedResources, setRenderedResources] = useState([]);
   const [bookmarks, setBookmarks] = useState(() => {
     const saved = localStorage.getItem("bookmarks");
     const initialValue = JSON.parse(saved);
@@ -17,7 +18,7 @@ function ContextProvider({ children }) {
       path: "/acn-resource-finder/bookmarks",
     },
   ]);
-  // const [activeTab, setActiveTab] = useState("Resources");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     getResources();
@@ -40,7 +41,7 @@ function ContextProvider({ children }) {
   }
 
   function addBookmark(resourceURL) {
-    const newBookmark = resources.find(
+    const newBookmark = renderedResources.find(
       (resource) => resource.url === resourceURL
     );
     setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
@@ -78,12 +79,16 @@ function ContextProvider({ children }) {
       value={{
         resources,
         setResources,
+        renderedResources,
+        setRenderedResources,
         bookmarks,
         addBookmark,
-        removeBookmark,
         setBookmarks,
+        removeBookmark,
         tabs,
         toggleActiveTab,
+        searchTerm,
+        setSearchTerm,
       }}
     >
       {children}

@@ -3,14 +3,21 @@ import { Context } from "../../Context";
 import SearchForm from "../SearchForm/SearchForm";
 
 const ResourceList = () => {
-  const { resources, addBookmark, bookmarks, removeBookmark } =
-    useContext(Context);
+  const {
+    resources,
+    renderedResources,
+    addBookmark,
+    bookmarks,
+    removeBookmark,
+    searchTerm,
+  } = useContext(Context);
+  const resourceGroup = searchTerm.trim() ? renderedResources : resources;
 
   return (
     <div className="resource-list">
-      <SearchForm/>      
-      {resources.length !== 0 ? (
-        resources.map((resource) => {
+      <SearchForm />
+      {resourceGroup.length !== 0 ? (
+        resourceGroup.map((resource) => {
           const isBookmarked = bookmarks.find(
             (bookmark) => bookmark.url === resource.url
           );
@@ -49,6 +56,8 @@ const ResourceList = () => {
             </div>
           );
         })
+      ) : searchTerm ? (
+        <h2 className="content-placeholder">Resource(s) not found...</h2>
       ) : (
         <h2 className="content-placeholder">Loading resources...</h2>
       )}

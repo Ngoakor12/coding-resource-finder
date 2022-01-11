@@ -1,8 +1,8 @@
-import { useState, useContext } from "react"; 
+import { useContext } from "react";
 import { Context } from "../../Context";
 const SearchForm = () => {
-  const { resources, setResources } = useContext(Context);
-  const [searchTerm, setSearchTerm] = useState("");
+  const { resources, searchTerm, setSearchTerm, setRenderedResources } =
+    useContext(Context);
 
   function handleSearch() {
     let result = [];
@@ -11,11 +11,12 @@ const SearchForm = () => {
         .toLowerCase()
         .includes(searchTerm.toLocaleLowerCase().trim());
     });
-    if (result.length > 0) {
-      setResources(result);
-      result = [];
+    if (result.length > 0 && searchTerm.trim()) {
+      setRenderedResources(result);
+    } else if (searchTerm.trim() && !result.length) {
+      setRenderedResources([]);
     } else {
-      setResources(resources);
+      setRenderedResources(resources);
     }
   }
   return (
@@ -28,6 +29,7 @@ const SearchForm = () => {
           setSearchTerm(e.target.value);
         }}
         onChange={handleSearch}
+        value={searchTerm}
       />
     </div>
   );
