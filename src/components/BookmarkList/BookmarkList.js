@@ -6,7 +6,7 @@ const BookmarkList = () => {
   return (
     <div className="resource-list">
       {bookmarks.length > 0 ? (
-        <p className="clear-bookmarks" onClick={setBookmarks([])}>
+        <p className="clear-bookmarks" onClick={() => setBookmarks([])}>
           Clear bookmarks
         </p>
       ) : (
