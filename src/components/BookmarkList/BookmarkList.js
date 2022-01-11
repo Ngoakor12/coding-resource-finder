@@ -5,21 +5,13 @@ const BookmarkList = () => {
 
   return (
     <div className="resource-list">
-      {bookmarks.length > 0?  (
-        <p
-          className="clear-bookmarks"
-          onClick={() => {
-            console.log("cleared bookmarks");
-            setBookmarks([]);
-            console.log(bookmarks);
-          }}
-        >
+      {bookmarks.length > 0 ? (
+        <p className="clear-bookmarks" onClick={setBookmarks([])}>
           Clear bookmarks
         </p>
-      ):(
+      ) : (
         <h2 className="content-placeholder">No bookmarks yet...</h2>
-      )
-    }
+      )}
       {bookmarks.map((bookmark) => {
         return (
           <div className="resource-wrapper" key={bookmark.url}>
