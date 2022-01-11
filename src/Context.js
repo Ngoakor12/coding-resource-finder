@@ -29,6 +29,7 @@ function ContextProvider({ children }) {
   useEffect(() => {
     getResources();
     setRenderedResources(resources)
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
