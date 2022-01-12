@@ -22,13 +22,12 @@ function ContextProvider({ children }) {
 
   // this is to determine which state of resources to use
   const resourceGroup = searchTerm.trim().length
-  ? renderedResources
-  : resources;
-
+    ? renderedResources
+    : resources;
 
   useEffect(() => {
     getResources();
-    setRenderedResources(resources)
+    setRenderedResources(resources);
     // eslint-disable-next-line
   }, []);
 
@@ -41,7 +40,16 @@ function ContextProvider({ children }) {
       await fetch("https://acn-resource-finder-api.herokuapp.com/all/")
         .then((response) => response.json())
         .then((data) => {
-          setResources(data.data);
+          const sortedData = data.data.sort((a, b) => {
+            if (a.title < b.title) {
+              return -1;
+            }
+            if (a.title > b.title) {
+              return 1;
+            }
+            return 0;
+          });
+          setResources(sortedData);
         });
     } catch (error) {
       console.log(error);

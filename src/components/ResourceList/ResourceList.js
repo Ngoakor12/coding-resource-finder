@@ -3,13 +3,8 @@ import { Context } from "../../Context";
 import SearchForm from "../SearchForm/SearchForm";
 
 const ResourceList = () => {
-  const {
-    addBookmark,
-    bookmarks,
-    removeBookmark,
-    searchTerm,
-    resourceGroup,
-  } = useContext(Context);
+  const { addBookmark, bookmarks, removeBookmark, searchTerm, resourceGroup } =
+    useContext(Context);
 
   return (
     <div className="resource-list">
