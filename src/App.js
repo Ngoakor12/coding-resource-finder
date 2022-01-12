@@ -12,6 +12,12 @@ function App() {
       <main className="main">
         <aside className="aside-nav">
           <Nav />
+          <p className="creator">
+            Created by{" "}
+            <a href="https://ngoako.com" target="_blank" rel="noreferrer">
+              Ngoako
+            </a>
+          </p>
         </aside>
         <section className="main-content">
           <Routes>

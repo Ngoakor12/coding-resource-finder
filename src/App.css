@@ -44,7 +44,8 @@ body {
   gap: 15px;
 }
 
-.bookmark-list,.resource-list {
+.bookmark-list,
+.resource-list {
   padding-bottom: 5em;
 }
 
@@ -168,8 +169,14 @@ body {
   font-style: italic;
 }
 
-.hr {
-  display: none;
+.creator {
+  padding: 0;
+  background-color: rgb(41, 41, 41);
+  opacity: 80%;
+}
+
+.creator a {
+  color: rgb(143, 255, 171);
 }
 
 .content-placeholder {
@@ -296,7 +303,7 @@ body {
     gap: 40px;
     min-width: 800px;
   }
-  
+
   .main-content {
     min-width: 80%;
   }
@@ -308,7 +315,13 @@ body {
     top: 0;
     min-width: 160px;
   }
-  
+
+  .creator {
+    position: sticky;
+    top: 130px;
+    padding: 1em 0;
+  }
+
   .search-input {
     margin-bottom: 20px;
     border-radius: 10px;
