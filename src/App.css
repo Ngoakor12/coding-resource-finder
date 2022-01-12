@@ -23,8 +23,9 @@ body {
 }
 
 .header-title {
-  font-size: 50px;
+  font-size: 25px;
   line-height: 100%;
+  padding-top: 3em;
 }
 .header-description {
   font-size: 16px;
@@ -99,9 +100,12 @@ body {
   min-width: 100%;
   padding: 15px 25px;
   font-size: 22px;
-  margin-bottom: 20px;
   border: 0;
   border-radius: 10px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .search-input:focus-visible {
@@ -113,6 +117,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: relative;
 }
 
 .nav {
@@ -120,6 +125,11 @@ body {
   justify-content: space-around;
   border-radius: 8px;
   background-color: rgb(31, 31, 31);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
 }
 
 .nav-item {
@@ -268,13 +278,21 @@ body {
     padding-bottom: 30px;
   }
 
+  .header-title {
+    font-size: 50px;
+    padding-top: 0;
+  }
+  .header-description {
+    font-size: 18px;
+  }
+
   .main {
     display: grid;
     grid-template-columns: 20% minmax(0, 80%);
     gap: 40px;
     min-width: 800px;
   }
-
+  
   .main-content {
     min-width: 80%;
   }
@@ -285,5 +303,12 @@ body {
     position: sticky;
     top: 0;
     min-width: 160px;
+  }
+  
+  .search-input {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    position: static;
+    top: 0;
   }
 }
