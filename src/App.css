@@ -44,6 +44,10 @@ body {
   gap: 15px;
 }
 
+.bookmark-list,.resource-list {
+  padding-bottom: 5em;
+}
+
 .resource {
   display: flex;
   justify-content: space-between;
