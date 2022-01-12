@@ -172,7 +172,7 @@ body {
 .creator {
   padding: 0;
   background-color: rgb(41, 41, 41);
-  opacity: 80%;
+  opacity: .7;
 }
 
 .creator a {
