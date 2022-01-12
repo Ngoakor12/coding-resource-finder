@@ -13,8 +13,7 @@ function App() {
         <aside className="aside-nav">
           <Nav />
           <p className="creator">
-            Created by{" "}
-            <a href="https://ngoako.com" target="_blank" rel="noreferrer">
+            Created by <a href="https://ngoako.com" target="_blank" rel="noreferrer">
               Ngoako
             </a>
           </p>
