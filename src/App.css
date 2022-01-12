@@ -63,7 +63,7 @@ body {
 .resource-title {
   font-weight: 400;
   font-size: 22px;
-  max-width: 88%;
+  padding-right: 35px;
 }
 
 .resource:hover {
