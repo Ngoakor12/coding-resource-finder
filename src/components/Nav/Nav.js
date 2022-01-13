@@ -9,7 +9,7 @@ const Nav = () => {
     <nav className="nav">
       {tabs.map((tab) => {
         const styles = {
-          color: tab.isActive ? "white" : "",
+          color: tab.isActive ? "#8fffab" : "",
           backgroundColor: tab.isActive ? "rgb(27, 27, 27)" : "",
         };
         return (

@@ -8,7 +8,7 @@
 
 body {
   font-family: "Roboto Mono", monospace;
-  color: white;
+  color: #f1f1f1;
   background-color: rgb(41, 41, 41);
 }
 
@@ -22,7 +22,7 @@ body {
 }
 
 .home {
-  color: white;
+  color: #f1f1f1;
   text-decoration: none;
 }
 
@@ -77,7 +77,7 @@ header {
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  color: white;
+  color: #f1f1f1;
   text-decoration: none;
   background-color: rgb(31, 31, 31);
   padding: 20px;
@@ -132,7 +132,7 @@ header {
 }
 
 .search-input:focus-visible {
-  background-color: white;
+  background-color: #f1f1f1;
   outline: rgb(92, 92, 92) 4px solid;
 }
 
@@ -172,11 +172,11 @@ header {
   font-size: 20px;
 }
 
-.active {
+/* .active {
   color: white;
   background-color: rgb(27, 27, 27);
   font-weight: 700;
-}
+} */
 
 .nav-item:focus-visible {
   outline: #8fffab 3px solid;
@@ -184,7 +184,7 @@ header {
 }
 
 .nav-item:hover {
-  color: white;
+  color: #f1f1f1 !important;
 }
 
 .creator,
@@ -263,7 +263,7 @@ header {
 .resource-wrapper:hover .resource {
   font-weight: 700;
   color: #8fffab;
-  border: white 1px solid;
+  border: #f1f1f1 1px solid;
 }
 
 .bookmark-button:focus-visible,
@@ -307,10 +307,6 @@ header {
     padding-bottom: 2.5em;
     margin-top: 0;
     margin-bottom: 3em;
-  }
-
-  .header > * {
-    opacity: 0.97;
   }
 
   .header-details {
