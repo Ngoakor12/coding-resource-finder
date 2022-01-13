@@ -21,6 +21,11 @@ body {
   position: relative;
 }
 
+.home {
+  color: white;
+  text-decoration: none;
+}
+
 .header-details {
   display: flex;
   flex-direction: column;

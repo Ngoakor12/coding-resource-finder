@@ -1,11 +1,24 @@
 const Header = () => {
   return (
     <header className="header">
-      <h1 className="header-title">Coding Resource Finder</h1>
+      <h1 className="header-title">
+        <a
+          className="home"
+          href="https://www.ngoako.com/coding-resource-finder/"
+          rel="noreferrer"
+        >
+          Coding Resource Finder
+        </a>
+      </h1>
       <div className="header-details">
         <p className="header-description">
           An easier way to find coding related topics and projects on the{" "}
-          <a className="simple-link" href="http://syllabus.africacode.net/">
+          <a
+            className="simple-link"
+            href="http://syllabus.africacode.net/"
+            target="_blank"
+            rel="noreferrer"
+          >
             ACN syllabus
           </a>
         </p>
