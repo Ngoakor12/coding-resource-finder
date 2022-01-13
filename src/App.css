@@ -29,7 +29,6 @@ body {
 .header-details {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .header-title {
@@ -188,7 +187,9 @@ body {
 
 .creator,
 .source-code {
-  opacity: 0.6;
+  font-size: .9rem;
+  padding: 1em 0;
+  opacity: 0.9;
 }
 
 .simple-link {
@@ -310,11 +311,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
     gap: 0;
   }
 
   .header-title {
-    font-size: 50px;
+    font-size: 35px;
     padding-top: 0;
     padding-bottom: 0;
   }
@@ -346,10 +348,6 @@ body {
     position: sticky;
     top: 0;
     min-width: 160px;
-  }
-
-  .creator {
-    padding: 1em 0;
   }
 
   .search-input {

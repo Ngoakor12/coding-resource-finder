@@ -24,7 +24,7 @@ const Header = () => {
         </p>
         <div className="header-links">
           <p className="creator">
-            Created by:{" "}
+            Created by{" "}
             <a
               className="simple-link"
               href="https://ngoako.com"
@@ -33,9 +33,7 @@ const Header = () => {
             >
               Ngoako
             </a>
-          </p>
-          <p className="source-code">
-            Source code:{" "}
+            . Source code on{" "}
             <a
               className="simple-link"
               href="https://github.com/Ngoakor12/coding-resource-finder"
@@ -43,8 +41,10 @@ const Header = () => {
               rel="noreferrer"
             >
               Github
-            </a>
+            </a>.
           </p>
+          {/* <p className="source-code"> */}
+          {/* </p> */}
         </div>
       </div>
     </header>
