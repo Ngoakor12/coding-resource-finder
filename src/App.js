@@ -17,11 +17,11 @@ function App() {
           <Routes>
             <Route
               exact
-              path="/acn-resource-finder"
+              path="/coding-resource-finder"
               element={<ResourceList />}
             />
             <Route
-              path="/acn-resource-finder/bookmarks"
+              path="/coding-resource-finder/bookmarks"
               element={<BookmarkList />}
             />
           </Routes>

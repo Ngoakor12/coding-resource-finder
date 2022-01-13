@@ -25,7 +25,7 @@ const Header = () => {
             Source code:{" "}
             <a
               className="simple-link"
-              href="https://github.com/Ngoakor12/acn-resource-finder"
+              href="https://github.com/Ngoakor12/coding-resource-finder"
               target="_blank"
               rel="noreferrer"
             >
