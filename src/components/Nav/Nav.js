@@ -4,14 +4,13 @@ import { Context } from "../../Context";
 
 const Nav = () => {
   const { tabs, toggleActiveTab } = useContext(Context);
-  
+
   return (
     <nav className="nav">
       {tabs.map((tab) => {
         const styles = {
           color: tab.isActive ? "white" : "",
           backgroundColor: tab.isActive ? "rgb(27, 27, 27)" : "",
-          fontStyle: tab.isActive ? "italic" : "",
         };
         return (
           <Link
