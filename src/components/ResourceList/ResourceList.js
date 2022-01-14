@@ -20,6 +20,7 @@ const ResourceList = () => {
               onClick={() => {
                 removeBookmark(resource.url);
               }}
+              title="remove bookmark"
             >
               +
             </button>
@@ -29,6 +30,7 @@ const ResourceList = () => {
               onClick={() => {
                 addBookmark(resource.url);
               }}
+              title="add bookmark"
             >
               +
             </button>

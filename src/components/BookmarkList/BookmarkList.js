@@ -27,6 +27,7 @@ const BookmarkList = () => {
             <button
               className="remove-bookmark-button"
               onClick={() => removeBookmark(bookmark.url)}
+              title="remove bookmark"
             >
               +
             </button>
