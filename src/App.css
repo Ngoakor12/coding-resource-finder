@@ -129,11 +129,26 @@ header {
   bottom: 0;
   left: 0;
   z-index: 1;
+  padding-right: 55px;
 }
 
 .search-input:focus-visible {
   background-color: #f1f1f1;
   outline: rgb(92, 92, 92) 4px solid;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+}
+
+.clear-button {
+  padding: 8px;
+  position: fixed;
+  right: 18px;
+  bottom: 10px;
+  z-index: 1;
+  color: rgb(27, 27, 27);
 }
 
 .main {
@@ -357,5 +372,23 @@ header {
     border-radius: 10px;
     position: static;
     top: 0;
+  }
+
+  .clear-button {
+    cursor: pointer;
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    z-index: 1;
+    color: rgb(27, 27, 27);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    place-content: center;
+  }
+
+  .clear-button:hover {
+    background-color: #8f8f8f48;
+    border-radius: 100%;
   }
 }
