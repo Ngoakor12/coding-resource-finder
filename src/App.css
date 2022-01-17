@@ -140,6 +140,33 @@ header {
 .search-input-wrapper {
   position: relative;
   display: flex;
+  flex-direction: column;
+}
+
+.search-suggestions {
+  display: flex;
+  max-width: 600px;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.search-suggestion {
+  border: 1px solid rgb(92, 92, 92);
+  border-radius: 20px;
+  padding: 4px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.search-suggestion:hover {
+  color: #8fffab;
+  background-color: rgb(31, 31, 31);
+}
+
+.active {
+  color: #8fffab;
+  background-color: rgb(31, 31, 31);
 }
 
 .clear-button {
@@ -252,14 +279,13 @@ header {
   color: rgb(255, 255, 131);
   background-color: transparent;
   cursor: pointer;
-  transition: background-color 200ms ease,color 200ms ease;
+  transition: background-color 200ms ease, color 200ms ease;
   padding: 5px;
   margin: 2px;
 }
 
 .resource-wrapper:hover .bookmark-button {
   color: hsl(135, 100%, 78%);
-  
 }
 
 .resource-wrapper:hover .bookmark-button:hover {
