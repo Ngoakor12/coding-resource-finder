@@ -11,7 +11,7 @@ const Header = () => {
         </a>
       </h1>
       <div className="header-details">
-        <p className="header-description">
+        <h2 className="header-description">
           An easier way to find coding related topics and projects on the{" "}
           <a
             className="simple-link"
@@ -21,7 +21,7 @@ const Header = () => {
           >
             ACN syllabus
           </a>
-        </p>
+        </h2>
         <div className="header-links">
           <p className="creator">
             Created by{" "}
