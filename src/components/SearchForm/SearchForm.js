@@ -15,6 +15,7 @@ const SearchForm = () => {
 
   useEffect(() => {
     handleSearch();
+    //eslint-disable-next-line
   }, [searchTerm]);
 
   function searchWithSuggestion(text) {
