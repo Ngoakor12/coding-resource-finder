@@ -37,7 +37,7 @@ function ContextProvider({ children }) {
 
   async function getResources() {
     try {
-      await fetch("https://acn-resource-finder-api.herokuapp.com/all/")
+      await fetch("https://coding-resource-finder-api.herokuapp.com/all/")
         .then((response) => response.json())
         .then((data) => {
           const sortedData = data.data.sort((a, b) => {
