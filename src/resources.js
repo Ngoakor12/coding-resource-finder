@@ -14,13 +14,23 @@ async function getTopics() {
   const html = await getHTML();
   // topics are initially a nodelist and has to be converted to an array
   const topics = Array(...html.querySelectorAll(`li[title="Topics"] ul li a`));
-  return topics.map((topic) => {
-    return {
-      title: topic.textContent.trim(),
-      url: topic.href,
-      type: "topic",
-    };
-  });
+  return topics
+    .map((topic) => {
+      return {
+        title: topic.textContent.trim(),
+        url: topic.href,
+        type: "topic",
+      };
+    })
+    .sort((a, b) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    });
 }
 
 async function getProjects() {
@@ -29,19 +39,37 @@ async function getProjects() {
   const projects = Array(
     ...html.querySelectorAll(`li[title="Projects"] ul li a`)
   );
-  return projects.map((project) => {
-    return {
-      title: project.textContent.trim(),
-      url: project.href,
-      type: "project",
-    };
-  });
+  return projects
+    .map((project) => {
+      return {
+        title: project.textContent.trim(),
+        url: project.href,
+        type: "project",
+      };
+    })
+    .sort((a, b) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    });
 }
 
 async function getResources() {
   const topics = await getTopics();
   const projects = await getProjects();
-  return [...topics, ...projects];
+  return [...topics, ...projects].sort((a, b) => {
+    if (a.title < b.title) {
+      return -1;
+    }
+    if (a.title > b.title) {
+      return 1;
+    }
+    return 0;
+  });
 }
 
 async function getPages(resource) {
