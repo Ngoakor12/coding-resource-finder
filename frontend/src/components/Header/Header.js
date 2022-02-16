@@ -4,7 +4,7 @@ const Header = () => {
       <h1 className="header-title">
         <a
           className="home"
-          href="https://www.ngoako.com/coding-resource-finder/"
+          href="https://www.ngoako.com/codingresourcefinder/"
           rel="noreferrer"
         >
           Coding Resource Finder2
