@@ -4,10 +4,10 @@ const Header = () => {
       <h1 className="header-title">
         <a
           className="home"
-          href="https://www.ngoako.com/codingresourcefinder/"
+          href="https://www.ngoako.com/coding-resource-finder/"
           rel="noreferrer"
         >
-          Coding Resource Finder2
+          Coding Resource Finder
         </a>
       </h1>
       <div className="header-details">
@@ -41,7 +41,8 @@ const Header = () => {
               rel="noreferrer"
             >
               Github
-            </a>.
+            </a>
+            .
           </p>
           {/* <p className="source-code"> */}
           {/* </p> */}

@@ -11,11 +11,11 @@ function ContextProvider({ children }) {
     return initialValue || [];
   });
   const [tabs, setTabs] = useState([
-    { title: "Resources", isActive: true, path: "/codingresourcefinder" },
+    { title: "Resources", isActive: true, path: "/" },
     {
       title: "Bookmarks",
       isActive: false,
-      path: "/codingresourcefinder/bookmarks",
+      path: "/bookmarks",
     },
   ]);
   const [searchTerm, setSearchTerm] = useState("");
