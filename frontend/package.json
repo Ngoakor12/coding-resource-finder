@@ -8,7 +8,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3"
   },
-  "homepage": "https://ngoakor12.github.io/codingresourcefinder",
+  "homepage": "https://ngoako.dev/projects/coding-resource-finder",
   "scripts": {
     "start": "react-scripts start",
     "deploy": "npm run build && gh-pages -d build",
