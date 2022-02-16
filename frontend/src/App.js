@@ -15,8 +15,15 @@ function App() {
         </aside>
         <section className="main-content">
           <Routes>
-            <Route exact path="/" element={<ResourceList />} />
-            <Route path="/bookmarks" element={<BookmarkList />} />
+            <Route
+              exact
+              path="/coding-resource-finder"
+              element={<ResourceList />}
+            />
+            <Route
+              path="/coding-resource-finder/bookmarks"
+              element={<BookmarkList />}
+            />
           </Routes>
         </section>
       </main>
