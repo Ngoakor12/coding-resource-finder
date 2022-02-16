@@ -8,7 +8,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "^5.0.0"
   },
-  "homepage": "https://coding-resource-finder.netlify.app/",
+  "homepage": "https://ngoako.com/coding-resource-finder",
   "scripts": {
     "start": "react-scripts start",
     "deploy": "npm run build && gh-pages -d build",
