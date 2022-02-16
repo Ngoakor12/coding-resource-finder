@@ -1,5 +1,5 @@
 {
-  "name": "acn-resource-finder",
+  "name": "codingresourcefinder",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,11 +8,11 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3"
   },
-  "homepage": "https://ngoakor12.github.io/coding-resource-finder",
+  "homepage": "https://ngoakor12.github.io/codingresourcefinder",
   "scripts": {
-    "start": "react-scripts start",
-    "deploy": "npm run build && gh-pages -d build",
-    "build": "react-scripts build",
+    "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "deploy": "export SET NODE_OPTIONS=--openssl-legacy-provider && npm run build && gh-pages -d build",
+    "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
