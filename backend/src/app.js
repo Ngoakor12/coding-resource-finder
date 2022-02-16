@@ -18,13 +18,14 @@ const customError = {
 app.get("/", (req, res) => {
   res.json({
     all_resources: "https://coding-resource-finder-api.herokuapp.com/all",
-    all_topics: "https://coding-resource-finder-api.herokuapp.com/topics",
-    all_projects: "https://coding-resource-finder-api.herokuapp.com/projects",
-    specific_page_from_all_resources:
+    all_topics: "https://coding-resource-finder-api.herokuapp.com/all/topics",
+    all_projects:
+      "https://coding-resource-finder-api.herokuapp.com/all/projects",
+    all_resources_page:
       "https://coding-resource-finder-api.herokuapp.com/all/{page}",
-    specific_page_from_all_topics:
+    all_topics_page:
       "https://coding-resource-finder-api.herokuapp.com/all/topics/{page}",
-    specific_page_from_all_projects:
+    all_projects_page:
       "https://coding-resource-finder-api.herokuapp.com/all/projects/{page}",
   });
 });
