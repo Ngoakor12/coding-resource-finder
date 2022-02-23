@@ -6,7 +6,7 @@ An easier way to find coding related topics and projects on the [ACN syllabus](h
 [**Setup locally**](#local-setup) 🔧
 
 ## Problem
-I like [ACN syllabus](http://syllabus.africacode.net/) and the people behind it. I go there whenever I want to learn something new to see if there are any relevant resources. It didn't have a way to easily search and bookmark resources. The default browser search(Ctrl+F) wasn't returning all the result and required clicking on parent links to search them. My browser bookmarks were not an option because I already have enough bookmarks and wanted them to be linked with the resources site.
+I like [ACN syllabus](http://syllabus.africacode.net/) and the people behind it. I go there whenever I want to learn something new to see if there are any relevant resources. The "problem" started when it I noticed how searching resources required more clicks and wanting a way to bookmark resources I was busy going through for easy access. The default browser search(Ctrl+F) wasn't returning all the result and required clicking on parent links to search them. My browser bookmarks were not an option because I already have enough bookmarks and wanted them to be linked with the resources site.
 
 ## Tech stack
 - **ReactJS** - for the frontend
@@ -14,6 +14,10 @@ I like [ACN syllabus](http://syllabus.africacode.net/) and the people behind it.
 - **React Router** - Internal routing
 - [**JSDOM**](https://github.com/jsdom/jsdom) - web scraping
 - **ExpressJS** - API development
+
+## Features
+- **Search resources**
+- **Bookmark resources** you are busy with or want to work on next
 
 ## Challenges
 - Getting the resources data without an API - Overcame this by learning web scraping, getting the data and creating an API to query the data in a less painful way. 
