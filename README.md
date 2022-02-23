@@ -27,18 +27,34 @@ I like [ACN syllabus](http://syllabus.africacode.net/) and the people behind it.
 
 ## Local setup
 clone repo
-`git clone https://github.com/Ngoakor12/coding-resource-finder.git`
+```
+git clone https://github.com/Ngoakor12/coding-resource-finder.git
+```
 change directory into project
-`cd coding-resource-finder`
+```
+cd coding-resource-finder
+```
 change directory into backend
-`cd backend`
+```
+cd backend
+```
 install backend dependencies
-`npm install`
+```
+npm install
+```
 run api
-`npm run dev`
+```
+npm run dev
+```
 change directory into frontend
-`cd frontend`
+```
+cd frontend
+```
 install frontend dependencies
-`npm install`
+```
+npm install
+```
 run frontend
-`npm start`
+```
+npm start
+```
