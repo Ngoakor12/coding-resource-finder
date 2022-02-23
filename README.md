@@ -1,7 +1,9 @@
 # Coding Resource Finder
 An easier way to find coding related topics and projects on the [ACN syllabus](http://syllabus.africacode.net/). Built with ReactJS and NodeJS.
 
-[**Live project**](https://www.ngoako.com/coding-resource-finder/)🌐
+[**Live project**](https://www.ngoako.com/coding-resource-finder/) 🌐
+
+[**Setup locally**](#local-setup) 🔧
 
 ## Problem
 I like [ACN syllabus](http://syllabus.africacode.net/) and the people behind it. I go there whenever I want to learn something new to see if there are any relevant resources. It didn't have a way to easily search and bookmark resources. The default browser search(Ctrl+F) wasn't returning all the result and required clicking on parent links to search them. My browser bookmarks were not an option because I already have enough bookmarks and wanted them to be linked with the resources site.
