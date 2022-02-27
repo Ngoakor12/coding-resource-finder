@@ -17,12 +17,12 @@ function App() {
           <Routes>
             <Route
               exact
-              path="/coding-resource-finder/"
+              path="/"
               element={<ResourceList />}
             />
             <Route
               exact
-              path="/coding-resource-finder/bookmarks"
+              path="/bookmarks"
               element={<BookmarkList />}
             />
           </Routes>
