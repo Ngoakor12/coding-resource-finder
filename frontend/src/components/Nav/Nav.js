@@ -4,7 +4,7 @@ const Nav = () => {
   return (
     <nav className="nav">
       <NavLink
-        to="/coding-resource-finder/"
+        to="/"
         className={({ isActive }) =>
           isActive ? "nav-item active-nav" : "nav-item"
         }
@@ -12,7 +12,7 @@ const Nav = () => {
         Resources
       </NavLink>
       <NavLink
-        to="/coding-resource-finder/bookmarks"
+        to="/bookmarks"
         className={({ isActive }) =>
           isActive ? "nav-item active-nav" : "nav-item"
         }
