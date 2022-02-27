@@ -1,29 +1,24 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { Context } from "../../Context";
+import { NavLink } from "react-router-dom";
 
 const Nav = () => {
-  const { tabs, toggleActiveTab } = useContext(Context);
-
   return (
     <nav className="nav">
-      {tabs.map((tab) => {
-        const styles = {
-          color: tab.isActive ? "#8fffab" : "",
-          backgroundColor: tab.isActive ? "rgb(27, 27, 27)" : "",
-        };
-        return (
-          <Link
-            key={tab.title}
-            className="nav-item"
-            to={tab.path}
-            onClick={() => toggleActiveTab(tab.title)}
-            style={styles}
-          >
-            {tab.title}
-          </Link>
-        );
-      })}
+      <NavLink
+        to="/coding-resource-finder/"
+        className={({ isActive }) =>
+          isActive ? "nav-item active-nav" : "nav-item"
+        }
+      >
+        Resources
+      </NavLink>
+      <NavLink
+        to="/coding-resource-finder/bookmarks"
+        className={({ isActive }) =>
+          isActive ? "nav-item active-nav" : "nav-item"
+        }
+      >
+        Bookmarks
+      </NavLink>
     </nav>
   );
 };
