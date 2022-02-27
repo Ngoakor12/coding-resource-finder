@@ -4,7 +4,7 @@ const Header = () => {
       <h1 className="header-title">
         <a
           className="home"
-          href="https://www.ngoako.com/coding-resource-finder/"
+          href="https://coding-resource-finder.netlify.app/"
           rel="noreferrer"
         >
           Coding Resource Finder
