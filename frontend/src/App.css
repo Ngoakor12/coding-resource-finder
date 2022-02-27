@@ -224,6 +224,11 @@ header {
   color: #f1f1f1 !important;
 }
 
+.active-nav {
+  color: #8fffab;
+  background-color: rgb(27, 27, 27);
+}
+
 .creator,
 .source-code {
   font-size: 0.9rem;

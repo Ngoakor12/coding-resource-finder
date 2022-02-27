@@ -10,14 +10,6 @@ function ContextProvider({ children }) {
     const initialValue = JSON.parse(saved);
     return initialValue || [];
   });
-  const [tabs, setTabs] = useState([
-    { title: "Resources", isActive: true, path: "/coding-resource-finder" },
-    {
-      title: "Bookmarks",
-      isActive: false,
-      path: "/coding-resource-finder/bookmarks",
-    },
-  ]);
   const [searchTerm, setSearchTerm] = useState("");
 
   // this is to determine which state of resources to use
@@ -72,24 +64,6 @@ function ContextProvider({ children }) {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   }
 
-  function toggleActiveTab(tabName) {
-    setTabs((prevTabs) => {
-      return prevTabs.map((tab) => {
-        if (tabName === tab.title) {
-          return {
-            ...tab,
-            isActive: true,
-          };
-        } else {
-          return {
-            ...tab,
-            isActive: false,
-          };
-        }
-      });
-    });
-  }
-
   return (
     <Context.Provider
       value={{
@@ -102,8 +76,6 @@ function ContextProvider({ children }) {
         addBookmark,
         setBookmarks,
         removeBookmark,
-        tabs,
-        toggleActiveTab,
         searchTerm,
         setSearchTerm,
       }}
