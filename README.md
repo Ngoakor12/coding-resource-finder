@@ -1,7 +1,7 @@
 # Coding Resource Finder
 An easier way to find coding related topics and projects on the [ACN syllabus](http://syllabus.africacode.net/). Built with ReactJS and NodeJS.
 
-[**Live project**](https://www.ngoako.com/coding-resource-finder/) 🌐
+[**Live project**](https://coding-resource-finder.netlify.app/) 🌐
 
 [**Setup locally**](#local-setup) 🔧
 
