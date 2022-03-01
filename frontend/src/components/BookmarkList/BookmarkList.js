@@ -1,7 +1,13 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "../../Context";
 const BookmarkList = () => {
-  const { bookmarks, setBookmarks, removeBookmark } = useContext(Context);
+  const { bookmarks, setBookmarks, removeBookmark, setPageTitle } =
+    useContext(Context);
+
+  useEffect(() => {
+    setPageTitle("Bookmarks | Coding Resource Finder");
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="resource-list">

@@ -11,6 +11,7 @@ function ContextProvider({ children }) {
     return initialValue || [];
   });
   const [searchTerm, setSearchTerm] = useState("");
+  const [pageTitle, setPageTitle] = useState("Coding Resource Finder");
 
   // this is to determine which state of resources to use
   const resourceGroup = searchTerm.trim().length
@@ -26,6 +27,10 @@ function ContextProvider({ children }) {
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   }, [bookmarks]);
+
+  useEffect(() => {
+    document.title = pageTitle;
+  }, [pageTitle]);
 
   async function getResources() {
     try {
@@ -78,6 +83,7 @@ function ContextProvider({ children }) {
         removeBookmark,
         searchTerm,
         setSearchTerm,
+        setPageTitle,
       }}
     >
       {children}
