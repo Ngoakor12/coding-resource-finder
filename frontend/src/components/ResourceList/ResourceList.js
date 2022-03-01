@@ -1,10 +1,21 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "../../Context";
 import SearchForm from "../SearchForm/SearchForm";
 
 const ResourceList = () => {
-  const { addBookmark, bookmarks, removeBookmark, searchTerm, resourceGroup } =
-    useContext(Context);
+  const {
+    addBookmark,
+    bookmarks,
+    removeBookmark,
+    searchTerm,
+    resourceGroup,
+    setPageTitle,
+  } = useContext(Context);
+
+  useEffect(() => {
+    setPageTitle("Resources | Coding Resource Finder");
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="resource-list">
