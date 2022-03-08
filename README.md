@@ -6,7 +6,7 @@ An easier way to find coding related topics and projects on the [ACN syllabus](h
 [**Setup locally**](#local-setup) 🔧
 
 ## Problem
-I like [ACN syllabus](http://syllabus.africacode.net/) and the people behind it. I go there whenever I want to learn something new to see if there are any relevant resources I can steal.
+I like [ACN syllabus](http://syllabus.africacode.net/) and the people behind it. I go there whenever I want to learn something new to see if there are any relevant resources I can use.
 The "problem" started when I noticed how searching resources required more clicks and I also had to use the default browser find feature(Ctrl+F). And, there is currently no way to save what resources I'm going through or planning to check out in the future.
 To solve these problems that only someone who visits the site frequently notices. I decided to clone the website, not the entire website but the data(links to the resources) to be precise. Then add features that I know would make my life smoother using the original website.
 
@@ -14,7 +14,7 @@ To solve these problems that only someone who visits the site frequently notices
 - **ReactJS** - for the frontend
 - **Context** - global state management
 - **React Router** - Internal routing
-- [**JSDOM**](https://github.com/jsdom/jsdom) - web scraping
+- JSDOM - web scraping
 - **ExpressJS** - API development
 
 ## Features
