@@ -12,9 +12,9 @@ const BookmarkList = () => {
   return (
     <div className="resource-list">
       {bookmarks.length > 0 ? (
-        <p className="clear-bookmarks" onClick={() => setBookmarks([])}>
+        <button className="clear-bookmarks" onClick={() => setBookmarks([])}>
           Clear bookmarks
-        </p>
+        </button>
       ) : (
         <h2 className="content-placeholder">No bookmarks yet...</h2>
       )}
