@@ -12,6 +12,7 @@ function ContextProvider({ children }) {
   });
   const [searchTerm, setSearchTerm] = useState("");
   const [pageTitle, setPageTitle] = useState("Coding Resource Finder");
+  // const[currentResources,setCurrentResources]=useState([])
 
   // this is to determine which state of resources to use
   const resourceGroup = searchTerm.trim().length
@@ -34,7 +35,7 @@ function ContextProvider({ children }) {
 
   async function getResources() {
     try {
-      await fetch("https://coding-resource-finder-api.herokuapp.com/all/")
+      await fetch("https://coding-resource-finder-api.herokuapp.com/all")
         .then((response) => response.json())
         .then((data) => {
           const sortedData = data.data.sort((a, b) => {
