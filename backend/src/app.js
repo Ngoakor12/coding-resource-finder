@@ -65,7 +65,7 @@ app.get("/all/:page", async (req, res) => {
   const page = req.params.page;
   try {
     const data = await getPageData(getResources, page);
-    res.json(data ? { current_page: Number(page), data: data } : customError);
+    res.json((page && data) || customError);
   } catch (error) {
     throw error;
   }
@@ -76,7 +76,7 @@ app.get("/all/topics/:page", async (req, res) => {
   const page = req.params.page;
   try {
     const data = await getPageData(getTopics, page);
-    res.json(data ? { current_page: Number(page), data: data } : customError);
+    res.json((page && data) || customError);
   } catch (error) {
     throw error;
   }
@@ -87,12 +87,12 @@ app.get("/all/projects/:page", async (req, res) => {
   const page = req.params.page;
   try {
     const data = await getPageData(getProjects, page);
-    res.json(data ? { current_page: Number(page), data: data } : customError);
+    res.json((page && data) || customError);
   } catch (error) {
     throw error;
   }
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`App running at http://localhost:${port}`);
 });

@@ -75,14 +75,19 @@ async function getResources() {
 async function getPages(resource) {
   const resources = await resource();
   const numOfResources = resources.length;
-  const numOfResourcesPerPage = 15;
+  const numOfResourcesPerPage = 20;
   const pages = [];
-  const numOfPages = Math.round(numOfResources / 15);
+  const numOfPages = Math.ceil(numOfResources / numOfResourcesPerPage);
   let start = 0,
     end = numOfResourcesPerPage;
 
   for (let i = 1; i <= numOfPages; i++) {
-    pages.push(resources.slice(start, end));
+    pages.push({
+      current_page: i,
+      num_of_pages: numOfPages,
+      num_of_resources: resources.slice(start, end).length,
+      data: resources.slice(start, end),
+    });
     start += numOfResourcesPerPage;
     end += numOfResourcesPerPage;
   }
@@ -91,7 +96,10 @@ async function getPages(resource) {
 }
 
 async function getPageData(resource, page) {
-  return await getPages(resource).then((res) => res[Number(page) - 1]);
+  const pages = await getPages(resource);
+  const pageData = pages[Number(page) - 1];
+  
+  return pageData;
 }
 
 module.exports = {
