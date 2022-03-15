@@ -3,9 +3,9 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 2856;
 const {
-  getResources,
-  getTopics,
-  getProjects,
+  getAllResources,
+  getTopicsFromACN,
+  getProjectsFromACN,
   getPageData,
 } = require("./resources");
 
@@ -33,8 +33,8 @@ app.get("/", (req, res) => {
 // get all topics and projects
 app.get("/all", async (req, res) => {
   try {
-    const resources = await getResources();
-    res.json({ number_of_resources: resources.length, data: resources });
+    const resources = await getAllResources();
+    res.json(resources || customError);
   } catch (error) {
     throw error;
   }
@@ -43,8 +43,8 @@ app.get("/all", async (req, res) => {
 // get all available topics
 app.get("/all/topics", async (req, res) => {
   try {
-    const topics = await getTopics();
-    res.json({ num_of_topics: topics.length, data: topics });
+    const topics = await getTopicsFromACN();
+    res.json(topics || customError);
   } catch (error) {
     throw error;
   }
@@ -53,8 +53,8 @@ app.get("/all/topics", async (req, res) => {
 // get all available projects
 app.get("/all/projects", async (req, res) => {
   try {
-    const projects = await getProjects();
-    res.json({ num_of_projects: projects.length, data: projects });
+    const projects = await getProjectsFromACN();
+    res.json(projects || customError);
   } catch (error) {
     throw error;
   }
@@ -64,8 +64,8 @@ app.get("/all/projects", async (req, res) => {
 app.get("/all/:page", async (req, res) => {
   const page = req.params.page;
   try {
-    const data = await getPageData(getResources, page);
-    res.json((page && data) || customError);
+    const data = await getPageData(getAllResources, page);
+    res.json(data || customError);
   } catch (error) {
     throw error;
   }
@@ -75,8 +75,8 @@ app.get("/all/:page", async (req, res) => {
 app.get("/all/topics/:page", async (req, res) => {
   const page = req.params.page;
   try {
-    const data = await getPageData(getTopics, page);
-    res.json((page && data) || customError);
+    const data = await getPageData(getTopicsFromACN, page);
+    res.json(data || customError);
   } catch (error) {
     throw error;
   }
@@ -86,8 +86,8 @@ app.get("/all/topics/:page", async (req, res) => {
 app.get("/all/projects/:page", async (req, res) => {
   const page = req.params.page;
   try {
-    const data = await getPageData(getProjects, page);
-    res.json((page && data) || customError);
+    const data = await getPageData(getProjectsFromACN, page);
+    res.json(data || customError);
   } catch (error) {
     throw error;
   }
