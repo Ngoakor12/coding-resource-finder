@@ -37,8 +37,11 @@ function ResourceList() {
     bookmarks,
     removeBookmark,
     searchTerm,
-    resourceGroup,
+    resources,
     setPageTitle,
+    loadMoreResources,
+    renderedResources,
+    setRenderedResources,
   } = useContext(Context);
 
   useEffect(() => {
@@ -49,8 +52,8 @@ function ResourceList() {
   return (
     <div className="resource-list">
       <SearchForm />
-      {resourceGroup.length !== 0 ? (
-        resourceGroup.map((resource) => {
+      {renderedResources.length !== 0 ? (
+        renderedResources.map((resource) => {
           const isBookmarked = bookmarks.find((bookmark) => {
             return bookmark.url === resource.url;
           });
@@ -96,8 +99,24 @@ function ResourceList() {
       ) : (
         <h2 className="content-placeholder">Loading resources...</h2>
       )}
-      <button className="load-more-btn">Load 20 more resources</button>
-      <button className="load-more-btn">Load all resources</button>
+      <button
+        className="load-more-btn"
+        onClick={loadMoreResources}
+        disabled={
+          renderedResources.length === resources.length || searchTerm.trim()
+        }
+      >
+        Load 20 more resources
+      </button>
+      <button
+        className="load-more-btn"
+        onClick={() => setRenderedResources(resources)}
+        disabled={
+          renderedResources.length === resources.length || searchTerm.trim()
+        }
+      >
+        Load all resources
+      </button>
     </div>
   );
 }

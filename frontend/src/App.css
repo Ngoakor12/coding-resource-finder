@@ -356,6 +356,14 @@ header {
   color: #f1f1f1;
   cursor: pointer;
 }
+.load-more-btn:disabled{
+  color: #8fffab;
+  opacity: .5;
+  cursor: not-allowed;
+}
+.load-more-btn:disabled:hover{
+  opacity: .5;
+}
 
 @media (min-width: 800px) {
   body {
