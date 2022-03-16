@@ -17,7 +17,7 @@ body {
   flex-direction: column;
   max-width: 800px;
   min-width: 280px;
-  margin: 2.5em;
+  margin: 0 2.5em 2.5em 2.5em;
   position: relative;
 }
 
@@ -91,7 +91,7 @@ header {
 
 .resource-title {
   font-weight: 400;
-  font-size: 20px;
+  font-size: 18px;
   padding-right: 35px;
 }
 
@@ -122,7 +122,7 @@ header {
   max-width: 800px;
   min-width: 100%;
   padding: 15px 25px;
-  font-size: 20px;
+  font-size: 18px;
   border: 0;
   border-radius: 10px;
   position: fixed;
@@ -211,7 +211,7 @@ header {
   padding: 20px;
   cursor: pointer;
   color: #8f8f8f;
-  font-size: 20px;
+  font-size: 18px;
   transition: color 300ms ease;
 }
 
@@ -273,7 +273,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 18px;
   position: absolute;
   top: 20px;
   right: 20px;
@@ -323,10 +323,15 @@ header {
 }
 
 .clear-bookmarks {
+  font-family: "Roboto Mono", monospace;
+  font-size: 14px;
+  padding: 10px;
   cursor: pointer;
   color: rgb(255, 255, 131);
   align-self: flex-end;
   transition: color 300ms ease;
+  border: 0;
+  background: none;
 }
 
 .clear-bookmarks:hover {
@@ -335,6 +340,29 @@ header {
 
 .nav > * {
   text-decoration: none;
+}
+
+.load-more-btn {
+  padding: 10px 20px;
+  color: #8fffab;
+  font-family: "Roboto Mono", monospace;
+  font-size: 14px;
+  /* font-weight: 700; */
+  border: 1px solid rgb(92, 92, 92);
+  border-radius: 8px;
+  background-color: rgb(31, 31, 31);
+}
+.load-more-btn:hover {
+  color: #f1f1f1;
+  cursor: pointer;
+}
+.load-more-btn:disabled{
+  color: #8fffab;
+  opacity: .5;
+  cursor: not-allowed;
+}
+.load-more-btn:disabled:hover{
+  opacity: .5;
 }
 
 @media (min-width: 800px) {
@@ -350,9 +378,13 @@ header {
   .header {
     align-self: flex-start;
     display: flex;
-    padding-bottom: 2.5em;
+    /* padding-bottom: 2.5em; */
     margin-top: 0;
     margin-bottom: 3em;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 
   .header-details {
@@ -370,7 +402,7 @@ header {
   }
 
   .header-description {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .header-links {
