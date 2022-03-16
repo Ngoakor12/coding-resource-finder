@@ -15,7 +15,6 @@ function ContextProvider({ children }) {
   const [renderedResources, setRenderedResources] = useState([]);
   const [resourceGroup, setResourceGroup] = useState([]);
 
-  console.log(resourceGroup);
   useEffect(() => {
     setResourceGroup(() => {
       return searchTerm.trim().length ? renderedResources : resources;
