@@ -34,7 +34,8 @@ To solve these problems that only someone who visits the site frequently notices
 - Deploying React frontends in a subfolder with GitHub Pages.
 - Serverside pagination.
 - Deploying NodeJS API in a subfolder using Heroku.
-- Persisting data in local storage in React
+- Persisting data in local storage in React.
+- Server-side and client-side pagination.
 
 ## Screenshots
 ![www ngoako com_coding-resource-finder_(myDevice highres desktop)](https://user-images.githubusercontent.com/54069197/155377612-66abb465-783e-46c7-be4c-b98b1f74848f.png)
