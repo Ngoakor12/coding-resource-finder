@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Context } from "../../Context";
-const BookmarkList = () => {
+
+function BookmarkList() {
   const { bookmarks, setBookmarks, removeBookmark, setPageTitle } =
     useContext(Context);
 
@@ -53,6 +54,6 @@ const BookmarkList = () => {
       })}
     </div>
   );
-};
+}
 
 export default BookmarkList;

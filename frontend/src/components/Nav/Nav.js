@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-const Nav = () => {
+function Nav() {
   return (
     <nav className="nav">
       <NavLink
@@ -21,6 +21,6 @@ const Nav = () => {
       </NavLink>
     </nav>
   );
-};
+}
 
 export default Nav;

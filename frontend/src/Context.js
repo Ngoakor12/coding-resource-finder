@@ -13,26 +13,24 @@ function ContextProvider({ children }) {
   const [pageTitle, setPageTitle] = useState("Coding Resource Finder");
   const [currentPage, setCurrentPage] = useState(1);
   const [renderedResources, setRenderedResources] = useState([]);
-  const [resourceGroup, setResourceGroup] = useState([]);
+  // const [resourceGroup, setResourceGroup] = useState([]);
 
-  useEffect(() => {
-    setResourceGroup(() => {
-      return searchTerm.trim().length ? renderedResources : resources;
-    });
-    // eslint-disable-next-line
-  }, [searchTerm]);
+  // useEffect(() => {
+  //   setResourceGroup(() => {
+  //     return searchTerm.trim().length ? renderedResources : resources;
+  //   });
+  //   // eslint-disable-next-line
+  // }, [searchTerm]);
 
   useEffect(() => {
     getPageOfResources();
-    setResourceGroup(renderedResources);
     // eslint-disable-next-line
   }, [currentPage]);
 
   useEffect(() => {
     getAllResources();
-    // setRenderedResources(resources);
     // eslint-disable-next-line
-  }, []);
+  }, [resources]);
 
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
@@ -69,7 +67,7 @@ function ContextProvider({ children }) {
   }
 
   function addBookmark(resourceURL) {
-    const newBookmark = resourceGroup.find(
+    const newBookmark = resources.find(
       (resource) => resource.url === resourceURL
     );
     setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
@@ -97,7 +95,6 @@ function ContextProvider({ children }) {
         setResources,
         getAllResources,
         renderedResources,
-        resourceGroup,
         setRenderedResources,
         bookmarks,
         addBookmark,
@@ -107,7 +104,6 @@ function ContextProvider({ children }) {
         setSearchTerm,
         setPageTitle,
         loadMoreResources,
-        setResourceGroup,
       }}
     >
       {children}

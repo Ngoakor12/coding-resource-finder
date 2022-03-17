@@ -1,17 +1,19 @@
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../Context";
-const SearchForm = () => {
+
+const initialSuggestions = [
+  { text: "JavaScript", isSelected: false },
+  { text: "React", isSelected: false },
+  { text: "Python", isSelected: false },
+  { text: "Java", isSelected: false },
+  { text: "Node", isSelected: false },
+  { text: "SQL", isSelected: false },
+];
+
+function SearchForm() {
   const { resources, searchTerm, setSearchTerm, setRenderedResources } =
     useContext(Context);
-  const initialSuggestions = [
-    { text: "JavaScript", isSelected: false },
-    { text: "React", isSelected: false },
-    { text: "Python", isSelected: false },
-    { text: "Java", isSelected: false },
-    { text: "Node", isSelected: false },
-    { text: "SQL", isSelected: false },
-  ];
-  const [suggestions, setSuggestions] = useState(initialSuggestions);
+  const [suggestions, setSuggestions] = useState(initialSuggestions || "");
 
   useEffect(() => {
     handleSearch();
@@ -91,7 +93,9 @@ const SearchForm = () => {
               className={`search-suggestion ${
                 suggestion.isSelected ? "active" : ""
               }`}
-              onClick={() => searchWithSuggestion(suggestion.text)}
+              onClick={() => {
+                searchWithSuggestion(suggestion.text);
+              }}
             >
               {suggestion.text}
             </p>
@@ -100,6 +104,6 @@ const SearchForm = () => {
       </div>
     </div>
   );
-};
+}
 
 export default SearchForm;
