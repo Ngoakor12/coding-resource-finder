@@ -30,7 +30,7 @@ function ContextProvider({ children }) {
   useEffect(() => {
     getAllResources();
     // eslint-disable-next-line
-  }, [resources]);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
