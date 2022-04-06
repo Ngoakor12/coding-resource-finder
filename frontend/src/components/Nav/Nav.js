@@ -1,6 +1,10 @@
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "../../Context";
 
 function Nav() {
+  const { renderedResources, bookmarks } = useContext(Context);
+
   return (
     <nav className="nav">
       <NavLink
@@ -9,7 +13,7 @@ function Nav() {
           isActive ? "nav-item active-nav" : "nav-item"
         }
       >
-        Resources
+        {`Resources (${renderedResources.length})`}
       </NavLink>
       <NavLink
         to="/bookmarks"
@@ -17,7 +21,7 @@ function Nav() {
           isActive ? "nav-item active-nav" : "nav-item"
         }
       >
-        Bookmarks
+        {`Bookmarks (${bookmarks.length})`}
       </NavLink>
     </nav>
   );

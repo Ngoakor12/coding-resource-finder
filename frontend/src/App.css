@@ -15,7 +15,7 @@ body {
 #root {
   display: flex;
   flex-direction: column;
-  max-width: 800px;
+  max-width: 900px;
   min-width: 280px;
   margin: 0 2.5em 2.5em 2.5em;
   position: relative;
@@ -412,22 +412,34 @@ header {
 
   .main {
     display: grid;
-    grid-template-columns: 20% minmax(0, 80%);
+    grid-template-columns: 25% minmax(0, 80%);
     gap: 40px;
     min-width: 100%;
-    max-width: 800px;
+    /* max-width: 800px; */
   }
-
+  
   .main-content {
-    min-width: 80%;
+    /* min-width: 400px; */
+
+    /* min-width: 50%; */
   }
 
   .nav {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    /* align-items: flex-start; */
+    justify-content: center;
     position: sticky;
     top: 0;
     min-width: 160px;
+    /* min-width: 20%; */
+  }
+
+
+  a.nav-item{
+    display: flex;
+    justify-content: center;
   }
 
   .search-input {
