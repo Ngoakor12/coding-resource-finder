@@ -42,6 +42,7 @@ function ResourceList() {
     loadMoreResources,
     renderedResources,
     setRenderedResources,
+    isLoading,
   } = useContext(Context);
 
   useEffect(() => {
@@ -106,7 +107,7 @@ function ResourceList() {
           renderedResources.length === resources.length || searchTerm.trim()
         }
       >
-        Load 20 more resources
+        {isLoading ? "Loading..." : "Load 20 more resources"}
       </button>
       <button
         className="load-more-btn"
@@ -115,7 +116,7 @@ function ResourceList() {
           renderedResources.length === resources.length || searchTerm.trim()
         }
       >
-        Load all resources
+        {isLoading ? "Loading..." : "Load all resources"}
       </button>
     </div>
   );
