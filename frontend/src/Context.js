@@ -13,6 +13,8 @@ function ContextProvider({ children }) {
   const [pageTitle, setPageTitle] = useState("Coding Resource Finder");
   const [currentPage, setCurrentPage] = useState(1);
   const [renderedResources, setRenderedResources] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   // const [resourceGroup, setResourceGroup] = useState([]);
 
   // useEffect(() => {
@@ -55,12 +57,14 @@ function ContextProvider({ children }) {
 
   async function getPageOfResources() {
     try {
+      setIsLoading(true);
       const response = await fetch(
         `https://coding-resource-finder-api.herokuapp.com/all/${currentPage}`
       );
       const data = await response.json();
       const resourcesData = await data.data;
       setRenderedResources([...renderedResources, ...resourcesData]);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -104,6 +108,7 @@ function ContextProvider({ children }) {
         setSearchTerm,
         setPageTitle,
         loadMoreResources,
+        isLoading,
       }}
     >
       {children}
