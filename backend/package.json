@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/app.js",
-    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/api.js",
+    "start": "node ./src/api.js",
     "deploy": "git push heroku main"
   },
   "repository": {
@@ -22,6 +22,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "firebase": "^9.6.10",
+    "firebase-admin": "^10.0.2",
     "jsdom": "^19.0.0"
   },
   "devDependencies": {
