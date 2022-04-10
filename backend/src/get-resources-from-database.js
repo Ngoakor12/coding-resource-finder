@@ -1,9 +1,9 @@
-const { resourcesRef, getDocs } = require("../firebase");
+const { getDocs, resourcesQuery } = require("../firebase");
 
 async function getResourcesFromDB() {
   const resources = [];
   try {
-    const resourcesDocs = await getDocs(resourcesRef);
+    const resourcesDocs = await getDocs(resourcesQuery);
     resourcesDocs.forEach((doc) => {
       resources.push(doc.data());
     });
