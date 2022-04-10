@@ -54,7 +54,7 @@ async function getAllResources() {
   try {
     const topics = await getTopicsFromACN();
     const projects = await getProjectsFromACN();
-    const allResources = [...topics.data, ...projects.data];
+    const allResources = [...topics, ...projects];
     return allResources;
   } catch (error) {
     throw error;

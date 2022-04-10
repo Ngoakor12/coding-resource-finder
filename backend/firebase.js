@@ -4,6 +4,8 @@ const {
   collection,
   getDocs,
   addDoc,
+  query,
+  orderBy,
 } = require("firebase/firestore");
 const { getCurrentCollectionName } = require("./src/utils");
 
@@ -24,4 +26,6 @@ const db = getFirestore(app);
 
 const resourcesRef = collection(db, getCurrentCollectionName());
 
-module.exports = { db, resourcesRef, getDocs, addDoc };
+const resourcesQuery = query(resourcesRef, orderBy("title","asc"));
+
+module.exports = { db, resourcesRef, getDocs, addDoc, resourcesQuery };

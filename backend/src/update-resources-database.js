@@ -1,5 +1,5 @@
 const { resourcesRef, addDoc } = require("../firebase");
-const { getAllResources } = require("./resources");
+const { getAllResources } = require("./scrape-resources");
 
 async function updateResources(resources) {
   try {
@@ -15,9 +15,10 @@ async function updateResources(resources) {
   }
 }
 
-async function main() {
-  const resources = (await getAllResources()).data;
-  await updateResources(resources);
-}
-
-main();
+getAllResources()
+  .then((resources) => {
+    updateResources(resources);
+  })
+  .catch((error) => {
+    throw error;
+  });
