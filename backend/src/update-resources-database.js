@@ -15,9 +15,10 @@ async function updateResources(resources) {
   }
 }
 
-async function main() {
-  const resources = await getAllResources();
-  await updateResources(resources);
-}
-
-main();
+getAllResources()
+  .then((resources) => {
+    updateResources(resources);
+  })
+  .catch((error) => {
+    throw error;
+  });
