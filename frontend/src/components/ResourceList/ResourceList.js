@@ -116,7 +116,7 @@ function ResourceList() {
           renderedResources.length === resources.length || searchTerm.trim()
         }
       >
-        Load all resources
+        {`Load all resources (${resources.length - renderedResources.length})`}
       </button>
     </div>
   );
