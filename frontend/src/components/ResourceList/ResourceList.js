@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Context } from "../../Context";
 import SearchForm from "../SearchForm/SearchForm";
-import LoadingPlaceholder from "../LoadingPlaceholder/LoadingPlaceholder";
+import ResourceSkeleton from "../ResourceSkeleton/ResourceSkeleton";
 
 const removeBookmarkIcon = (
   <svg
@@ -54,7 +54,6 @@ function ResourceList() {
   return (
     <div className="resource-list">
       <SearchForm />
-
       {renderedResources.length !== 0 ? (
         renderedResources.map((resource) => {
           const isBookmarked = bookmarks.find((bookmark) => {
@@ -100,11 +99,7 @@ function ResourceList() {
       ) : searchTerm ? (
         <h2 className="content-placeholder">Resource(s) not found...</h2>
       ) : (
-        <>
-          <LoadingPlaceholder />
-          <LoadingPlaceholder />
-          <LoadingPlaceholder />
-        </>
+        [...Array(20)].map((_, index) => <ResourceSkeleton key={`skeleton${index}`}/>)
       )}
       <button
         className="load-more-btn"

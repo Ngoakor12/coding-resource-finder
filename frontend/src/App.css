@@ -247,30 +247,34 @@ header {
 .loading-placeholder {
   border: 1px solid #5c5c5c;
   border-radius: 10px;
-  padding: 0.6rem 1rem;
+  /* padding: 0.6rem 1rem; */
+  width: 635px;
+  height: 100px;
   display: flex;
+  align-items: center;
+  padding: 0 0.2rem;
 }
 .loading-placeholder .left {
   flex-basis: 95%;
 }
 .loading-placeholder .left .larger {
   border-radius: 10px;
-  height: 1rem;
-  width: 85%;
+  height: 24px;
+  width: 493px;
   margin: 0.3rem;
   animation: blinkerAnim 1s infinite alternate;
 }
 .loading-placeholder .left .smaller {
   border-radius: 10px;
-  height: 1rem;
-  width: 10%;
+  height: 24px;
+  width: 65px;
   margin: 0.4rem;
   animation: blinkerAnim 1s infinite alternate;
 }
 .loading-placeholder .right {
   border-radius: 6px;
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
   margin: 0.3rem;
   animation: blinkerAnim 1s infinite alternate;
 }

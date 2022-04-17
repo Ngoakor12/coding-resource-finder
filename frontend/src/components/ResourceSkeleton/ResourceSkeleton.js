@@ -1,6 +1,6 @@
 import React from "react";
 
-function LoadingPlaceholder() {
+function ResourceSkeleton() {
   return (
     <div>
       <div className="loading-placeholder">
@@ -14,4 +14,4 @@ function LoadingPlaceholder() {
   );
 }
 
-export default LoadingPlaceholder;
+export default ResourceSkeleton;
