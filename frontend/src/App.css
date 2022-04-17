@@ -244,6 +244,45 @@ header {
   margin: 40px 0;
   place-self: center;
 }
+.loading-placeholder {
+  border: 1px solid #5c5c5c;
+  border-radius: 10px;
+  padding: 0.6rem 1rem;
+  display: flex;
+}
+.loading-placeholder .left {
+  flex-basis: 95%;
+}
+.loading-placeholder .left .larger {
+  border-radius: 10px;
+  height: 1rem;
+  width: 85%;
+  margin: 0.3rem;
+  animation: blinkerAnim 1s infinite alternate;
+}
+.loading-placeholder .left .smaller {
+  border-radius: 10px;
+  height: 1rem;
+  width: 10%;
+  margin: 0.4rem;
+  animation: blinkerAnim 1s infinite alternate;
+}
+.loading-placeholder .right {
+  border-radius: 6px;
+  height: 20px;
+  width: 20px;
+  margin: 0.3rem;
+  animation: blinkerAnim 1s infinite alternate;
+}
+
+@keyframes blinkerAnim {
+  from {
+    background-color: #5c5c5c;
+  }
+  to {
+    background-color: #949494;
+  }
+}
 
 .resource-wrapper {
   position: relative;
@@ -356,13 +395,13 @@ header {
   color: #f1f1f1;
   cursor: pointer;
 }
-.load-more-btn:disabled{
+.load-more-btn:disabled {
   color: #8fffab;
-  opacity: .5;
+  opacity: 0.5;
   cursor: not-allowed;
 }
-.load-more-btn:disabled:hover{
-  opacity: .5;
+.load-more-btn:disabled:hover {
+  opacity: 0.5;
 }
 
 @media (min-width: 800px) {
@@ -417,7 +456,7 @@ header {
     min-width: 100%;
     /* max-width: 800px; */
   }
-  
+
   .main-content {
     /* min-width: 400px; */
 
@@ -436,8 +475,7 @@ header {
     /* min-width: 20%; */
   }
 
-
-  a.nav-item{
+  a.nav-item {
     display: flex;
     justify-content: center;
   }
