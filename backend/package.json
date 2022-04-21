@@ -1,24 +1,24 @@
 {
-  "name": "ACN-resource-finder-api",
+  "name": "coding-resource-finder",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./src/api.js",
     "start": "node ./src/api.js",
-    "deploy": "git push heroku main"
+    "deploy": "git push heroku master"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ngoakor12/ACN-resource-finder-api.git"
+    "url": "git+https://github.com/Ngoakor12/coding-resource-finder.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Ngoakor12/ACN-resource-finder-api/issues"
+    "url": "https://github.com/Ngoakor12/coding-resource-finder/issues"
   },
-  "homepage": "https://github.com/Ngoakor12/ACN-resource-finder-api#readme",
+  "homepage": "https://github.com/Ngoakor12/coding-resource-finder#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
