@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import { nanoid } from "nanoid";
 import { Context } from "../../Context";
 import SearchForm from "../SearchForm/SearchForm";
 import { bookmarkIcon, removeBookmarkIcon } from "../../svgs";
@@ -53,7 +54,7 @@ function ResourceList() {
           );
 
           return (
-            <div className="resource-wrapper" key={resource.url}>
+            <div className="resource-wrapper" key={nanoid()}>
               <a
                 href={resource.url}
                 target="_blank"

@@ -11,19 +11,9 @@ function ContextProvider({ children }) {
   });
   const [searchTerm, setSearchTerm] = useState("");
   const [pageTitle, setPageTitle] = useState("Coding Resource Finder");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(2);
   const [renderedResources, setRenderedResources] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    getPageOfResources();
-    // eslint-disable-next-line
-  }, [currentPage]);
-
-  useEffect(() => {
-    getAllResources();
-    // eslint-disable-next-line
-  }, []);
 
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
@@ -33,32 +23,52 @@ function ContextProvider({ children }) {
     document.title = pageTitle;
   }, [pageTitle]);
 
+  useEffect(() => {
+    async function getAndSetInitialResources() {
+      const responseData = await Promise.all([
+        getPageOfResources(1),
+        getAllResources(),
+      ]);
+      const [pageResources, allResources] = responseData;
+      setRenderedResources([...renderedResources, ...pageResources]);
+      setIsLoading(false);
+      setResources(allResources);
+    }
+    getAndSetInitialResources();
+    // eslint-disable-next-line
+  }, []);
+
   async function getAllResources() {
     try {
       const response = await fetch(
         "https://coding-resource-finder-api.herokuapp.com/all"
       );
       const data = await response.json();
-      const resources = await data.data;
-      setResources(resources);
+      const allResources = await data.data;
+      return allResources;
     } catch (error) {
       console.log(error);
     }
   }
 
-  async function getPageOfResources() {
+  async function getPageOfResources(startPage) {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `https://coding-resource-finder-api.herokuapp.com/all/${currentPage}`
+        `https://coding-resource-finder-api.herokuapp.com/all/${startPage}`
       );
       const data = await response.json();
-      const resourcesData = await data.data;
-      setRenderedResources([...renderedResources, ...resourcesData]);
-      setIsLoading(false);
+      const pageResources = await data.data;
+      return pageResources;
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async function updatePageResources() {
+    const pageResources = await getPageOfResources(currentPage);
+    setRenderedResources([...renderedResources, ...pageResources]);
+    setIsLoading(false);
   }
 
   function addBookmark(resourceURL) {
@@ -81,6 +91,7 @@ function ContextProvider({ children }) {
     setCurrentPage((prevPage) => {
       return (prevPage += 1);
     });
+    updatePageResources();
   }
 
   return (
