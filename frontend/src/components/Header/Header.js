@@ -44,8 +44,6 @@ function Header() {
             </a>
             .
           </p>
-          {/* <p className="source-code"> */}
-          {/* </p> */}
         </div>
       </div>
     </header>

@@ -15,15 +15,6 @@ function ContextProvider({ children }) {
   const [renderedResources, setRenderedResources] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // const [resourceGroup, setResourceGroup] = useState([]);
-
-  // useEffect(() => {
-  //   setResourceGroup(() => {
-  //     return searchTerm.trim().length ? renderedResources : resources;
-  //   });
-  //   // eslint-disable-next-line
-  // }, [searchTerm]);
-
   useEffect(() => {
     getPageOfResources();
     // eslint-disable-next-line
