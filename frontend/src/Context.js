@@ -1,5 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 
+// const PORT = 2856;
+// const LOCAL_URL = `http://localhost:${PORT}`;
+const PROD_URL = `https://coding-resource-finder-api.herokuapp.com`;
+const BASE_URL = PROD_URL;
+
 const Context = createContext();
 
 function ContextProvider({ children }) {
@@ -40,9 +45,7 @@ function ContextProvider({ children }) {
 
   async function getAllResources() {
     try {
-      const response = await fetch(
-        "https://coding-resource-finder-api.herokuapp.com/all"
-      );
+      const response = await fetch(`${BASE_URL}/all`);
       const data = await response.json();
       const allResources = await data.data;
       return allResources;
@@ -51,12 +54,10 @@ function ContextProvider({ children }) {
     }
   }
 
-  async function getPageOfResources(startPage) {
+  async function getPageOfResources(startPage = 1) {
     try {
       setIsLoading(true);
-      const response = await fetch(
-        `https://coding-resource-finder-api.herokuapp.com/all/${startPage}`
-      );
+      const response = await fetch(`${BASE_URL}/all/${startPage}`);
       const data = await response.json();
       const pageResources = await data.data;
       return pageResources;
