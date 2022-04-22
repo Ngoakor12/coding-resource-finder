@@ -1,11 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const port = process.env.PORT || 2856;
 const { getPageData } = require("./format-resources");
 const { getResourcesFromDB } = require("./get-resources-from-database");
-
 app.use(cors());
+
+const PORT = 2856;
+const LOCAL_URL = `http://localhost:${PORT}/`;
+const PROD_URL = `https://coding-resource-finder-api.herokuapp.com/`;
+const BASE_URL = PROD_URL;
 
 const customError = {
   message: "Error: Please double check that the URL is correct.",
@@ -13,16 +16,12 @@ const customError = {
 
 app.get("/", (req, res) => {
   res.json({
-    all_resources: "https://coding-resource-finder-api.herokuapp.com/all",
-    all_topics: "https://coding-resource-finder-api.herokuapp.com/all/topics",
-    all_projects:
-      "https://coding-resource-finder-api.herokuapp.com/all/projects",
-    all_resources_page:
-      "https://coding-resource-finder-api.herokuapp.com/all/{page}",
-    all_topics_page:
-      "https://coding-resource-finder-api.herokuapp.com/all/topics/{page}",
-    all_projects_page:
-      "https://coding-resource-finder-api.herokuapp.com/all/projects/{page}",
+    resources: `${BASE_URL}all`,
+    topics: `${BASE_URL}all/topics`,
+    projects: `${BASE_URL}all/projects`,
+    resources_page: `${BASE_URL}all/{page}`,
+    topics_page: `${BASE_URL}all/topics/{page}`,
+    projects_page: `${BASE_URL}all/projects/{page}`,
   });
 });
 
@@ -40,7 +39,9 @@ app.get("/all", async (req, res) => {
 app.get("/all/topics", async (req, res) => {
   try {
     const resources = await getResourcesFromDB();
-    const topics = resources.data.filter((resource) => resource.type === "topic");
+    const topics = resources.data.filter(
+      (resource) => resource.type === "topic"
+    );
     const topicsData = { num_of_topics: topics.length, data: topics };
     res.json(topicsData || customError);
   } catch (error) {
@@ -79,7 +80,9 @@ app.get("/all/topics/:page", async (req, res) => {
   const page = req.params.page;
   try {
     const resources = await getResourcesFromDB();
-    const topics = resources.data.filter((resource) => resource.type === "topic");
+    const topics = resources.data.filter(
+      (resource) => resource.type === "topic"
+    );
     const topicsData = { num_of_topics: topics.length, data: topics };
     const data = await getPageData(topicsData.data, page);
     res.json(data || customError);
@@ -104,6 +107,6 @@ app.get("/all/projects/:page", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`App running at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`App running at http://localhost:${PORT}`);
 });
