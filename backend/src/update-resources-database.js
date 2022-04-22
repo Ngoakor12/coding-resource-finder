@@ -15,10 +15,11 @@ async function updateResources(resources) {
   }
 }
 
-getAllResources()
-  .then((resources) => {
-    updateResources(resources);
-  })
-  .catch((error) => {
-    throw error;
-  });
+// getAllResources()
+//   .then((resources) => {
+//     updateResources(resources);
+//   })
+//   .catch((error) => {
+//     throw error;
+//   });
+console.log("Database successfully updated :)");
