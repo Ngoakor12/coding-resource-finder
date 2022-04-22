@@ -16,7 +16,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
-      - name: install dependencies
+          
       - run: npm ci
-      - name: update resources database
       - run: npm run update
