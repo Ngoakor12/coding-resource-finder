@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon ./src/api.js",
     "start": "node ./src/api.js",
+    "update": "node ./src/update-resources-database.js",
     "deploy": "git push heroku master"
   },
   "repository": {
