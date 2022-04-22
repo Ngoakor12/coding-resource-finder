@@ -2,6 +2,7 @@ name: update-database
 on:
   schedule:
     - cron: "0 00 1 * *"
+  workflow_dispatch:
 
 jobs:
   update-database:
