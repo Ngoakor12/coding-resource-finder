@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import { Context } from "../../Context";
 import SearchForm from "../SearchForm/SearchForm";
 import { bookmarkIcon, removeBookmarkIcon } from "../../svgs";
+import ResourceSkeleton from "../ResourceSkeleton/ResourceSkeleton";
 
 function ResourceList() {
   const {
@@ -71,7 +72,9 @@ function ResourceList() {
       ) : searchTerm ? (
         <h2 className="content-placeholder">Resource(s) not found...</h2>
       ) : (
-        <h2 className="content-placeholder">Loading resources...</h2>
+        [...Array(20)].map((_, index) => (
+          <ResourceSkeleton key={`skeleton${index}`} />
+        ))
       )}
       <button
         className="load-more-btn"

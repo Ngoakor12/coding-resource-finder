@@ -17,7 +17,7 @@ body {
   flex-direction: column;
   max-width: 900px;
   min-width: 280px;
-  margin: 0 2.5em 2.5em 2.5em;
+  margin: 0 2em 2em 2.5em;
   position: relative;
 }
 
@@ -365,6 +365,52 @@ header {
   opacity: .5;
 }
 
+.resource-skeleton {
+  border: 1px solid #5c5c5c;
+  border-radius: 10px;
+  max-width: 635px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.resource-skeleton .left{
+  width: 100%;
+}
+
+.resource-skeleton .larger {
+  border-radius: 10px;
+  height: 24px;
+  max-width: 493px;
+  margin-bottom: 10px;
+  margin-right: 35px;
+  animation: blinkAnimation 1s infinite alternate;
+}
+
+.resource-skeleton .smaller {
+  border-radius: 10px;
+  height: 23px;
+  max-width: 60px;
+  animation: blinkAnimation 1s infinite alternate;
+}
+
+.resource-skeleton .right {
+  border-radius: 10px;
+  min-height: 33px;
+  min-width: 33px;
+  animation: blinkAnimation 1s infinite alternate;
+}
+
+@keyframes blinkAnimation {
+  from {
+    background-color: #5c5c5c;
+  }
+  to {
+    background-color: #949494;
+  }
+}
+
 @media (min-width: 800px) {
   body {
     display: flex;
@@ -415,15 +461,8 @@ header {
     grid-template-columns: 25% minmax(0, 80%);
     gap: 40px;
     min-width: 100%;
-    /* max-width: 800px; */
   }
   
-  .main-content {
-    /* min-width: 400px; */
-
-    /* min-width: 50%; */
-  }
-
   .nav {
     display: flex;
     flex-direction: column;
