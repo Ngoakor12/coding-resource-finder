@@ -3,7 +3,11 @@ const cors = require("cors");
 const app = express();
 const { getPageData } = require("./format-resources");
 const { getResourcesFromDB } = require("./get-resources-from-database");
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://coding-resource-finder.ngoako.dev/",
+  })
+);
 
 const PORT = 2856;
 const LOCAL_URL = `http://localhost:${PORT}/`;

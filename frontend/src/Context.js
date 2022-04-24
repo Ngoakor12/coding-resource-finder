@@ -45,9 +45,7 @@ function ContextProvider({ children }) {
 
   async function getAllResources() {
     try {
-      const response = await fetch(`${BASE_URL}/all`, {
-        mode: "cors",
-      });
+      const response = await fetch(`${BASE_URL}/all`);
       const data = await response.json();
       const allResources = await data.data;
       return allResources;
@@ -59,9 +57,7 @@ function ContextProvider({ children }) {
   async function getPageOfResources(startPage = 1) {
     try {
       setIsLoading(true);
-      const response = await fetch(`${BASE_URL}/all/${startPage}`, {
-        mode: "cors",
-      });
+      const response = await fetch(`${BASE_URL}/all/${startPage}`);
       const data = await response.json();
       const pageResources = await data.data;
       return pageResources;
