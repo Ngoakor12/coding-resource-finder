@@ -5,7 +5,7 @@ const { getPageData } = require("./format-resources");
 const { getResourcesFromDB } = require("./get-resources-from-database");
 app.use(
   cors({
-    origin: "https://coding-resource-finder.ngoako.dev/",
+    origin: "https://coding-resource-finder.ngoako.dev",
   })
 );
 
