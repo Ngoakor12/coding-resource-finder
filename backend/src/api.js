@@ -111,6 +111,6 @@ app.get("/all/projects/:page", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log(`App running at http://localhost:${PORT}`);
 });
