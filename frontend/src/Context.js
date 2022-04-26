@@ -1,9 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 
-// const PORT = 2856;
-// const LOCAL_URL = `http://localhost:${PORT}`;
-const PROD_URL = `https://coding-resource-finder-api.herokuapp.com`;
-const BASE_URL = PROD_URL;
+const PORT = 2856;
+const BASE_URL =
+  process.env.REACT_APP_PROD_BASE_URL || `http://localhost:${PORT}`;
 
 const Context = createContext();
 

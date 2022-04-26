@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -5,15 +6,12 @@ const { getPageData } = require("./format-resources");
 const { getResourcesFromDB } = require("./get-resources-from-database");
 app.use(
   cors({
-    origin: "https://coding-resource-finder.ngoako.dev",
+    origin: "*",
   })
 );
 
 const PORT = 2856;
-const LOCAL_URL = `http://localhost:${PORT}/`;
-const PROD_URL = `https://coding-resource-finder-api.herokuapp.com/`;
-const BASE_URL = PROD_URL;
-
+const BASE_URL = process.env.PROD_BASE_URL || `http://localhost:${PORT}/`;
 const customError = {
   message: "Error: Please double check that the URL is correct.",
 };
@@ -112,5 +110,5 @@ app.get("/all/projects/:page", async (req, res) => {
 });
 
 app.listen(process.env.PORT || PORT, () => {
-  console.log(`App running at http://localhost:${PORT}`);
+  console.log(`App running at ${BASE_URL}`);
 });
