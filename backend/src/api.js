@@ -18,12 +18,12 @@ const customError = {
 
 app.get("/", (req, res) => {
   res.json({
-    resources: `${BASE_URL}all`,
-    topics: `${BASE_URL}all/topics`,
-    projects: `${BASE_URL}all/projects`,
-    resources_page: `${BASE_URL}all/{page}`,
-    topics_page: `${BASE_URL}all/topics/{page}`,
-    projects_page: `${BASE_URL}all/projects/{page}`,
+    resources: `${BASE_URL}/all`,
+    topics: `${BASE_URL}/all/topics`,
+    projects: `${BASE_URL}/all/projects`,
+    resources_page: `${BASE_URL}/all/{page}`,
+    topics_page: `${BASE_URL}/all/topics/{page}`,
+    projects_page: `${BASE_URL}/all/projects/{page}`,
   });
 });
 
