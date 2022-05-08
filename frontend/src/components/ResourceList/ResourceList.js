@@ -36,6 +36,7 @@ function ResourceList() {
 
   useEffect(() => {
     setPageParams(filterType);
+    // eslint-disable-next-line
   },[filterType]);
 
   return (
