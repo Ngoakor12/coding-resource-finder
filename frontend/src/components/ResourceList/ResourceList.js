@@ -5,7 +5,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import { bookmarkIcon, removeBookmarkIcon } from "../../svgs";
 import ResourceSkeleton from "../ResourceSkeleton/ResourceSkeleton";
 
-function ResourceList() {
+function ResourceList({resourceFilter}) {
   const {
     addBookmark,
     bookmarks,
@@ -20,9 +20,10 @@ function ResourceList() {
   } = useContext(Context);
 
   useEffect(() => {
-    setPageTitle("Resources | Coding Resource Finder");
-    // eslint-disable-next-line
-  }, []);
+    (resourceFilter && resourceFilter.length) /** if Router is passing `resourceFilter` down as a prop, set the page title accordingly */
+    ? setPageTitle(`Resources - ${resourceFilter} | Coding Resource Finder`)
+    : setPageTitle(`Resources | Coding Resource Finder`)
+  }, [resourceFilter]);
 
   return (
     <div className="resource-list">

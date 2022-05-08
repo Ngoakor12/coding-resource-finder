@@ -22,6 +22,16 @@ function App() {
             />
             <Route
               exact
+              path="/resources/topics"
+              element={<ResourceList resourceFilter={'Topics'} />}
+            />
+            <Route
+              exact
+              path="/resources/projects"
+              element={<ResourceList resourceFilter={'Projects'} />}
+            />
+            <Route
+              exact
               path="/bookmarks"
               element={<BookmarkList />}
             />
