@@ -40,13 +40,22 @@ function SearchForm() {
     );
   }
 
+  function searchWithFilter(filterType) {
+    // reset initialSuggestions
+    setSuggestions(initialSuggestions);
+    // query 
+    setSearchTerm(filterType)
+  }
+
   function handleSearch() {
     let result = [];
-    result = resources.filter((data) => {
-      return data.title
-        .toLowerCase()
-        .includes(searchTerm.toLocaleLowerCase().trim());
+    result = resources.filter(({title,type}) => {      
+      return (
+        type.toLowerCase().includes(searchTerm.toLocaleLowerCase().trim())      /** try to filter by type first, cause 'titles' can contain 'types' as well */
+        || title.toLowerCase().includes(searchTerm.toLocaleLowerCase().trim())  /** else try to filter by title */
+      );
     });
+    
     if (result.length > 0 && searchTerm.trim()) {
       setRenderedResources(result);
     } else if (searchTerm.trim() && !result.length) {
@@ -59,7 +68,7 @@ function SearchForm() {
 
   return (
     <div className="search-input-wrapper">
-      <FilterTabs />
+      <FilterTabs handleFilter={searchWithFilter}/>
       <input
         type="text"
         className="search-input"

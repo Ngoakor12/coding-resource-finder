@@ -7,10 +7,8 @@ function Tab({children, ...rest}) {
   )
 }
 
-export default function FilterTabs() {
-  const handleClick = (type) => {
-    console.log(type)
-  }
+export default function FilterTabs({handleFilter}) {
+  const handleClick = (filterType) => handleFilter(filterType);
 
   return (
     <div>
