@@ -158,6 +158,9 @@ header {
   border: none;
   background: rgb(125,125,125);
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
 }
 
 .filter-tab.active-tab {
