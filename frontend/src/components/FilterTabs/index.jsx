@@ -1,28 +1,34 @@
+// dependencies
+import {Link, useParams} from 'react-router-dom';
 // constants
 import {tabsData} from './FilterTabs.constants';
 
-function Tab({children, ...rest}) {
-  // using spread props with ...rest as it is only one element
+const Tab = ({className, label, path}) => {
   return (
-    <button {...rest}>{children}</button>
+    <Link to={path} className={className}>
+      <span>{label}</span>
+    </Link>
   )
-}
+};
 
-export default function FilterTabs() {
+export default function FilterTabs() {  
+  const {filterType} = useParams();
+  // filterType returns an empty string if on home route
+  const allRoutes = filterType && filterType.length ? filterType : 'all';
   return (
     <div className='filter-tabs-wrapper'>
       {/* if tabsData does not exists, or if is empty - do not execute */}
-      {tabsData && tabsData.length && tabsData.map(({label,filterType},key) => (
-        <Tab 
-          className={
-            (filterType) 
-            ? `filter-tab filter-tab--${label} active-tab`  
-            : `filter-tab filter-tab--${label}` 
-          }
+      {tabsData && tabsData.length && tabsData.map(({label,path},key) => (
+        <Tab
           key={key}
-        >
-          {label}
-        </Tab>
+          label={label}
+          path={path}
+          className={
+            (allRoutes === label.toLocaleLowerCase()) 
+            ? `filter-tab filter-tab--${label} active-tab`  
+            : `filter-tab filter-tab--${label}`
+          }
+        />
       ))}
     </div>
   )

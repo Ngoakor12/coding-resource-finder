@@ -1,11 +1,12 @@
 import { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { Context } from "../../Context";
 import SearchForm from "../SearchForm/SearchForm";
 import { bookmarkIcon, removeBookmarkIcon } from "../../svgs";
 import ResourceSkeleton from "../ResourceSkeleton/ResourceSkeleton";
 
-function ResourceList({resourceFilter}) {
+function ResourceList() {
   const {
     addBookmark,
     bookmarks,
@@ -19,11 +20,17 @@ function ResourceList({resourceFilter}) {
     isLoading,
   } = useContext(Context);
 
-  useEffect(() => {
-    (resourceFilter && resourceFilter.length) /** if Router is passing `resourceFilter` down as a prop, set the page title accordingly */
-    ? setPageTitle(`Resources - ${resourceFilter} | Coding Resource Finder`)
+  const {filterType} = useParams();
+
+  const handlePageTitleUpdate = () => (
+    (filterType && filterType.length) /** if Router is passing `resourceFilter` down as a prop, set the page title accordingly */
+    ? setPageTitle(`Resources - ${filterType} | Coding Resource Finder`)
     : setPageTitle(`Resources | Coding Resource Finder`)
-  }, [resourceFilter]);
+  )
+  useEffect(() => {
+    handlePageTitleUpdate()
+     // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="resource-list">
