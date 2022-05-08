@@ -18,19 +18,25 @@ function ResourceList() {
     renderedResources,
     setRenderedResources,
     isLoading,
+    setPageParams
   } = useContext(Context);
 
   const {filterType} = useParams();
 
   const handlePageTitleUpdate = () => (
-    (filterType && filterType.length) /** if Router is passing `resourceFilter` down as a prop, set the page title accordingly */
+    (filterType && filterType.length)
     ? setPageTitle(`Resources - ${filterType} | Coding Resource Finder`)
     : setPageTitle(`Resources | Coding Resource Finder`)
-  )
+  );
+  
   useEffect(() => {
     handlePageTitleUpdate()
      // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    setPageParams(filterType);
+  },[filterType]);
 
   return (
     <div className="resource-list">
