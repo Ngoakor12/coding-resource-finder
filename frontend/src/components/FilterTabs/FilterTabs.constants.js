@@ -7,11 +7,11 @@ export const tabsData = [
   {
     label: 'Topics',
     filterType: 'topic',
-    path: '/resources/topics'
+    path: '/topics'
   }, 
   {
     label: 'Projects',
     filterType: 'project',
-    path: '/resources/projects'
+    path: '/projects'
   }, 
 ]

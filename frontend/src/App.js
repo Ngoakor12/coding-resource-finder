@@ -22,7 +22,7 @@ function App() {
             />
             <Route
               exact
-              path="/resources/:filterType"
+              path="/:filterType"
               element={<ResourceList />}
             />
             <Route
