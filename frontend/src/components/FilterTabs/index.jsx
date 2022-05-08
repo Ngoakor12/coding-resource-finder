@@ -1,6 +1,3 @@
-// dependencies
-import { useContext } from "react";
-import { Context } from "../../Context";
 // constants
 import {tabsData} from './FilterTabs.constants';
 
@@ -11,21 +8,17 @@ function Tab({children, ...rest}) {
   )
 }
 
-export default function FilterTabs({handleFilter}) {
-  const { searchTerm } = useContext(Context);
-  const handleClick = (filterType) => handleFilter(filterType);
-
+export default function FilterTabs() {
   return (
     <div className='filter-tabs-wrapper'>
       {/* if tabsData does not exists, or if is empty - do not execute */}
       {tabsData && tabsData.length && tabsData.map(({label,filterType},key) => (
         <Tab 
           className={
-            (searchTerm === filterType) 
+            (filterType) 
             ? `filter-tab filter-tab--${label} active-tab`  
             : `filter-tab filter-tab--${label}` 
           }
-          onClick={() => handleClick(filterType)} 
           key={key}
         >
           {label}
