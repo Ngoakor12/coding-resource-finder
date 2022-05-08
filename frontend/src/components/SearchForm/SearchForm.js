@@ -44,7 +44,7 @@ function SearchForm() {
     // reset initialSuggestions
     setSuggestions(initialSuggestions);
     // query 
-    setSearchTerm(filterType)
+    setSearchTerm(filterType);
   }
 
   function handleSearch() {
@@ -69,21 +69,23 @@ function SearchForm() {
   return (
     <div className="search-input-wrapper">
       <FilterTabs handleFilter={searchWithFilter}/>
-      <input
-        type="text"
-        className="search-input"
-        placeholder="Search a resource..."
-        onInput={(e) => {
-          setSearchTerm(e.target.value);
-        }}
-        value={searchTerm}
-      />
-      <div
-        className="clear-button"
-        onClick={() => setSearchTerm("")}
-        title="clear search text"
-      >
-        {clearSearchIcon}
+      <div className="search-input-inner-wrapper">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search a resource..."
+          onInput={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+          value={searchTerm}
+        />
+        <div
+          className="clear-button"
+          onClick={() => setSearchTerm("")}
+          title="clear search text"
+        >
+          {clearSearchIcon}
+        </div>
       </div>
       <div className="search-suggestions">
         {suggestions.map((suggestion) => {

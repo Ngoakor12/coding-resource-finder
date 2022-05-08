@@ -138,9 +138,46 @@ header {
 }
 
 .search-input-wrapper {
-  position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.filter-tabs-wrapper {
+  width: 100%;  
+  display: flex;
+  max-width: 800px;
+  min-width: 100%;
+}
+
+.filter-tab {
+  font-family: "Roboto Mono", monospace;
+  font-size: 18px;
+  width: 33%;
+  padding: 15px 25px;
+  margin-bottom: 20px;
+  border: none;
+  background: rgb(125,125,125);
+  cursor: pointer;
+}
+
+.filter-tab.active-tab {
+  background: rgba(196,196,196);
+}
+
+.filter-tab:first-child {  
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-right: 1px solid rgb(41,41,41);
+}
+
+.filter-tab:last-child {  
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-left: 1px solid rgb(41,41,41);
+}
+
+.search-input-inner-wrapper {
+  position: relative;
 }
 
 .search-suggestions {
@@ -492,7 +529,7 @@ header {
     cursor: pointer;
     position: absolute;
     right: 18px;
-    top: 10px;
+    bottom: 28px;
     z-index: 1;
     color: rgb(27, 27, 27);
     width: 35px;
