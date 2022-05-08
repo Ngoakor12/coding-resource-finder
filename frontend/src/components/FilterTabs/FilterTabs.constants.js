@@ -4,11 +4,11 @@ export const tabsData = [
     filterType: '', /** leave me as an empty string to clear the query */
   }, 
   {
-    label: 'Topic',
+    label: 'Topics',
     filterType: 'topic',
   }, 
   {
-    label: 'Project',
+    label: 'Projects',
     filterType: 'project',
   }, 
 ]
