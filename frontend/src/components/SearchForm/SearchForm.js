@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../Context";
 import { clearSearchIcon } from "../../svgs";
+import FilterTabs from "../FilterTabs";
 
 const initialSuggestions = [
   { text: "JavaScript", isSelected: false },
@@ -41,11 +42,10 @@ function SearchForm() {
 
   function handleSearch() {
     let result = [];
-    result = resources.filter((data) => {
-      return data.title
-        .toLowerCase()
-        .includes(searchTerm.toLocaleLowerCase().trim());
+    result = resources.filter(({title}) => {
+      return (title.toLowerCase().includes(searchTerm.toLocaleLowerCase().trim()));
     });
+    
     if (result.length > 0 && searchTerm.trim()) {
       setRenderedResources(result);
     } else if (searchTerm.trim() && !result.length) {
@@ -58,21 +58,24 @@ function SearchForm() {
 
   return (
     <div className="search-input-wrapper">
-      <input
-        type="text"
-        className="search-input"
-        placeholder="Search a resource..."
-        onInput={(e) => {
-          setSearchTerm(e.target.value);
-        }}
-        value={searchTerm}
-      />
-      <div
-        className="clear-button"
-        onClick={() => setSearchTerm("")}
-        title="clear search text"
-      >
-        {clearSearchIcon}
+      <FilterTabs />
+      <div className="search-input-inner-wrapper">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search a resource..."
+          onInput={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+          value={searchTerm}
+        />
+        <div
+          className="clear-button"
+          onClick={() => setSearchTerm("")}
+          title="clear search text"
+        >
+          {clearSearchIcon}
+        </div>
       </div>
       <div className="search-suggestions">
         {suggestions.map((suggestion) => {

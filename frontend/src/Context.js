@@ -18,6 +18,7 @@ function ContextProvider({ children }) {
   const [currentPage, setCurrentPage] = useState(2);
   const [renderedResources, setRenderedResources] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [pageParams, setPageParams] = useState('');
 
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
@@ -34,19 +35,24 @@ function ContextProvider({ children }) {
         getAllResources(),
       ]);
       const [pageResources, allResources] = responseData;
-      setRenderedResources([...renderedResources, ...pageResources]);
+      setRenderedResources([...pageResources]);
       setIsLoading(false);
       setResources(allResources);
     }
     getAndSetInitialResources();
     // eslint-disable-next-line
-  }, []);
+  }, [pageParams]);
 
   async function getAllResources() {
     try {
-      const response = await fetch(`${BASE_URL}/all`);
+      const url = (
+        (pageParams && pageParams.length) 
+        ? `${BASE_URL}/all/${pageParams}` 
+        : `${BASE_URL}/all`
+      );
+      const response = await fetch(url);
       const data = await response.json();
-      const allResources = await data.data;
+      const allResources = await data.data;    
       return allResources;
     } catch (error) {
       console.log(error);
@@ -56,7 +62,12 @@ function ContextProvider({ children }) {
   async function getPageOfResources(startPage = 1) {
     try {
       setIsLoading(true);
-      const response = await fetch(`${BASE_URL}/all/${startPage}`);
+      const url = (
+        (pageParams && pageParams.length)
+        ? `${BASE_URL}/all/${pageParams}/${startPage}` 
+        : `${BASE_URL}/all/${startPage}`
+      );
+      const response = await fetch(url);
       const data = await response.json();
       const pageResources = await data.data;
       return pageResources;
@@ -111,6 +122,7 @@ function ContextProvider({ children }) {
         setPageTitle,
         loadMoreResources,
         isLoading,
+        setPageParams
       }}
     >
       {children}

@@ -22,6 +22,11 @@ function App() {
             />
             <Route
               exact
+              path="/:filterType"
+              element={<ResourceList />}
+            />
+            <Route
+              exact
               path="/bookmarks"
               element={<BookmarkList />}
             />
