@@ -35,7 +35,7 @@ function ContextProvider({ children }) {
         getAllResources(),
       ]);
       const [pageResources, allResources] = responseData;
-      setRenderedResources([...pageResources]);
+      setRenderedResources(allResources);
       setIsLoading(false);
       setResources(allResources);
     }

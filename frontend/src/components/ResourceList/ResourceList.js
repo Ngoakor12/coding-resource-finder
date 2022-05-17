@@ -18,7 +18,8 @@ function ResourceList() {
     renderedResources,
     setRenderedResources,
     isLoading,
-    setPageParams
+    setPageParams,
+    setSearchTerm
   } = useContext(Context);
 
   const {filterType} = useParams();
@@ -35,6 +36,7 @@ function ResourceList() {
   }, []);
 
   useEffect(() => {
+    setSearchTerm("")
     setPageParams(filterType);
     // eslint-disable-next-line
   },[filterType]);
@@ -93,21 +95,12 @@ function ResourceList() {
       )}
       <button
         className="load-more-btn"
-        onClick={loadMoreResources}
-        disabled={
-          renderedResources.length === resources.length || searchTerm.trim()
-        }
-      >
-        {isLoading ? "Loading..." : "Load 20 more resources"}
-      </button>
-      <button
-        className="load-more-btn"
         onClick={() => setRenderedResources(resources)}
         disabled={
           renderedResources.length === resources.length || searchTerm.trim()
         }
       >
-        {`Load all resources (${resources.length - renderedResources.length})`}
+        {`Load all resources (${renderedResources.length})`}
       </button>
     </div>
   );
