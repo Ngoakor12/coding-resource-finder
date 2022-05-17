@@ -14,10 +14,8 @@ function ResourceList() {
     searchTerm,
     resources,
     setPageTitle,
-    loadMoreResources,
     renderedResources,
     setRenderedResources,
-    isLoading,
     setPageParams,
     setSearchTerm
   } = useContext(Context);
