@@ -16,8 +16,7 @@ function ResourceList() {
     setPageTitle,
     renderedResources,
     setRenderedResources,
-    setPageParams,
-    setSearchTerm
+    setPageParams
   } = useContext(Context);
 
   const {filterType} = useParams();
@@ -34,7 +33,6 @@ function ResourceList() {
   }, []);
 
   useEffect(() => {
-    setSearchTerm("")
     setPageParams(filterType);
     // eslint-disable-next-line
   },[filterType]);
@@ -98,7 +96,7 @@ function ResourceList() {
           renderedResources.length === resources.length || searchTerm.trim()
         }
       >
-        {`Load all resources (${renderedResources.length})`}
+        {`Load all resources (${resources.length})`}
       </button>
     </div>
   );

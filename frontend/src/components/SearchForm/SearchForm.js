@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useParams} from 'react-router-dom';
 import { Context } from "../../Context";
 import { clearSearchIcon } from "../../svgs";
 import FilterTabs from "../FilterTabs";
@@ -13,12 +14,31 @@ const initialSuggestions = [
 ];
 
 function SearchForm() {
-  const { resources, searchTerm, setSearchTerm, setRenderedResources } =
-    useContext(Context);
+  const {filterType} = useParams();
+  
+  const { searchTerm, setSearchTerm, renderedResources, setRenderedResources, getResourcesAllPages, getPageOfResources } =
+  useContext(Context);
   const [suggestions, setSuggestions] = useState(initialSuggestions || "");
+  const [data, setData] = useState([])
+
+
+  useEffect(() => {
+    setSearchTerm("")//eslint-disable-next-line
+  }, [filterType])
+
+  const loaData = () => {
+    getResourcesAllPages()
+    .then((resources) => {
+      setData(resources);
+    })
+    .catch((error) => {
+      throw error;
+    });
+  }
 
   useEffect(() => {
     handleSearch();
+    loaData()
     //eslint-disable-next-line
   }, [searchTerm]);
 
@@ -42,7 +62,7 @@ function SearchForm() {
 
   function handleSearch() {
     let result = [];
-    result = resources.filter(({title}) => {
+    result = data.filter(({title}) => {
       return (title.toLowerCase().includes(searchTerm.toLocaleLowerCase().trim()));
     });
     
@@ -51,9 +71,23 @@ function SearchForm() {
     } else if (searchTerm.trim() && !result.length) {
       setRenderedResources([]);
     } else {
-      setRenderedResources(resources);
+      setRenderedResources(data);
       setSuggestions(initialSuggestions);
     }
+  }
+
+  const handleClear = () => {
+    if(searchTerm !== '') {
+      setData(renderedResources)
+      getPageOfResources()
+      .then((resources) => {
+        setRenderedResources(resources)
+      })
+      .catch((error) => {
+        throw error;
+      });
+    }
+    setSearchTerm("")
   }
 
   return (
@@ -71,7 +105,7 @@ function SearchForm() {
         />
         <div
           className="clear-button"
-          onClick={() => setSearchTerm("")}
+          onClick={() => handleClear()}
           title="clear search text"
         >
           {clearSearchIcon}

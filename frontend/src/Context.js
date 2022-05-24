@@ -34,8 +34,8 @@ function ContextProvider({ children }) {
         getPageOfResources(1),
         getAllResources(),
       ]);
-      const [allResources] = responseData;
-      setRenderedResources(allResources);
+      const [pageResources, allResources] = responseData;
+      setRenderedResources([...pageResources]);
       setIsLoading(false);
       setResources(allResources);
     }
@@ -50,6 +50,18 @@ function ContextProvider({ children }) {
         ? `${BASE_URL}/all/${pageParams}` 
         : `${BASE_URL}/all`
       );
+      const response = await fetch(url);
+      const data = await response.json();
+      const allResources = await data.data;    
+      return allResources;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function getResourcesAllPages() {
+    try {
+      const url = `${BASE_URL}/all`;
       const response = await fetch(url);
       const data = await response.json();
       const allResources = await data.data;    
@@ -122,7 +134,9 @@ function ContextProvider({ children }) {
         setPageTitle,
         loadMoreResources,
         isLoading,
-        setPageParams
+        setPageParams,
+        getResourcesAllPages,
+        getPageOfResources,
       }}
     >
       {children}
