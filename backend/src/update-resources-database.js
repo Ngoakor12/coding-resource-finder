@@ -9,8 +9,10 @@ async function updateResources(resources) {
         url: resource.url,
         type: resource.type,
       });
+      console.log("Successfully updated database :)");
     });
   } catch (error) {
+    console.log("Error updating database :(");
     throw error;
   }
 }
@@ -22,4 +24,3 @@ getAllResources()
   .catch((error) => {
     throw error;
   });
-console.log("Database successfully updated :)");

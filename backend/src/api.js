@@ -11,7 +11,7 @@ app.use(
 );
 
 const PORT = 2856;
-const BASE_URL = process.env.PROD_BASE_URL || `http://localhost:${PORT}/`;
+const BASE_URL = process.env.PROD_BASE_URL || `http://localhost:${PORT}`;
 const customError = {
   message: "Error: Please double check that the URL is correct.",
 };
