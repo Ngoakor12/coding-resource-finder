@@ -1,29 +1,30 @@
-const express = require("express");
-const allRouter = express.Router();
+const allRouter = require("express").Router();
+
 const { getPageData } = require("../format-resources");
 const { getResourcesFromDB } = require("../get-resources-from-database");
-
-const customError = {
-  message: "Error: Please double check that the URL is correct.",
-};
+const { isPageNumber } = require("../utils");
 
 // get all topics and projects
-allRouter.get("/", async (req, res) => {
+allRouter.get("/", async (_, res) => {
   try {
     const resources = await getResourcesFromDB();
-    res.json(resources || customError);
+    res.status(200).json(resources);
   } catch (error) {
     throw error;
   }
 });
 
 // get specific resource
-allRouter.get("/:page", async (req, res) => {
-  const page = req.params.page;
+allRouter.get("/:page", async ({ params: { page } }, res) => {
+  if (!isPageNumber(page))
+    return res
+      .status(400)
+      .json({ message: `parameter ${page} should be a valid number` });
+
   try {
     const resources = await getResourcesFromDB();
     const data = await getPageData(resources.data, page);
-    res.json(data || customError);
+    res.status(200).json(data);
   } catch (error) {
     throw error;
   }

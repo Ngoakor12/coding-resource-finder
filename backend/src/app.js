@@ -1,22 +1,20 @@
 require("dotenv").config();
-const express = require("express");
+const app = require("express")();
 const cors = require("cors");
+
 const allRouter = require("./routes/all");
 const topicsRouter = require("./routes/topics");
 const projectsRouter = require("./routes/projects");
-const app = express();
+
 app.use(
   cors({
     origin: "*",
   })
 );
-
-// console.log(topicsRouter);
-
 const PORT = 2856;
 const BASE_URL = process.env.PROD_BASE_URL || `http://localhost:${PORT}`;
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.json({
     resources: `${BASE_URL}/all`,
     topics: `${BASE_URL}/all/topics`,
