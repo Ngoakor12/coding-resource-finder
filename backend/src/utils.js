@@ -5,4 +5,10 @@ function getCurrentCollectionName() {
   // return `resources_2022_5`;
 }
 
-module.exports = { getCurrentCollectionName };
+function isPageNumber(page) {
+  page = Number(page);
+  if (page && typeof page === "number") return true;
+  return false;
+}
+
+module.exports = { getCurrentCollectionName, isPageNumber };
