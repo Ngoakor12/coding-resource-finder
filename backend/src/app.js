@@ -1,6 +1,6 @@
-require("dotenv").config();
 const app = require("express")();
 const cors = require("cors");
+const { API_BASE_URL, PORT } = require("./constants");
 
 const allRouter = require("./routes/all");
 const topicsRouter = require("./routes/topics");
@@ -11,17 +11,15 @@ app.use(
     origin: "*",
   })
 );
-const PORT = 2856;
-const BASE_URL = process.env.PROD_BASE_URL || `http://localhost:${PORT}`;
 
 app.get("/", (_, res) => {
   res.json({
-    resources: `${BASE_URL}/all`,
-    topics: `${BASE_URL}/all/topics`,
-    projects: `${BASE_URL}/all/projects`,
-    resources_page: `${BASE_URL}/all/{page}`,
-    topics_page: `${BASE_URL}/all/topics/{page}`,
-    projects_page: `${BASE_URL}/all/projects/{page}`,
+    resources: `${API_BASE_URL}/all`,
+    topics: `${API_BASE_URL}/all/topics`,
+    projects: `${API_BASE_URL}/all/projects`,
+    resources_page: `${API_BASE_URL}/all/{page}`,
+    topics_page: `${API_BASE_URL}/all/topics/{page}`,
+    projects_page: `${API_BASE_URL}/all/projects/{page}`,
   });
 });
 
@@ -30,5 +28,5 @@ app.use("/all/projects", projectsRouter);
 app.use("/all", allRouter);
 
 app.listen(process.env.PORT || PORT, () => {
-  console.log(`App running at ${BASE_URL}`);
+  console.log(`App running at ${API_BASE_URL}`);
 });

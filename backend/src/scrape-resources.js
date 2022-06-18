@@ -1,10 +1,9 @@
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
-const acnUrl = "http://syllabus.africacode.net/";
+const { JSDOM } = require("jsdom").jsdom;
+const { ACN_URL } = require("./constants");
 
 async function getHTML() {
   try {
-    return (await JSDOM.fromURL(acnUrl)).window.document;
+    return (await JSDOM.fromURL(ACN_URL)).window.document;
   } catch (error) {
     return error;
   }
