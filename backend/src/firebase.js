@@ -7,7 +7,7 @@ const {
   query,
   orderBy,
 } = require("firebase/firestore");
-const { getCurrentCollectionName } = require("./src/utils");
+const { getCurrentCollectionName } = require("./utils");
 
 const firebaseConfig = {
   apiKey: "AIzaSyC8suQigoEopXl19pXRGrGSUWAAprv9-mg",
@@ -26,6 +26,6 @@ const db = getFirestore(app);
 
 const resourcesRef = collection(db, getCurrentCollectionName());
 
-const resourcesQuery = query(resourcesRef, orderBy("title","asc"));
+const resourcesQuery = query(resourcesRef, orderBy("title", "asc"));
 
 module.exports = { db, resourcesRef, getDocs, addDoc, resourcesQuery };

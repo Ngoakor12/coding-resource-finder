@@ -1,4 +1,4 @@
-const { getDocs, resourcesQuery } = require("../firebase");
+const { getDocs, resourcesQuery } = require("./firebase");
 
 async function getResourcesFromDB() {
   const resources = [];
