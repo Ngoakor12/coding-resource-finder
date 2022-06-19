@@ -1,8 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
-const PORT = 2856;
-const BASE_URL =
-  process.env.REACT_APP_PROD_BASE_URL || `http://localhost:${PORT}`;
+import { BASE_URL } from "./constants";
 
 const Context = createContext();
 
@@ -18,7 +16,7 @@ function ContextProvider({ children }) {
   const [currentPage, setCurrentPage] = useState(2);
   const [renderedResources, setRenderedResources] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [pageParams, setPageParams] = useState('');
+  const [pageParams, setPageParams] = useState("");
 
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
@@ -45,14 +43,13 @@ function ContextProvider({ children }) {
 
   async function getAllResources() {
     try {
-      const url = (
-        (pageParams && pageParams.length) 
-        ? `${BASE_URL}/all/${pageParams}` 
-        : `${BASE_URL}/all`
-      );
+      const url =
+        pageParams && pageParams.length
+          ? `${BASE_URL}/all/${pageParams}`
+          : `${BASE_URL}/all`;
       const response = await fetch(url);
       const data = await response.json();
-      const allResources = await data.data;    
+      const allResources = await data.data;
       return allResources;
     } catch (error) {
       console.log(error);
@@ -62,11 +59,10 @@ function ContextProvider({ children }) {
   async function getPageOfResources(startPage = 1) {
     try {
       setIsLoading(true);
-      const url = (
-        (pageParams && pageParams.length)
-        ? `${BASE_URL}/all/${pageParams}/${startPage}` 
-        : `${BASE_URL}/all/${startPage}`
-      );
+      const url =
+        pageParams && pageParams.length
+          ? `${BASE_URL}/all/${pageParams}/${startPage}`
+          : `${BASE_URL}/all/${startPage}`;
       const response = await fetch(url);
       const data = await response.json();
       const pageResources = await data.data;
@@ -122,7 +118,7 @@ function ContextProvider({ children }) {
         setPageTitle,
         loadMoreResources,
         isLoading,
-        setPageParams
+        setPageParams,
       }}
     >
       {children}
