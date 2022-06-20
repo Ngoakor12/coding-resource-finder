@@ -1,5 +1,8 @@
 const PORT = 2856;
-const BASE_URL =
-  process.env.REACT_APP_PROD_BASE_URL || `http://localhost:${PORT}`;
+const API_BASE_URL =
+  process.env.REACT_API_PROD_BASE_URL || `http://localhost:${PORT}`;
+const CLIENT_BASE_URL =
+  process.env.REACT_CLIENT_PROD_BASE_URL ||
+  `http://localhost:3000/resources/all`;
 
-export { PORT, BASE_URL };
+export { PORT, API_BASE_URL, CLIENT_BASE_URL };

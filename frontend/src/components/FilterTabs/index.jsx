@@ -1,5 +1,5 @@
 // dependencies
-import {Link, useParams} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 // constants
 import {tabsData} from './FilterTabs.constants';
 
@@ -12,7 +12,7 @@ const Tab = ({className, label, path}) => {
 };
 
 export default function FilterTabs() {  
-  const {filterType} = useParams();
+  const filterType = useLocation().pathname.split("/")[2];
   // filterType returns an empty string if on home route
   const allRoutes = filterType && filterType.length ? filterType : 'all';
   return (
