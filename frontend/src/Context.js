@@ -1,13 +1,11 @@
 import { createContext, useEffect, useState } from "react";
 
-const PORT = 2856;
-const BASE_URL =
-  process.env.REACT_APP_PROD_BASE_URL || `http://localhost:${PORT}`;
+import { API_BASE_URL } from "./constants";
 
 const Context = createContext();
 
 function ContextProvider({ children }) {
-  const [resources, setResources] = useState([]);
+  const [allResources, setAllResources] = useState([]);
   const [bookmarks, setBookmarks] = useState(() => {
     const saved = localStorage.getItem("bookmarks");
     const initialValue = JSON.parse(saved);
@@ -15,10 +13,8 @@ function ContextProvider({ children }) {
   });
   const [searchTerm, setSearchTerm] = useState("");
   const [pageTitle, setPageTitle] = useState("Coding Resource Finder");
-  const [currentPage, setCurrentPage] = useState(2);
   const [renderedResources, setRenderedResources] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [pageParams, setPageParams] = useState('');
+  const [resourceType, setResourceType] = useState("");
 
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
@@ -31,59 +27,47 @@ function ContextProvider({ children }) {
   useEffect(() => {
     async function getAndSetInitialResources() {
       const responseData = await Promise.all([
-        getPageOfResources(1),
+        getFirstPageOfResources(),
         getAllResources(),
       ]);
-      const [pageResources, allResources] = responseData;
-      setRenderedResources([...pageResources]);
-      setIsLoading(false);
-      setResources(allResources);
+      const [firstPageResources, allResources] = responseData;
+      setRenderedResources([...firstPageResources]);
+      setAllResources(allResources);
     }
     getAndSetInitialResources();
     // eslint-disable-next-line
-  }, [pageParams]);
+  }, [resourceType]);
 
   async function getAllResources() {
     try {
-      const url = (
-        (pageParams && pageParams.length) 
-        ? `${BASE_URL}/all/${pageParams}` 
-        : `${BASE_URL}/all`
-      );
+      const url = `${API_BASE_URL}/all${
+        resourceType === "all" ? "/" : `/${resourceType}`
+      }`;
       const response = await fetch(url);
       const data = await response.json();
-      const allResources = await data.data;    
+      const allResources = await data.data;
       return allResources;
     } catch (error) {
       console.log(error);
     }
   }
 
-  async function getPageOfResources(startPage = 1) {
+  async function getFirstPageOfResources() {
     try {
-      setIsLoading(true);
-      const url = (
-        (pageParams && pageParams.length)
-        ? `${BASE_URL}/all/${pageParams}/${startPage}` 
-        : `${BASE_URL}/all/${startPage}`
-      );
+      const url = `${API_BASE_URL}/all${
+        resourceType === "all" ? "/1" : `/${resourceType}/1`
+      }`;
       const response = await fetch(url);
       const data = await response.json();
-      const pageResources = await data.data;
-      return pageResources;
+      const firstPageResources = await data.data;
+      return firstPageResources;
     } catch (error) {
       console.log(error);
     }
   }
 
-  async function updatePageResources() {
-    const pageResources = await getPageOfResources(currentPage);
-    setRenderedResources([...renderedResources, ...pageResources]);
-    setIsLoading(false);
-  }
-
   function addBookmark(resourceURL) {
-    const newBookmark = resources.find(
+    const newBookmark = allResources.find(
       (resource) => resource.url === resourceURL
     );
     setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
@@ -98,18 +82,11 @@ function ContextProvider({ children }) {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   }
 
-  function loadMoreResources() {
-    setCurrentPage((prevPage) => {
-      return (prevPage += 1);
-    });
-    updatePageResources();
-  }
-
   return (
     <Context.Provider
       value={{
-        resources,
-        setResources,
+        allResources,
+        setAllResources,
         getAllResources,
         renderedResources,
         setRenderedResources,
@@ -120,9 +97,8 @@ function ContextProvider({ children }) {
         searchTerm,
         setSearchTerm,
         setPageTitle,
-        loadMoreResources,
-        isLoading,
-        setPageParams
+        setResourceType,
+        resourceType,
       }}
     >
       {children}

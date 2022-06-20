@@ -1,12 +1,10 @@
+import { CLIENT_BASE_URL } from "../../constants";
+
 function Header() {
   return (
     <header className="header">
       <h1 className="header-title">
-        <a
-          className="home"
-          href="https://coding-resource-finder.ngoako.dev/"
-          rel="noreferrer"
-        >
+        <a className="home" href={CLIENT_BASE_URL} rel="noreferrer">
           Coding Resource Finder
         </a>
       </h1>

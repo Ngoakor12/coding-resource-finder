@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { Context } from "../../Context";
 import SearchForm from "../SearchForm/SearchForm";
@@ -12,32 +12,30 @@ function ResourceList() {
     bookmarks,
     removeBookmark,
     searchTerm,
-    resources,
+    allResources,
     setPageTitle,
-    loadMoreResources,
     renderedResources,
     setRenderedResources,
-    isLoading,
-    setPageParams
+    setResourceType,
+    resourceType,
   } = useContext(Context);
 
-  const {filterType} = useParams();
+  const filterType = useLocation().pathname.split("/")[2];
 
-  const handlePageTitleUpdate = () => (
-    (filterType && filterType.length)
-    ? setPageTitle(`Resources - ${filterType} | Coding Resource Finder`)
-    : setPageTitle(`Resources | Coding Resource Finder`)
-  );
-  
+  const handlePageTitleUpdate = () =>
+    filterType && filterType.length
+      ? setPageTitle(`Resources - ${filterType} | Coding Resource Finder`)
+      : setPageTitle(`Resources | Coding Resource Finder`);
+
   useEffect(() => {
-    handlePageTitleUpdate()
-     // eslint-disable-next-line
+    handlePageTitleUpdate();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    setPageParams(filterType);
+    setResourceType(filterType);
     // eslint-disable-next-line
-  },[filterType]);
+  }, [filterType]);
 
   return (
     <div className="resource-list">
@@ -91,23 +89,17 @@ function ResourceList() {
           <ResourceSkeleton key={`skeleton${index}`} />
         ))
       )}
+
       <button
         className="load-more-btn"
-        onClick={loadMoreResources}
+        onClick={() => setRenderedResources(allResources)}
         disabled={
-          renderedResources.length === resources.length || searchTerm.trim()
+          renderedResources.length === allResources.length || searchTerm.trim()
         }
       >
-        {isLoading ? "Loading..." : "Load 20 more resources"}
-      </button>
-      <button
-        className="load-more-btn"
-        onClick={() => setRenderedResources(resources)}
-        disabled={
-          renderedResources.length === resources.length || searchTerm.trim()
-        }
-      >
-        {`Load all resources (${resources.length - renderedResources.length})`}
+        {`Load all ${resourceType === "all" ? "resources" : resourceType} (${
+          allResources.length - renderedResources.length
+        })`}
       </button>
     </div>
   );

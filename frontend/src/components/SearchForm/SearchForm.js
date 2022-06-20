@@ -13,7 +13,7 @@ const initialSuggestions = [
 ];
 
 function SearchForm() {
-  const { resources, searchTerm, setSearchTerm, setRenderedResources } =
+  const { allResources, searchTerm, setSearchTerm, setRenderedResources } =
     useContext(Context);
   const [suggestions, setSuggestions] = useState(initialSuggestions || "");
 
@@ -42,16 +42,18 @@ function SearchForm() {
 
   function handleSearch() {
     let result = [];
-    result = resources.filter(({title}) => {
-      return (title.toLowerCase().includes(searchTerm.toLocaleLowerCase().trim()));
+    result = allResources.filter(({ title }) => {
+      return title
+        .toLowerCase()
+        .includes(searchTerm.toLocaleLowerCase().trim());
     });
-    
+
     if (result.length > 0 && searchTerm.trim()) {
       setRenderedResources(result);
     } else if (searchTerm.trim() && !result.length) {
       setRenderedResources([]);
     } else {
-      setRenderedResources(resources);
+      setRenderedResources(allResources);
       setSuggestions(initialSuggestions);
     }
   }

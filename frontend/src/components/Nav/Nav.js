@@ -8,7 +8,7 @@ function Nav() {
   return (
     <nav className="nav">
       <NavLink
-        to="/"
+        to="/resources/all"
         className={({ isActive }) =>
           isActive ? "nav-item active-nav" : "nav-item"
         }
