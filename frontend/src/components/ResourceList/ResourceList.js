@@ -24,7 +24,11 @@ function ResourceList() {
 
   const handlePageTitleUpdate = () =>
     filterType && filterType.length
-      ? setPageTitle(`Resources - ${filterType} | Coding Resource Finder`)
+      ? setPageTitle(
+          `Resources - ${
+            filterType.slice(0, 1).toLocaleUpperCase() + filterType.slice(1)
+          } | Coding Resource Finder`
+        )
       : setPageTitle(`Resources | Coding Resource Finder`);
 
   useEffect(() => {
