@@ -34,7 +34,7 @@ function ResourceList() {
   useEffect(() => {
     handlePageTitleUpdate();
     // eslint-disable-next-line
-  }, []);
+  }, [filterType]);
 
   useEffect(() => {
     setResourceType(filterType);
