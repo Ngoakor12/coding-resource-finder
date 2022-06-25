@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/app.js",
-    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/server.js",
+    "start": "node ./src/server.js",
     "update": "node ./src/update-resources-database.js",
     "deploy": "git push heroku master"
   },

@@ -1,10 +1,10 @@
 const app = require("express")();
 const cors = require("cors");
-const { API_BASE_URL, PORT } = require("./constants");
 
-const allRouter = require("./routes/all");
-const topicsRouter = require("./routes/topics");
-const projectsRouter = require("./routes/projects");
+const { API_BASE_URL, PORT } = require("./constants");
+const allRoutes = require("./routes/all");
+const topicsRoutes = require("./routes/topics");
+const projectsRoutes = require("./routes/projects");
 
 app.use(
   cors({
@@ -13,7 +13,7 @@ app.use(
 );
 
 app.get("/", (_, res) => {
-  res.json({
+  res.status(200).json({
     resources: `${API_BASE_URL}/all`,
     topics: `${API_BASE_URL}/all/topics`,
     projects: `${API_BASE_URL}/all/projects`,
@@ -23,9 +23,9 @@ app.get("/", (_, res) => {
   });
 });
 
-app.use("/all/topics", topicsRouter);
-app.use("/all/projects", projectsRouter);
-app.use("/all", allRouter);
+app.use("/all/topics", topicsRoutes);
+app.use("/all/projects", projectsRoutes);
+app.use("/all", allRoutes);
 
 app.listen(process.env.PORT || PORT, () => {
   console.log(`App running at ${API_BASE_URL}`);

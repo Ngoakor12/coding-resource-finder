@@ -1,4 +1,5 @@
 const { JSDOM } = require("jsdom").jsdom;
+
 const { ACN_URL } = require("./constants");
 
 async function getHTML() {
