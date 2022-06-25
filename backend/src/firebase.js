@@ -7,6 +7,7 @@ const {
   query,
   orderBy,
 } = require("firebase/firestore");
+
 const { getCurrentCollectionName } = require("./utils");
 
 const firebaseConfig = {
