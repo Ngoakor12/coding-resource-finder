@@ -1,11 +1,3 @@
----
-name: Pull request
-about: Create a pull request to fix existing or propose changes
-title: ''
-labels: ''
-assignees: ''
-
----
 **Related Issue(s)**
 - issue(s) go here
 
