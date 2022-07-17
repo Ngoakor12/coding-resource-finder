@@ -27,6 +27,11 @@ app.use("/all/topics", topicsRoutes);
 app.use("/all/projects", projectsRoutes);
 app.use("/all", allRoutes);
 
+// swagger
+const swaggerUi = require('swagger-ui-express');
+const docs = require('./docs');
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(docs));
+
 app.listen(process.env.PORT || PORT, () => {
   console.log(`App running at ${API_BASE_URL}`);
 });
