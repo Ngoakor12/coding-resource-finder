@@ -1,7 +1,9 @@
+const { PORT } = require('./../constants');
+
 module.exports = {
     servers: [
         {
-            url: 'http://localhost:2856/',
+            url: `http://localhost:${PORT}`,
             description: 'Local server',
         },
     ],

@@ -1,7 +1,7 @@
 module.exports = {
     '/all/projects': {
         get: {
-            tags: ['Project'],
+            tags: ['Projects'],
             summary: 'Get all projects',
             operationId: 'projects',
             responses: {
@@ -41,8 +41,8 @@ module.exports = {
     },
     '/all/projects/{page}': {
         get: {
-            tags: ['Project'],
-            summary: 'Get project by page',
+            tags: ['Projects'],
+            summary: 'Get a page of projects',
             operationId: 'project_page',
             parameters: [
                 {

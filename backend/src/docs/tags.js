@@ -1,13 +1,13 @@
 module.exports = {
     tags: [
         {
-            name: 'Project',
+            name: 'Projects',
         },
         {
-            name: 'Resource',
+            name: 'Resources',
         },
         {
-            name: 'Topic',
+            name: 'Topics',
         },
     ],
 };

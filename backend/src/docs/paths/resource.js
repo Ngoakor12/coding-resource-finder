@@ -1,7 +1,7 @@
 module.exports = {
     '/all': {
         get: {
-            tags: ['Resource'],
+            tags: ['Resources'],
             summary: 'Get all resources',
             operationId: 'resource',
             responses: {
@@ -41,8 +41,8 @@ module.exports = {
     },
     '/all/{page}': {
         get: {
-            tags: ['Resource'],
-            summary: 'Get resource by page',
+            tags: ['Resources'],
+            summary: 'Get a page of resources',
             operationId: 'resource_page',
             parameters: [
                 {
