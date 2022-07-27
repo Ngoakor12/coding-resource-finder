@@ -8,9 +8,9 @@ http://localhost:2856/api/docs
 
 method | endpoint | params | description | return type
 --- | --- | --- | --- | ---
-POST | /all/projects | - | Get all projects | Object
-POST | /all/projects/{page} | Page number | Get a page of projects | Object
-POST | /all | - | Get all resources | Object
-POST | /all/{page} | Page number | Get a page of resources | Object
-POST | /all/topics | - | Get all topics | Object
-POST | /all/topics/{page} | Page number | Get a page of topics | Object
+GET | /all/projects | - | Get all projects | Object
+GET | /all/projects/{page} | Page number | Get a page of projects | Object
+GET | /all | - | Get all resources | Object
+GET | /all/{page} | Page number | Get a page of resources | Object
+GET | /all/topics | - | Get all topics | Object
+GET | /all/topics/{page} | Page number | Get a page of topics | Object
