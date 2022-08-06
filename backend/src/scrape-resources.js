@@ -1,4 +1,5 @@
-const { JSDOM } = require("jsdom").jsdom;
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 
 const { ACN_URL } = require("./constants");
 
