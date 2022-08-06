@@ -1,4 +1,4 @@
-const { resourcesRef, addDoc } = require("../firebase");
+const { resourcesRef, addDoc } = require("./firebase");
 const { getAllResources } = require("./scrape-resources");
 
 async function updateResources(resources) {
@@ -9,7 +9,7 @@ async function updateResources(resources) {
         url: resource.url,
         type: resource.type,
       });
-      console.log("Successfully updated database :)");
+      console.log(resource.title);
     });
   } catch (error) {
     console.log("Error updating database :(");
