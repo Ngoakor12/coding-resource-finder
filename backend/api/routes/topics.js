@@ -1,8 +1,8 @@
 const topicsRouter = require("express").Router();
 
-const { getPageData } = require("../format-resources");
-const { getResourcesFromDB } = require("../get-resources-from-database");
-const { isPageNumber } = require("../utils");
+const { getPageData } = require("../../format-resources");
+const { getResourcesFromDB } = require("../../get-resources-from-database");
+const { isPageNumber } = require("../../utils");
 
 // get all available topics
 topicsRouter.get("/", async (_, res) => {

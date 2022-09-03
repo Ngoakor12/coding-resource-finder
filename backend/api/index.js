@@ -1,7 +1,7 @@
 const app = require("express")();
 const cors = require("cors");
 
-const { API_BASE_URL, PORT } = require("./constants");
+const { API_BASE_URL, PORT } = require("../constants");
 const allRoutes = require("./routes/all");
 const topicsRoutes = require("./routes/topics");
 const projectsRoutes = require("./routes/projects");
@@ -29,7 +29,7 @@ app.use("/all", allRoutes);
 
 // swagger
 const swaggerUi = require("swagger-ui-express");
-const docs = require("./docs");
+const docs = require("../docs");
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(docs));
 
 app.listen(process.env.PORT || PORT, () => {
