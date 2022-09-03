@@ -14,7 +14,6 @@ function ContextProvider({ children }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [pageTitle, setPageTitle] = useState("Coding Resource Finder");
   const [renderedResources, setRenderedResources] = useState([]);
-  const [resourceType, setResourceType] = useState("");
 
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
@@ -36,13 +35,11 @@ function ContextProvider({ children }) {
     }
     getAndSetInitialResources();
     // eslint-disable-next-line
-  }, [resourceType]);
+  }, []);
 
   async function getAllResources() {
     try {
-      const url = `${API_BASE_URL}/all${
-        resourceType === "all" ? "/" : `/${resourceType}`
-      }`;
+      const url = `${API_BASE_URL}/all`;
       const response = await fetch(url);
       const data = await response.json();
       const allResources = await data.data;
@@ -54,9 +51,7 @@ function ContextProvider({ children }) {
 
   async function getFirstPageOfResources() {
     try {
-      const url = `${API_BASE_URL}/all${
-        resourceType === "all" ? "/1" : `/${resourceType}/1`
-      }`;
+      const url = `${API_BASE_URL}/all/1`;
       const response = await fetch(url);
       const data = await response.json();
       const firstPageResources = await data.data;
@@ -97,8 +92,6 @@ function ContextProvider({ children }) {
         searchTerm,
         setSearchTerm,
         setPageTitle,
-        setResourceType,
-        resourceType,
       }}
     >
       {children}
