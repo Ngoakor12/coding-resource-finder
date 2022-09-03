@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../Context";
 import { clearSearchIcon } from "../../svgs";
-import FilterTabs from "../FilterTabs";
 
 const initialSuggestions = [
   { text: "JavaScript", isSelected: false },
@@ -60,7 +59,6 @@ function SearchForm() {
 
   return (
     <div className="search-input-wrapper">
-      <FilterTabs />
       <div className="search-input-inner-wrapper">
         <input
           type="text"

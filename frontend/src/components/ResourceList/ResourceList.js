@@ -16,8 +16,6 @@ function ResourceList() {
     setPageTitle,
     renderedResources,
     setRenderedResources,
-    setResourceType,
-    resourceType,
   } = useContext(Context);
 
   const filterType = useLocation().pathname.split("/")[2];
@@ -33,11 +31,6 @@ function ResourceList() {
 
   useEffect(() => {
     handlePageTitleUpdate();
-    // eslint-disable-next-line
-  }, [filterType]);
-
-  useEffect(() => {
-    setResourceType(filterType);
     // eslint-disable-next-line
   }, [filterType]);
 
@@ -101,7 +94,7 @@ function ResourceList() {
           renderedResources.length === allResources.length || searchTerm.trim()
         }
       >
-        {`Load all ${resourceType === "all" ? "resources" : resourceType} (${
+        {`Load all resources(${
           allResources.length - renderedResources.length
         })`}
       </button>
