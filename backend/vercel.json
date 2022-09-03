@@ -1,4 +1,6 @@
 {
+  "version": 2,
   "name": "coding-resource-finder",
-  "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
+  "builds": [{ "src": "/api/index.js", "use": "@vercel/node" }],
+  "routes": [{ "src": "/api/routes/(.*)", "dest": "/index.js" }]
 }
