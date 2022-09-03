@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "name": "coding-resource-finder-api",
+  "builds": [{ "src": "./backend/src/server.js", "use": "@vercel/node" }],
+  "routes": [{ "src": "/(.*)", "dest": "/server.js" }]
+}
