@@ -12,7 +12,7 @@ app.use(
   })
 );
 
-app.get("/api", (_, res) => {
+app.get("/", (_, res) => {
   res.status(200).json({
     resources: `${API_BASE_URL}/all`,
     topics: `${API_BASE_URL}/all/topics`,
@@ -23,9 +23,9 @@ app.get("/api", (_, res) => {
   });
 });
 
-app.use("/api/all/topics", topicsRoutes);
-app.use("/api/all/projects", projectsRoutes);
-app.use("/api/all", allRoutes);
+app.use("/all/topics", topicsRoutes);
+app.use("/all/projects", projectsRoutes);
+app.use("/all", allRoutes);
 
 // swagger
 const swaggerUi = require("swagger-ui-express");
