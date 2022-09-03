@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "name": "name-of-your-vercel-app",
+  "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
+}
