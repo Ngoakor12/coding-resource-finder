@@ -23,9 +23,9 @@ app.get("/api", (_, res) => {
   });
 });
 
-app.use("/api/all/topics", topicsRoutes);
-app.use("/api/all/projects", projectsRoutes);
-app.use("/api/all", allRoutes);
+app.use("/all/topics", topicsRoutes);
+app.use("/all/projects", projectsRoutes);
+app.use("/all", allRoutes);
 
 // swagger
 const swaggerUi = require("swagger-ui-express");
