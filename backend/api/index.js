@@ -1,10 +1,10 @@
 const app = require("express")();
 const cors = require("cors");
 
-const { getPageData } = require("../format-resources");
-const { getResourcesFromDB } = require("../get-resources-from-database");
-const { isPageNumber } = require("../utils");
-const { API_BASE_URL, PORT } = require("../constants");
+// const { getPageData } = require("../format-resources");
+// const { getResourcesFromDB } = require("../get-resources-from-database");
+// const { isPageNumber } = require("./utils");
+const { API_BASE_URL, PORT } = require("./constants");
 // const allRoutes = require("./routes/all");
 // const topicsRoutes = require("./routes/topics");
 // const projectsRoutes = require("./routes/projects");

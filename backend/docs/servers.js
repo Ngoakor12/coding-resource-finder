@@ -1,4 +1,4 @@
-const { PORT } = require("../constants");
+const { PORT } = require("../api/constants");
 
 module.exports = {
   servers: [
