@@ -15,7 +15,7 @@ app.use(
   })
 );
 
-app.get("/api", (_, res) => {
+app.get("/", (_, res) => {
   res.status(200).json({
     resources: `${API_BASE_URL}/all`,
     topics: `${API_BASE_URL}/topics`,
