@@ -4,6 +4,6 @@
   "routes": [
     { "src": "/", "dest": "/index.js" },
     { "src": "/api", "dest": "/routes/all.js" },
-    { "src": "/api/([0-9])", "dest": "/routes/all.js" }
+    { "src": "/api/(*)", "dest": "/routes/all.js" }
   ]
 }
