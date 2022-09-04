@@ -1,9 +1,5 @@
 {
   "version": 2,
   "name": "coding-resource-finder",
-  "routes": [
-    { "src": "/", "dest": "/index.js" },
-    { "src": "/api", "dest": "/routes/all.js" },
-    { "src": "/api/(*)", "dest": "/routes/all.js" }
-  ]
+  "routes": [{ "src": "/", "dest": "/index.js" }]
 }
