@@ -26,6 +26,17 @@ app.get("/", (_, res) => {
   });
 });
 
+app.get("/api", (_, res) => {
+  res.status(200).json({
+    resources: `${API_BASE_URL}/all`,
+    topics: `${API_BASE_URL}/topics`,
+    projects: `${API_BASE_URL}/projects`,
+    resources_page: `${API_BASE_URL}/all/{page}`,
+    topics_page: `${API_BASE_URL}/topics/{page}`,
+    projects_page: `${API_BASE_URL}/projects/{page}`,
+  });
+});
+
 // // get all topics and projects
 // app.get("/api/all", async (_, res) => {
 //   try {
