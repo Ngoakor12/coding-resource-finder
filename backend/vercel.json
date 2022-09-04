@@ -1,3 +1,11 @@
 {
-  "name": "coding-resource-finder"
+  "version": 2,
+  "name": "coding-resource-finder",
+  "routes": [
+    { "src": "/", "dest": "/index.js" },
+    { "src": "/api", "dest": "/index.js" },
+    { "src": "/api/all", "dest": "/index.js" },
+    { "src": "/api/topics", "dest": "/index.js" },
+    { "src": "/api/projects", "dest": "/index.js" }
+  ]
 }
