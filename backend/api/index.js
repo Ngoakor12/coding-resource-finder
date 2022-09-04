@@ -5,9 +5,9 @@ const cors = require("cors");
 // const { getResourcesFromDB } = require("../get-resources-from-database");
 // const { isPageNumber } = require("./utils");
 const { API_BASE_URL, PORT } = require("./constants");
-// const allRoutes = require("./routes/all");
-// const topicsRoutes = require("./routes/topics");
-// const projectsRoutes = require("./routes/projects");
+const allRoutes = require("./all");
+const topicsRoutes = require("./topics");
+const projectsRoutes = require("./projects");
 
 app.use(
   cors({
@@ -131,9 +131,9 @@ app.get("/api", (_, res) => {
 //   }
 // });
 
-// app.use("/api/topics", topicsRoutes);
-// app.use("/api/projects", projectsRoutes);
-// app.use("/api/all", allRoutes);
+app.use("/api/topics", topicsRoutes);
+app.use("/api/projects", projectsRoutes);
+app.use("/api/all", allRoutes);
 
 // swagger
 const swaggerUi = require("swagger-ui-express");

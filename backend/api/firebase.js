@@ -8,7 +8,7 @@ const {
   orderBy,
 } = require("firebase/firestore");
 
-const { getCurrentCollectionName } = require("./api/utils");
+const { getCurrentCollectionName } = require("./utils");
 
 const firebaseConfig = {
   apiKey: "AIzaSyC8suQigoEopXl19pXRGrGSUWAAprv9-mg",

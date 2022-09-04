@@ -1,11 +1,12 @@
 const topicsRouter = require("express").Router();
 
+const { API_BASE_URL, PORT } = require("./constants");
 const { getPageData } = require("./format-resources");
 const { getResourcesFromDB } = require("./get-resources-from-database");
 const { isPageNumber } = require("./utils");
 
 // get all available topics
-topicsRouter.get("/api/topics", async (_, res) => {
+topicsRouter.get("/", async (_, res) => {
   try {
     const resources = await getResourcesFromDB();
     const topics = resources.data.filter(
@@ -19,7 +20,7 @@ topicsRouter.get("/api/topics", async (_, res) => {
 });
 
 // get specific topic pages
-topicsRouter.get("/api/topics/:page", async ({ params: { page } }, res) => {
+topicsRouter.get("/:page", async ({ params: { page } }, res) => {
   if (!isPageNumber(page))
     return res
       .status(400)

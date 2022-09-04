@@ -1,11 +1,12 @@
 const projectsRouter = require("express").Router();
 
+const { API_BASE_URL, PORT } = require("./constants");
 const { getPageData } = require("./format-resources");
 const { getResourcesFromDB } = require("./get-resources-from-database");
 const { isPageNumber } = require("./utils");
 
 // get all available projects
-projectsRouter.get("/api/projects", async (_, res) => {
+projectsRouter.get("/", async (_, res) => {
   try {
     const resources = await getResourcesFromDB();
     const projects = resources.data.filter(
@@ -19,7 +20,7 @@ projectsRouter.get("/api/projects", async (_, res) => {
 });
 
 // get specific project pages
-projectsRouter.get("/api/projects:page", async ({ params: { page } }, res) => {
+projectsRouter.get("/:page", async ({ params: { page } }, res) => {
   if (!isPageNumber(page))
     return res
       .status(400)
