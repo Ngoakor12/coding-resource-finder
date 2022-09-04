@@ -120,9 +120,9 @@ app.get("/api/projects/:page", async ({ params: { page } }, res) => {
   }
 });
 
-app.use("/api/topics", topicsRoutes);
-app.use("/api/projects", projectsRoutes);
-app.use("/api/all", allRoutes);
+// app.use("/api/topics", topicsRoutes);
+// app.use("/api/projects", projectsRoutes);
+// app.use("/api/all", allRoutes);
 
 // swagger
 const swaggerUi = require("swagger-ui-express");
