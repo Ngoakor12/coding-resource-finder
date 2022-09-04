@@ -2,10 +2,10 @@
   "version": 2,
   "name": "coding-resource-finder",
   "routes": [
-    { "src": "/", "dest": "/index.js" },
-    { "src": "/api", "dest": "/index.js" },
-    { "src": "/api/all", "dest": "/index.js" },
-    { "src": "/api/topics", "dest": "/index.js" },
-    { "src": "/api/projects", "dest": "/index.js" }
+    { "src": "/", "dest": "/api/index.js" },
+    { "src": "/api", "dest": "/api/index.js" },
+    { "src": "/api/all", "dest": "api/all/index.js" },
+    { "src": "/api/topics", "dest": "api/topics/index.js" },
+    { "src": "/api/projects", "dest": "api/projects/index.js" }
   ]
 }

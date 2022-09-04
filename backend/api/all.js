@@ -1,11 +1,11 @@
 const allRouter = require("express").Router();
 
-const { getPageData } = require("../../format-resources");
-const { getResourcesFromDB } = require("../../get-resources-from-database");
-const { isPageNumber } = require("../../utils");
+const { getPageData } = require("../format-resources");
+const { getResourcesFromDB } = require("../get-resources-from-database");
+const { isPageNumber } = require("../utils");
 
 // get all topics and projects
-allRouter.get("/", async (_, res) => {
+allRouter.get("/api/all", async (_, res) => {
   try {
     const resources = await getResourcesFromDB();
     res.status(200).json(resources);
@@ -15,7 +15,7 @@ allRouter.get("/", async (_, res) => {
 });
 
 // get specific resource
-allRouter.get("/:page", async ({ params: { page } }, res) => {
+allRouter.get("/api/all/:page", async ({ params: { page } }, res) => {
   if (!isPageNumber(page))
     return res
       .status(400)

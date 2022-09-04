@@ -5,7 +5,7 @@ const { getResourcesFromDB } = require("../../get-resources-from-database");
 const { isPageNumber } = require("../../utils");
 
 // get all available projects
-projectsRouter.get("/", async (_, res) => {
+projectsRouter.get("/api/projects", async (_, res) => {
   try {
     const resources = await getResourcesFromDB();
     const projects = resources.data.filter(
@@ -19,7 +19,7 @@ projectsRouter.get("/", async (_, res) => {
 });
 
 // get specific project pages
-projectsRouter.get("/:page", async ({ params: { page } }, res) => {
+projectsRouter.get("/api/projects:page", async ({ params: { page } }, res) => {
   if (!isPageNumber(page))
     return res
       .status(400)

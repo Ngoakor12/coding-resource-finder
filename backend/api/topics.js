@@ -5,7 +5,7 @@ const { getResourcesFromDB } = require("../../get-resources-from-database");
 const { isPageNumber } = require("../../utils");
 
 // get all available topics
-topicsRouter.get("/", async (_, res) => {
+topicsRouter.get("/api/topics", async (_, res) => {
   try {
     const resources = await getResourcesFromDB();
     const topics = resources.data.filter(
@@ -19,7 +19,7 @@ topicsRouter.get("/", async (_, res) => {
 });
 
 // get specific topic pages
-topicsRouter.get("/:page", async ({ params: { page } }, res) => {
+topicsRouter.get("/api/topics/:page", async ({ params: { page } }, res) => {
   if (!isPageNumber(page))
     return res
       .status(400)
