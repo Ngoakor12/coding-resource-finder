@@ -25,7 +25,7 @@ app.get("/", (_, res) => {
 
 app.use("/api/topics", topicsRoutes);
 app.use("/api/projects", projectsRoutes);
-app.use("/api", allRoutes);
+app.use("/api/all", allRoutes);
 
 // swagger
 const swaggerUi = require("swagger-ui-express");
