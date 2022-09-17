@@ -18,15 +18,9 @@ function App() {
             <Route
               exact
               path="/"
-              element={<Navigate to="/resources/all" replace={true}></Navigate>}
+              element={<Navigate to="/resources" replace={true}></Navigate>}
             />
-            <Route exact path="/resources/all" element={<ResourceList />} />
-            <Route exact path="/resources/topics" element={<ResourceList />} />
-            <Route
-              exact
-              path="/resources/projects"
-              element={<ResourceList />}
-            />
+            <Route exact path="/resources" element={<ResourceList />} />
             <Route exact path="/bookmarks" element={<BookmarkList />} />
           </Routes>
         </section>
