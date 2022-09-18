@@ -3,6 +3,6 @@ const API_BASE_URL =
   process.env.REACT_APP_API_PROD_BASE_URL || `http://localhost:${PORT}`;
 const CLIENT_BASE_URL =
   process.env.REACT_APP_CLIENT_PROD_BASE_URL ||
-  `http://localhost:3000/resources/all`;
+  `http://localhost:3000/resources`;
 
 export { PORT, API_BASE_URL, CLIENT_BASE_URL };
