@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
-import { Context } from "../../Context";
+import { Context } from "../../appContext";
 
 function Nav() {
   const { renderedResources, bookmarks } = useContext(Context);
@@ -8,7 +8,7 @@ function Nav() {
   return (
     <nav className="nav">
       <NavLink
-        to="/resources/all"
+        to="/resources"
         className={({ isActive }) =>
           isActive ? "nav-item active-nav" : "nav-item"
         }

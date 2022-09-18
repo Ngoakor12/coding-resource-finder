@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { Context } from "../../Context";
+import { Context } from "../../appContext";
 import { removeBookmarkIcon } from "../../svgs";
 
 function BookmarkList() {
