@@ -1,5 +1,5 @@
 const { resourcesRef, addDoc } = require("./firebase");
-const { getAllResources } = require("./scrape-resources");
+const { getAllResources } = require("./web-scrape-resources");
 
 async function updateResources(resources) {
   try {
