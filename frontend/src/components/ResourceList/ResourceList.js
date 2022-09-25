@@ -1,5 +1,4 @@
 import { useContext, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { Context } from "../../appContext";
 import SearchForm from "../SearchForm/SearchForm";
@@ -18,21 +17,10 @@ function ResourceList() {
     setRenderedResources,
   } = useContext(Context);
 
-  const filterType = useLocation().pathname.split("/")[2];
-
-  const handlePageTitleUpdate = () =>
-    filterType && filterType.length
-      ? setPageTitle(
-          `Resources - ${
-            filterType.slice(0, 1).toLocaleUpperCase() + filterType.slice(1)
-          } | Coding Resource Finder`
-        )
-      : setPageTitle(`Resources | Coding Resource Finder`);
-
   useEffect(() => {
-    handlePageTitleUpdate();
+    setPageTitle("Resources | Coding Resource Finder");
     // eslint-disable-next-line
-  }, [filterType]);
+  }, []);
 
   return (
     <div className="resource-list">

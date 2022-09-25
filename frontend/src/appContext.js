@@ -6,6 +6,8 @@ const Context = createContext();
 
 function ContextProvider({ children }) {
   const [allResources, setAllResources] = useState([]);
+  // eslint-disable-next-line
+  const [firstPageResources, setFirstPageResources] = useState([]);
   const [bookmarks, setBookmarks] = useState(() => {
     const saved = localStorage.getItem("bookmarks");
     const initialValue = JSON.parse(saved);
@@ -30,7 +32,8 @@ function ContextProvider({ children }) {
         getAllResources(),
       ]);
       const [firstPageResources, allResources] = responseData;
-      setRenderedResources([...firstPageResources]);
+      setRenderedResources(firstPageResources);
+      setFirstPageResources(firstPageResources);
       setAllResources(allResources);
     }
     getAndSetInitialResources();
@@ -50,7 +53,7 @@ function ContextProvider({ children }) {
 
   async function getFirstPageOfResources() {
     try {
-      const url = `${API_BASE_URL}/all/${1}`;
+      const url = `${API_BASE_URL}/all/1`;
       const response = await fetch(url);
       const data = await response.json();
       const firstPageResources = await data.data;

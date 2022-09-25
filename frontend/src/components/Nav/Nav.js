@@ -13,7 +13,7 @@ function Nav() {
           isActive ? "nav-item active-nav" : "nav-item"
         }
       >
-        {`Resources (${renderedResources.length})`}
+        {`Resources ${renderedResources && `(${renderedResources.length})`}`}
       </NavLink>
       <NavLink
         to="/bookmarks"
@@ -21,7 +21,7 @@ function Nav() {
           isActive ? "nav-item active-nav" : "nav-item"
         }
       >
-        {`Bookmarks (${bookmarks.length})`}
+        {`Bookmarks ${bookmarks && `(${bookmarks.length})`}`}
       </NavLink>
     </nav>
   );
