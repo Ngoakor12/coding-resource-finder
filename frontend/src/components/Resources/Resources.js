@@ -12,8 +12,6 @@ function Resources() {
     setPageTitle("Resources | Coding Resource Finder");
     // eslint-disable-next-line
   }, []);
-  if (searchTerm && !renderedResources.length)
-    <h2 className="content-placeholder">Resource(s) not found...</h2>;
 
   return (
     <main className="resource-list">
