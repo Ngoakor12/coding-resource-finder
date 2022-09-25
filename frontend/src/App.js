@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
-import BookmarkList from "./components/BookmarkList/BookmarkList";
+import Bookmarks from "./components/Booksmarks/Bookmarks";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Resources from "./components/Resources/Resources";
@@ -21,7 +21,7 @@ function App() {
               element={<Navigate to="/resources" replace={true}></Navigate>}
             />
             <Route exact path="/resources" element={<Resources />} />
-            <Route exact path="/bookmarks" element={<BookmarkList />} />
+            <Route exact path="/bookmarks" element={<Bookmarks />} />
           </Routes>
         </section>
       </main>
