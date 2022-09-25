@@ -32,6 +32,6 @@ const swaggerUi = require("swagger-ui-express");
 const docs = require("./docs");
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(docs));
 
-app.listen(process.env.PORT || PORT, () => {
+app.listen(PORT, () => {
   console.log(`App running at ${API_BASE_URL}`);
 });
