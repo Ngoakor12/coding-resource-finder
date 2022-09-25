@@ -3,7 +3,7 @@ import "./App.css";
 import BookmarkList from "./components/BookmarkList/BookmarkList";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
-import ResourceList from "./components/ResourceList/ResourceList";
+import Resources from "./components/Resources/Resources";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
               path="/"
               element={<Navigate to="/resources" replace={true}></Navigate>}
             />
-            <Route exact path="/resources" element={<ResourceList />} />
+            <Route exact path="/resources" element={<Resources />} />
             <Route exact path="/bookmarks" element={<BookmarkList />} />
           </Routes>
         </section>
