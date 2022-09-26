@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import { Context } from "../../appContext";
-import ClearBookmarksButton from "../Buttons/ClearBookmarksButton";
-import ResourceList from "../ResourceList/ResourceList";
+import ClearBookmarksButton from "../../components/Buttons/ClearBookmarksButton";
+import ResourceList from "../../components/ResourceList/ResourceList";
 
 function Bookmarks() {
   const { bookmarks, setPageTitle } = useContext(Context);

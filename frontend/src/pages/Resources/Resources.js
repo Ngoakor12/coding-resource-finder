@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
 import { Context } from "../../appContext";
-import SearchForm from "../SearchForm/SearchForm";
-import ResourceList from "../ResourceList/ResourceList";
-import ResourceSkeletonList from "../ResourceSkeletonList/ResourceSkeletonList";
-import LoadMoreResourcesButton from "../Buttons/LoadMoreResourcesButton";
+import SearchForm from "../../components/SearchForm/SearchForm";
+import ResourceList from "../../components/ResourceList/ResourceList";
+import ResourceSkeletonList from "../../components/ResourceSkeletonList/ResourceSkeletonList";
+import LoadMoreResourcesButton from "../../components/Buttons/LoadMoreResourcesButton";
 
 function Resources() {
   const { setPageTitle, renderedResources, searchTerm } = useContext(Context);
