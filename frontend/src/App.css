@@ -12,6 +12,10 @@ body {
   background-color: rgb(41, 41, 41);
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 #root {
   display: flex;
   flex-direction: column;
@@ -30,7 +34,9 @@ header {
   background-color: rgb(31, 31, 31);
   padding: 1.8em;
   border-radius: 8px;
-  margin-top: 3.5em;
+  /* SEARCH_BOTTOM - commented out the previos margin */
+  margin-top: 6.5em;
+  /* margin-top: 3.5em; */
 }
 
 .header-details {
@@ -43,6 +49,7 @@ header {
   line-height: 100%;
   padding-bottom: 0.2em;
 }
+
 .header-description {
   font-size: 16px;
 }
@@ -126,9 +133,11 @@ header {
   padding: 15px 25px;
   font-size: 18px;
   border: 0;
-  border-radius: 10px;
+  border: 1px solid #8fffab;
   position: fixed;
-  bottom: 0;
+  /* SEARCH_BOTTOM - remove top and uncomment bottom */
+  top: 65px;
+  /* bottom: 0; */
   left: 0;
   z-index: 1;
   padding-right: 55px;
@@ -192,6 +201,7 @@ header {
   gap: 10px;
   margin-bottom: 15px;
 }
+
 .search-suggestion {
   border: 1px solid rgb(92, 92, 92);
   border-radius: 20px;
@@ -215,7 +225,9 @@ header {
   padding: 8px;
   position: fixed;
   right: 18px;
-  bottom: 4px;
+  /* SEARCH_BOTTOM - remove top and uncomment bottom */
+  top: 75px;
+  /* bottom: 4px; */
   z-index: 1;
   color: rgb(27, 27, 27);
 }
@@ -230,13 +242,14 @@ header {
 .nav {
   display: flex;
   justify-content: space-around;
-  border-radius: 8px;
   background-color: rgb(31, 31, 31);
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1;
   width: 100%;
+  /* SEARCH_BOTTOM - remove this height */
+  height: 65px;
   border: 1px solid rgb(92, 92, 92);
 }
 
@@ -342,6 +355,7 @@ header {
 .resource-wrapper:hover .remove-bookmark-button {
   color: hsl(135, 100%, 78%);
 }
+
 .resource-wrapper:hover .remove-bookmark-button:hover {
   color: hsl(0, 100%, 78%);
   background-color: hsla(0, 100%, 78%, 0.247);
@@ -380,7 +394,7 @@ header {
   color: hsl(0, 100%, 78%);
 }
 
-.nav > * {
+.nav>* {
   text-decoration: none;
 }
 
@@ -394,15 +408,18 @@ header {
   border-radius: 8px;
   background-color: rgb(31, 31, 31);
 }
+
 .load-more-btn:hover {
   color: #f1f1f1;
   cursor: pointer;
 }
+
 .load-more-btn:disabled {
   color: #8fffab;
   opacity: 0.5;
   cursor: not-allowed;
 }
+
 .load-more-btn:disabled:hover {
   opacity: 0.5;
 }
@@ -448,6 +465,7 @@ header {
   from {
     background-color: #5c5c5c;
   }
+
   to {
     background-color: #949494;
   }
@@ -514,6 +532,8 @@ header {
     position: sticky;
     top: 0;
     min-width: 160px;
+    height: auto;
+    border-radius: 8px;
     /* min-width: 20%; */
   }
 
@@ -522,16 +542,26 @@ header {
     justify-content: center;
   }
 
+  .search-input-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #292929;
+    box-shadow: 0 5px 3px #292929;
+  }
+
   .search-input {
     margin-bottom: 20px;
     border-radius: 10px;
+    border: none;
     position: static;
-    top: 0;
   }
 
   .clear-button {
     cursor: pointer;
     position: absolute;
+    /* SEARCH_BOTTOM - remove top */
+    top: auto;
     right: 18px;
     bottom: 28px;
     z-index: 1;
