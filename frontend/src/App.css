@@ -78,6 +78,7 @@ header {
   background-color: rgb(31, 31, 31);
   color: #8fffab;
   transition: background-color 300ms ease, color 300ms ease;
+  cursor: pointer;
 }
 
 .go-to-top-button:active {
