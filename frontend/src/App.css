@@ -12,10 +12,6 @@ body {
   background-color: rgb(41, 41, 41);
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
-
 #root {
   display: flex;
   flex-direction: column;
@@ -394,7 +390,7 @@ header {
   color: hsl(0, 100%, 78%);
 }
 
-.nav>* {
+.nav > * {
   text-decoration: none;
 }
 
