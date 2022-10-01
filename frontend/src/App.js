@@ -4,10 +4,12 @@ import Bookmarks from "./pages/Bookmarks/Bookmarks";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Resources from "./pages/Resources/Resources";
+import GoToTopButton from "./components/Buttons/GoToTopButton";
 
 function App() {
   return (
     <>
+      <GoToTopButton />
       <Header />
       <main className="main">
         <aside className="aside-nav">
