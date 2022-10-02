@@ -44,20 +44,14 @@ git push -u origin name-of-my-branch
 10. Open a pull request
 
 
-# Running the project locally
-
-1. Cloning the repo
-2. Running the backend
-3. Running the frontend
-
-# Opening an issue
+## Opening an issue
 
 1. Search through the open issues and add one if you don't find it anything related.
 2. Search through the closed/merged issues and if an issue you want to open has a merged PR, then reopen that issue with details on why you think the issue was not addressed.
 3. Add labels related to your issue
 
-# Opening a PR
+## Opening a PR
 
-1. Ask to work on an issue if you want to open a PR related to an issue, that way you can be assigned and others know you're working on it
-2. Avoid opening a PR without an accompanying issue, so maybe open an issue to discuss if what you want to add to the project will be welcomed before you write complex features that may or may not be merged
-3. Link issues related to your PR via the PR template or the development section on the right sidebar
+1. Please make sure to mention that you want to work on the given particular issue so that you can be assigned and everyone else will know that you're working on it.
+2. If you want to suggest some changes make sure to 1st open the issue regarding the same and discuss it before you spend time writing complex features.
+3. Linking issues related to your PR via the PR template or the development section on the right sidebar is recommended.
