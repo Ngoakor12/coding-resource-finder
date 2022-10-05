@@ -38,8 +38,11 @@ To solve these problems that only someone who visits the site frequently notices
 - Server-side and client-side pagination.
 
 ## Screenshots
-![www ngoako com_coding-resource-finder_(myDevice highres desktop)](https://user-images.githubusercontent.com/54069197/155377612-66abb465-783e-46c7-be4c-b98b1f74848f.png)
-![www ngoako com_coding-resource-finder_(myDevice highres desktop) (1)](https://user-images.githubusercontent.com/54069197/155377548-f7db8a17-ee1c-4aa0-b331-e1d6214e78b1.png)
+
+![www ngoako com_coding-resource-finder_(myDevice highres desktop)](./docs/screenshots/Screenshot%20(141).png)
+![www ngoako com_coding-resource-finder_(myDevice highres desktop) (1)](./docs/screenshots/Screenshot%20(156).png)
+
+[More screenshots](./docs/SCREENSHOTS.md)
 
 ## Local setup
 **Clone repo**
