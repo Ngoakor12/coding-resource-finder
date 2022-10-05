@@ -42,7 +42,7 @@ To solve these problems that only someone who visits the site frequently notices
 ![www ngoako com_coding-resource-finder_(myDevice highres desktop)](./docs/screenshots/Screenshot%20(141).png)
 ![www ngoako com_coding-resource-finder_(myDevice highres desktop) (1)](./docs/screenshots/Screenshot%20(156).png)
 
-[More screenshots](./docs/screenshots/)
+[More screenshots](./docs/SCREENSHOTS.md)
 
 ## Local setup
 **Clone repo**
