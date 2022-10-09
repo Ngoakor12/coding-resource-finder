@@ -1,7 +1,8 @@
 import { useContext } from "react";
+
 import { Context } from "../../appContext";
 
-function LoadMoreResourcesButton() {
+export default function LoadMoreResourcesButton() {
   const { allResources, renderedResources, setRenderedResources } =
     useContext(Context);
 
@@ -23,5 +24,3 @@ function LoadMoreResourcesButton() {
     </button>
   );
 }
-
-export default LoadMoreResourcesButton;

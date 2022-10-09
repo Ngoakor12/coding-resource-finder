@@ -1,8 +1,9 @@
 import { useContext } from "react";
+
 import { Context } from "../../appContext";
 import { bookmarkIcon } from "../../svgs";
 
-function RemoveBookmarkButton({ resource }) {
+export default function RemoveBookmarkButton({ resource }) {
   const { addBookmark } = useContext(Context);
   return (
     <button
@@ -16,5 +17,3 @@ function RemoveBookmarkButton({ resource }) {
     </button>
   );
 }
-
-export default RemoveBookmarkButton;

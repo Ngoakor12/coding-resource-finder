@@ -1,7 +1,8 @@
-import Resource from "../Resource/Resource";
 import { nanoid } from "nanoid";
 
-function ResourceList({ resources }) {
+import Resource from "../Resource/Resource";
+
+export default function ResourceList({ resources }) {
   return (
     <div className="resource-list">
       {resources &&
@@ -11,5 +12,3 @@ function ResourceList({ resources }) {
     </div>
   );
 }
-
-export default ResourceList;

@@ -1,6 +1,6 @@
 import { goToTopIcon } from "../../svgs";
 
-function GoToTopButton() {
+export default function GoToTopButton() {
   return (
     <button
       onClick={() => {
@@ -14,5 +14,3 @@ function GoToTopButton() {
     </button>
   );
 }
-
-export default GoToTopButton;

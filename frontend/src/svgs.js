@@ -1,4 +1,4 @@
-const removeBookmarkIcon = (
+export const removeBookmarkIcon = (
   <svg
     aria-hidden="true"
     role="img"
@@ -12,7 +12,7 @@ const removeBookmarkIcon = (
     </g>
   </svg>
 );
-const bookmarkIcon = (
+export const bookmarkIcon = (
   <svg
     aria-hidden="true"
     role="img"
@@ -27,7 +27,7 @@ const bookmarkIcon = (
   </svg>
 );
 
-const clearSearchIcon = (
+export const clearSearchIcon = (
   <svg
     aria-hidden="true"
     role="img"
@@ -43,7 +43,7 @@ const clearSearchIcon = (
   </svg>
 );
 
-const goToTopIcon = (
+export const goToTopIcon = (
   <svg
     width="32"
     height="32"
@@ -56,5 +56,3 @@ const goToTopIcon = (
     />
   </svg>
 );
-
-export { bookmarkIcon, removeBookmarkIcon, clearSearchIcon, goToTopIcon };

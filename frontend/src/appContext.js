@@ -1,10 +1,14 @@
 import { createContext, useEffect, useState } from "react";
 
-import { API_BASE_URL } from "./constants";
+import {
+  ALL_RESOURCES_URL,
+  ERROR,
+  FIRST_PAGE_RESOURCES_URL,
+} from "./constants";
 
-const Context = createContext();
+export const Context = createContext();
 
-function ContextProvider({ children }) {
+export function ContextProvider({ children }) {
   const [allResources, setAllResources] = useState([]);
   // eslint-disable-next-line
   const [firstPageResources, setFirstPageResources] = useState([]);
@@ -26,54 +30,56 @@ function ContextProvider({ children }) {
   }, [pageTitle]);
 
   useEffect(() => {
-    async function getAndSetInitialResources() {
-      const responseData = await Promise.all([
-        getFirstPageOfResources(),
-        getAllResources(),
-      ]);
-      const [firstPageResources, allResources] = responseData;
-      setRenderedResources(firstPageResources);
-      setFirstPageResources(firstPageResources);
-      setAllResources(allResources);
-    }
     getAndSetInitialResources();
+    // eslint-disable-next-line
   }, []);
 
-  async function getAllResources() {
+  async function getAndSetInitialResources() {
+    const responseData = await Promise.all([
+      getFirstPageOfResources(FIRST_PAGE_RESOURCES_URL),
+      getAllResources(ALL_RESOURCES_URL),
+    ]);
+    const [firstPageResources, allResources] = responseData;
+    setRenderedResources(firstPageResources);
+    setFirstPageResources(firstPageResources);
+    setAllResources(allResources);
+  }
+
+  async function getAllResources(url) {
     try {
-      const url = `${API_BASE_URL}/all`;
       const response = await fetch(url);
       const data = await response.json();
       const allResources = await data.data;
       return allResources;
     } catch (error) {
-      console.log(error);
+      alert(ERROR.FETCH);
+      console.error(error);
     }
   }
 
-  async function getFirstPageOfResources() {
+  async function getFirstPageOfResources(url) {
     try {
-      const url = `${API_BASE_URL}/all/1`;
       const response = await fetch(url);
       const data = await response.json();
       const firstPageResources = await data.data;
       return firstPageResources;
     } catch (error) {
-      console.log(error);
+      alert(ERROR.FETCH);
+      console.error(error);
     }
   }
 
-  function addBookmark(resourceURL) {
+  function addBookmark(resourceUrl) {
     const newBookmark = allResources.find(
-      (resource) => resource.url === resourceURL
+      (resource) => resource.url === resourceUrl
     );
     setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   }
 
-  function removeBookmark(bookmarkURL) {
+  function removeBookmark(bookmarkUrl) {
     const newBookmarks = bookmarks.filter(
-      (bookmark) => bookmark.url !== bookmarkURL
+      (bookmark) => bookmark.url !== bookmarkUrl
     );
     setBookmarks(newBookmarks);
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
@@ -100,5 +106,3 @@ function ContextProvider({ children }) {
     </Context.Provider>
   );
 }
-
-export { Context, ContextProvider };
