@@ -7,7 +7,7 @@ import Nav from "./components/Nav/Nav";
 import Resources from "./pages/Resources/Resources";
 import GoToTopButton from "./components/Buttons/GoToTopButton";
 
-function App() {
+export default function App() {
   return (
     <>
       <GoToTopButton />
@@ -31,5 +31,3 @@ function App() {
     </>
   );
 }
-
-export default App;
