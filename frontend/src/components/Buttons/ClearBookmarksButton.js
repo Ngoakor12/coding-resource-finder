@@ -1,7 +1,8 @@
 import { useContext } from "react";
+
 import { Context } from "../../appContext";
 
-function ClearBookmarksButton() {
+export default function ClearBookmarksButton() {
   const { setBookmarks } = useContext(Context);
 
   function handleClick() {
@@ -14,5 +15,3 @@ function ClearBookmarksButton() {
     </button>
   );
 }
-
-export default ClearBookmarksButton;

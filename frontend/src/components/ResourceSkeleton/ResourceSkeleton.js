@@ -1,4 +1,4 @@
-function SkeletonResource() {
+export default function SkeletonResource() {
   return (
     <div className="resource-skeleton">
       <div className="left">
@@ -9,5 +9,3 @@ function SkeletonResource() {
     </div>
   );
 }
-
-export default SkeletonResource;

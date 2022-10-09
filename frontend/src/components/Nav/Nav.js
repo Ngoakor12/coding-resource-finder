@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom";
 import { useContext } from "react";
+import { NavLink } from "react-router-dom";
+
 import { Context } from "../../appContext";
 
-function Nav() {
+export default function Nav() {
   const { renderedResources, bookmarks } = useContext(Context);
 
   return (
@@ -26,5 +27,3 @@ function Nav() {
     </nav>
   );
 }
-
-export default Nav;

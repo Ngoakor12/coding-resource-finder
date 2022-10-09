@@ -1,9 +1,10 @@
 import { useContext } from "react";
+
 import { Context } from "../../appContext";
 import RemoveBookmarkButton from "../Buttons/RemoveBookmarkButton";
 import BookmarkButton from "../Buttons/BookmarkButton";
 
-function Resource({ resource }) {
+export default function Resource({ resource }) {
   const { bookmarks } = useContext(Context);
   const isBookmarked = bookmarks.find((bookmark) => {
     return bookmark.url === resource.url;
@@ -29,5 +30,3 @@ function Resource({ resource }) {
     </div>
   );
 }
-
-export default Resource;

@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+
 import { Context } from "../../appContext";
 import { clearSearchIcon } from "../../svgs";
 
@@ -11,7 +12,7 @@ const initialSuggestions = [
   { text: "SQL", isSelected: false },
 ];
 
-function SearchForm() {
+export default function SearchForm() {
   const { allResources, searchTerm, setSearchTerm, setRenderedResources } =
     useContext(Context);
   const [suggestions, setSuggestions] = useState(initialSuggestions || "");
@@ -97,5 +98,3 @@ function SearchForm() {
     </div>
   );
 }
-
-export default SearchForm;

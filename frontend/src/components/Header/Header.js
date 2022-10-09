@@ -1,6 +1,6 @@
 import { CLIENT_BASE_URL } from "../../constants";
 
-function Header() {
+export default function Header() {
   return (
     <header className="header">
       <h1 className="header-title">
@@ -47,5 +47,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

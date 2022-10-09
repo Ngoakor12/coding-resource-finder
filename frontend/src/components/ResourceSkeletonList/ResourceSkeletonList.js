@@ -1,5 +1,6 @@
 import ResourceSkeleton from "../ResourceSkeleton/ResourceSkeleton";
-function ResourceSkeletonList({ resources }) {
+
+export default function ResourceSkeletonList({ resources }) {
   return (
     <div className="resource-list">
       {[...Array(20)].map((_, index) => (
@@ -8,5 +9,3 @@ function ResourceSkeletonList({ resources }) {
     </div>
   );
 }
-
-export default ResourceSkeletonList;

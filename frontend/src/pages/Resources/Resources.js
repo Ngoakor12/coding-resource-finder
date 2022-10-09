@@ -1,11 +1,12 @@
 import { useContext, useEffect } from "react";
+
 import { Context } from "../../appContext";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import ResourceList from "../../components/ResourceList/ResourceList";
 import ResourceSkeletonList from "../../components/ResourceSkeletonList/ResourceSkeletonList";
 import LoadMoreResourcesButton from "../../components/Buttons/LoadMoreResourcesButton";
 
-function Resources() {
+export default function Resources() {
   const { setPageTitle, renderedResources, searchTerm } = useContext(Context);
 
   useEffect(() => {
@@ -29,5 +30,3 @@ function Resources() {
     </main>
   );
 }
-
-export default Resources;
