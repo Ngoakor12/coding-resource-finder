@@ -3,15 +3,25 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["wesbos", "prettier"],
+  parserOptions: {
+    requireConfigFile: false,
+    babelOptions: {
+      presets: ["@babel/preset-react"],
+    },
+  },
+  env: {
+    browser: true,
+    node: true,
+  },
+  extends: ["prettier"],
   overrides: [],
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react"],
+  plugins: ["html", "react"],
   rules: {
-    indent: ["error", "spaces"],
+    indent: ["error", 2],
     "linebreak-style": ["error", "unix"],
     quotes: ["error", "double"],
     semi: ["error", "always"],

@@ -1,6 +1,6 @@
 module.exports = {
   arrowParens: "always",
-  bracketSameLine: false, // ** NEW
+  bracketSameLine: false,
   bracketSpacing: true,
   embeddedLanguageFormatting: "auto",
   endOfLine: "lf",
@@ -18,5 +18,4 @@ module.exports = {
   tabWidth: 2,
   trailingComma: "es5",
   useTabs: false,
-  vueIndentScriptAndStyle: false,
 };
