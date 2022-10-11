@@ -3,8 +3,11 @@ module.exports = {
     browser: true,
     es2021: true,
   },
+  parser: "@babel/eslint-parser",
   parserOptions: {
     requireConfigFile: false,
+    ecmaVersion: "latest",
+    sourceType: "module",
     babelOptions: {
       presets: ["@babel/preset-react"],
     },
@@ -15,10 +18,6 @@ module.exports = {
   },
   extends: ["prettier"],
   overrides: [],
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-  },
   plugins: ["html", "react"],
   rules: {
     indent: ["error", 2],
