@@ -19,6 +19,7 @@ module.exports = {
   extends: ["prettier"],
   overrides: [],
   plugins: ["html", "react"],
+  "eslint.workingDirectories": ["./backend", "./frontend"],
   rules: {
     indent: ["error", 2],
     "linebreak-style": ["error", "unix"],
