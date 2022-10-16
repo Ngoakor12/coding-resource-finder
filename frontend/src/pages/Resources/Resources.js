@@ -5,6 +5,9 @@ import SearchForm from "../../components/SearchForm/SearchForm";
 import ResourceList from "../../components/ResourceList/ResourceList";
 import ResourceSkeletonList from "../../components/ResourceSkeletonList/ResourceSkeletonList";
 import LoadMoreResourcesButton from "../../components/Buttons/LoadMoreResourcesButton";
+import GoToTopButton from "../../components/Buttons/GoToTopButton";
+import Nav from "../../components/Nav/Nav";
+import Header from "../../components/Header/Header";
 
 export default function Resources() {
   const { setPageTitle, renderedResources, searchTerm } = useContext(Context);
@@ -15,18 +18,29 @@ export default function Resources() {
   }, []);
 
   return (
-    <main className="resource-list">
-      <SearchForm />
-      {renderedResources.length ? (
-        <div className="resources-list">
-          <ResourceList resources={renderedResources} />
-          <LoadMoreResourcesButton />
-        </div>
-      ) : searchTerm ? (
-        <h2 className="content-placeholder">Resource(s) not found...</h2>
-      ) : (
-        <ResourceSkeletonList />
-      )}
-    </main>
+    <>
+      <GoToTopButton />
+      <Header />
+      <main className="main">
+        <aside className="aside-nav">
+          <Nav />
+        </aside>
+        <section className="main-content">
+          <section className="resource-list">
+            <SearchForm />
+            {renderedResources.length ? (
+              <div className="resources-list">
+                <ResourceList resources={renderedResources} />
+                <LoadMoreResourcesButton />
+              </div>
+            ) : searchTerm ? (
+              <h2 className="content-placeholder">Resource(s) not found...</h2>
+            ) : (
+              <ResourceSkeletonList />
+            )}
+          </section>
+        </section>
+      </main>
+    </>
   );
 }

@@ -3,6 +3,9 @@ import { useEffect, useContext } from "react";
 import { Context } from "../../appContext";
 import ClearBookmarksButton from "../../components/Buttons/ClearBookmarksButton";
 import ResourceList from "../../components/ResourceList/ResourceList";
+import GoToTopButton from "../../components/Buttons/GoToTopButton";
+import Nav from "../../components/Nav/Nav";
+import Header from "../../components/Header/Header";
 
 export default function Bookmarks() {
   const { bookmarks, setPageTitle } = useContext(Context);
@@ -13,17 +16,28 @@ export default function Bookmarks() {
   }, []);
 
   return (
-    <main className="resource-list">
-      {bookmarks.length ? (
-        <>
-          <ClearBookmarksButton />
-          <div className="resources-list">
-            <ResourceList resources={bookmarks} />
-          </div>
-        </>
-      ) : (
-        <h2 className="content-placeholder">No bookmarks yet...</h2>
-      )}
-    </main>
+    <>
+      <GoToTopButton />
+      <Header />
+      <main className="main">
+        <aside className="aside-nav">
+          <Nav />
+        </aside>
+        <section className="main-content">
+          <section className="resource-list">
+            {bookmarks.length ? (
+              <>
+                <ClearBookmarksButton />
+                <div className="resources-list">
+                  <ResourceList resources={bookmarks} />
+                </div>
+              </>
+            ) : (
+              <h2 className="content-placeholder">No bookmarks yet...</h2>
+            )}
+          </section>
+        </section>
+      </main>
+    </>
   );
 }
