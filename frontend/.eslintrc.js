@@ -3,14 +3,12 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  parser: "@babel/eslint-parser",
+  parser: "esprima",
   parserOptions: {
+    jsx: true,
     requireConfigFile: false,
     ecmaVersion: "latest",
     sourceType: "module",
-    babelOptions: {
-      presets: ["@babel/preset-react"],
-    },
   },
   env: {
     browser: true,

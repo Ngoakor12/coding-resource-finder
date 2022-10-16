@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import React from "react";
 
 import "./App.css";
 import Bookmarks from "./pages/Bookmarks/Bookmarks";
@@ -9,7 +10,7 @@ import GoToTopButton from "./components/Buttons/GoToTopButton";
 
 export default function App() {
   return (
-    <>
+    <React.Fragment>
       <GoToTopButton />
       <Header />
       <main className="main">
@@ -28,6 +29,6 @@ export default function App() {
           </Routes>
         </section>
       </main>
-    </>
+    </React.Fragment>
   );
 }
