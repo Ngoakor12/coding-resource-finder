@@ -545,8 +545,8 @@ header {
   line-height: 24px;
   /* identical to box height */
   color: #FFFFFF;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .page-description {
@@ -557,8 +557,7 @@ header {
   line-height: 18px;
 
   color: #FFFFFF;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
 .centered-container {
