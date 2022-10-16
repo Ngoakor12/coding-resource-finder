@@ -1,0 +1,5 @@
+# Add any files Prettier should not format
+
+backend
+docs
+.github

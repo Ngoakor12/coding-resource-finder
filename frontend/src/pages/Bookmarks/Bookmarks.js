@@ -1,4 +1,5 @@
 import { useEffect, useContext } from "react";
+import React from "react";
 
 import { Context } from "../../appContext";
 import ClearBookmarksButton from "../../components/Buttons/ClearBookmarksButton";
@@ -16,7 +17,7 @@ export default function Bookmarks() {
   }, []);
 
   return (
-    <>
+    <React.Fragment>
       <GoToTopButton />
       <Header />
       <main className="main">
@@ -26,18 +27,18 @@ export default function Bookmarks() {
         <section className="main-content">
           <section className="resource-list">
             {bookmarks.length ? (
-              <>
+              <React.Fragment>
                 <ClearBookmarksButton />
                 <div className="resources-list">
                   <ResourceList resources={bookmarks} />
                 </div>
-              </>
+              </React.Fragment>
             ) : (
               <h2 className="content-placeholder">No bookmarks yet...</h2>
             )}
           </section>
         </section>
       </main>
-    </>
+    </React.Fragment>
   );
 }

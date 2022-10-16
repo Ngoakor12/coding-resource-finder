@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { Context } from "../../appContext";
 import SearchForm from "../../components/SearchForm/SearchForm";
@@ -18,7 +18,7 @@ export default function Resources() {
   }, []);
 
   return (
-    <>
+    <React.Fragment>
       <GoToTopButton />
       <Header />
       <main className="main">
@@ -41,6 +41,6 @@ export default function Resources() {
           </section>
         </section>
       </main>
-    </>
+    </React.Fragment>
   );
 }
