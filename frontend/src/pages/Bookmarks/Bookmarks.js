@@ -27,12 +27,12 @@ export default function Bookmarks() {
         <section className="main-content">
           <section className="resource-list">
             {bookmarks.length ? (
-              <>
+              <React.Fragment>
                 <ClearBookmarksButton />
                 <div className="resources-list">
                   <ResourceList resources={bookmarks} />
                 </div>
-              </>
+              </React.Fragment>
             ) : (
               <h2 className="content-placeholder">No bookmarks yet...</h2>
             )}
