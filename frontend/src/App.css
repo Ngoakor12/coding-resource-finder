@@ -40,7 +40,6 @@ body {
   min-width: 280px;
   margin: 0 2em 2em 2.5em;
   position: relative;
-  height: 100vh;
 }
 
 .home {
@@ -106,29 +105,28 @@ header {
 }
 
 .go-to-home-button {
-  background: #1F1F1F;
-  border: 1px solid #5C5C5C;
+  background: #1f1f1f;
+  border: 1px solid #5c5c5c;
   border-radius: 5px;
-  color: #FFFFFF;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-right: 24px;
-  padding-left: 24px;
-  font-family: 'Roboto Mono';
+  color: #ffffff;
+  padding: 10px 20px;
+  font-family: "Roboto Mono";
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 18px;
 }
 
-.go-to-home-button:hover {
+.go-to-home-button:hover,
+.reload-button:hover {
   background-color: rgb(31, 31, 31);
   color: #8fffab;
   transition: background-color 300ms ease, color 300ms ease;
   cursor: pointer;
 }
 
-.go-to-home-button:active {
+.go-to-home-button:active,
+.reload-button:active {
   color: #8fffab;
   background-color: rgb(21, 21, 21);
   transition: background-color 300ms ease, color 300ms ease;
@@ -536,7 +534,9 @@ header {
 }
 
 .page-title {
-  font-family: 'Roboto Mono';
+  font-family: "Roboto Mono";
+  margin: 10px 0 20px 0;
+}
 .error-fetching-container {
   min-height: 100vh;
   display: flex;
@@ -551,30 +551,28 @@ header {
   font-size: 18px;
   line-height: 24px;
   /* identical to box height */
-  color: #FFFFFF;
+  color: #ffffff;
   margin-top: 10px;
   margin-bottom: 20px;
 }
 
 .page-description {
-  font-family: 'Roboto Mono';
+  font-family: "Roboto Mono";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
 
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 20px;
 }
 
 .centered-container {
-  justify-content: center;
-  align-items: center;
+  min-height: 100vh;
   display: flex;
-  flex: 1;
   flex-direction: column;
-  background: #292929;
-  margin: 12px 0 20px 0;
+  justify-content: center;
+  align-items: flex-start;
 }
 .error-fetching-content {
   font-family: "Roboto Mono";
@@ -598,15 +596,8 @@ header {
   border: 1px solid #5c5c5c;
   border-radius: 5px;
   color: #ffffff;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-right: 24px;
-  padding-left: 24px;
+  padding: 10px 20px;
   margin-top: 20px;
-}
-.reload-button:hover {
-  border: 1px solid #8fffab;
-  color: #8fffab;
 }
 
 @keyframes blinkAnimation {

@@ -1,19 +1,20 @@
 import React from "react";
-import { warningIcon } from "../../svgs";
+import { alertIcon } from "../../svgs";
 
 export default function ErrorFetchingResources() {
   return (
     <div className="error-fetching-container">
-      {warningIcon}
+      {alertIcon}
       <h3 className="error-fetching-heading">
         Something went wrong while fetching resources
       </h3>
 
       <div className="error-fetching-content">
-        <p>If on development mode:</p>
+        <p>If in development mode:</p>
 
         <ul className="error-fetching-list">
           <li>Make sure the development server is running</li>
+          <li>Check that the address you're trying to fetch from exists</li>
         </ul>
 
         <p>Otherwise</p>
