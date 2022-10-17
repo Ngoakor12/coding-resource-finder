@@ -1,3 +1,4 @@
 {
-  "eslint.workingDirectories": ["./backend", "./frontend"]
+  "eslint.workingDirectories": ["./backend", "./frontend"],
+  "editor.formatOnSave": true
 }
