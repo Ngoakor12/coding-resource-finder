@@ -19,12 +19,6 @@ export default function Resources() {
     // eslint-disable-next-line
   }, []);
 
-  const errorHandling = error ? (
-    <ErrorFetchingResources />
-  ) : (
-    <React.Fragment></React.Fragment>
-  );
-
   return (
     <React.Fragment>
       {error ? (
@@ -40,17 +34,18 @@ export default function Resources() {
             <section className="main-content">
               <section className="resource-list">
                 <SearchForm />
-                renderedResources && renderedResources.length ? (
-                <div className="resources-list">
-                  <ResourceList resources={renderedResources} />
-                  <LoadMoreResourcesButton />
-                </div>
+                {renderedResources && renderedResources.length ? (
+                  <div className="resources-list">
+                    <ResourceList resources={renderedResources} />
+                    <LoadMoreResourcesButton />
+                  </div>
                 ) : searchTerm ? (
-                <h2 className="content-placeholder">
-                  Resource(s) not found...
-                </h2>
+                  <h2 className="content-placeholder">
+                    Resource(s) not found...
+                  </h2>
                 ) : (
-                <ResourceSkeletonList />)
+                  <ResourceSkeletonList />
+                )}
               </section>
             </section>
           </main>
