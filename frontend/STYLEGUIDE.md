@@ -1,6 +1,6 @@
 # Style Guide
 
-As an open-source codebase grows, different developers with different approaches to problem solving, software design and opinions will converge and attempt to push changes. When this happens, a universal guide for programming style will be needed to ensure a pattern is followed to allow for easier to understand code. That is the purpose of this style guide covering the front-end code.
+As an open-source codebase grows, different developers with differing approaches to problem-solving, software design and opinions will converge and attempt to push changes. When this happens, a universal guide for programming style will be needed to ensure a pattern is followed for easier-to-understand code. That is the purpose of this style guide covering the front-end code.
 
 ### Contents
 
@@ -53,42 +53,42 @@ As an open-source codebase grows, different developers with different approaches
 
 <h3 id='1.3'>Quotes</h3>
 
-Always use double quotes (") for JSX attributes, but single quotes (') for all other JS.
+Always use double quotes (") for JSX attributes.
 
 ```javascript
-// bad
+// bad 👎🏾
 <Foo style='bar' />
 
-// good
+// good 👍🏾
 <Foo style="bar" />
 ```
 
 <h3 id='1.4'>Spacing</h3>
 
-- Always include a single space in your self-closing tag.
+- Always include a **single** space in your self-closing tag.
 
 ```javascript
-// bad
+// bad 👎🏾
 <Foo/>
 
-// also bad
+// also bad 👎🏾
 <Foo                 />
 
-// why would you do this
+// please don't do this 😑
 <Foo
  />
 
-// good 👍🏽
+// good 👍🏾
 <Foo />
 ```
 
 - Do not pad JSX curly braces with spaces.
 
 ```javascript
-// bad
+// bad 👎🏾
 <Foo bar={ no } />
 
-// good
+// good 👍🏾
 <Foo bar={yes} />
 ```
 
@@ -104,24 +104,4 @@ Always self-close tags that have no children.
 <Button variant="secondary" />
 ```
 
-<h2 id='2'>Editor Setup</h2>
-
-This project uses Prettier & ESLint to ensure consistency in code style. To ensure you are all set and to reduce friction during code review, please follow the steps below to get set up.
-
-<h3 id='2.1'>Install Prettier & ESLint</h3>
-
-Prettier & Eslint are part of the frontend dependencies. They will be installed whenever you run npm install in the `frontend` folder.
-
-```
-npm install
-```
-
-<h3 id='2.2'>Set up Prettier </h3>
-
-If you use Visual Studio Code (recommmended), install the ['Prettier - Code formatter' extension](https://https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) if you haven't done so already. For other editors, take a look at the [official Prettier docs](https://prettier.io/docs/en/editors.html).
-
-Your code will now be formatted using Prettier, following code style as much as automatically possible once you save.
-
-<h3 id='2.3'>Set up ESLint </h3>
-
-If you use Visual Studio Code (recommmended), install the ['ESLint' extension](https://https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) if you haven't done so already. For other editors, take a look at the [official ESLint docs](https://eslint.org/docs/latest/user-guide/integrations#editors).
+Happy coding!
