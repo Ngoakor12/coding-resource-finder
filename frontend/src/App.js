@@ -1,8 +1,10 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-
+import ErrorFetchingResources from "./pages/ErrorFetchingResources/ErrorFetchingResources";
 import "./App.css";
 import Bookmarks from "./pages/Bookmarks/Bookmarks";
 import Resources from "./pages/Resources/Resources";
+
+
 
 export default function App() {
   return (
@@ -15,5 +17,6 @@ export default function App() {
       <Route exact path="/resources" element={<Resources />} />
       <Route exact path="/bookmarks" element={<Bookmarks />} />
     </Routes>
+
   );
 }

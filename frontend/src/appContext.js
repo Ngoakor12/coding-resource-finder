@@ -20,6 +20,7 @@ export function ContextProvider({ children }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [pageTitle, setPageTitle] = useState("Coding Resource Finder");
   const [renderedResources, setRenderedResources] = useState([]);
+  const [error,setError] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
@@ -30,7 +31,11 @@ export function ContextProvider({ children }) {
   }, [pageTitle]);
 
   useEffect(() => {
-    getAndSetInitialResources();
+    try {
+      getAndSetInitialResources();
+    } catch (error) {
+      console.log(error);
+    }
     // eslint-disable-next-line
   }, []);
 
@@ -54,6 +59,7 @@ export function ContextProvider({ children }) {
     } catch (error) {
       alert(ERROR.FETCH);
       console.error(error);
+      setError(true);
     }
   }
 
@@ -100,6 +106,7 @@ export function ContextProvider({ children }) {
         searchTerm,
         setSearchTerm,
         setPageTitle,
+        error
       }}
     >
       {children}
