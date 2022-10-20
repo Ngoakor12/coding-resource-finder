@@ -71,7 +71,7 @@ export function ContextProvider({ children }) {
       return firstPageResources;
     } catch (error) {
       // alert(ERROR.FETCH);
-      setError(true)
+      setError(true);
       console.error(error);
     }
   }
