@@ -1,9 +1,10 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-
 import "./App.css";
 import Bookmarks from "./pages/Bookmarks/Bookmarks";
 import Resources from "./pages/Resources/Resources";
 import NotFound from "./pages/NotFound/NotFound";
+
+
 
 export default function App() {
   return (
@@ -17,5 +18,6 @@ export default function App() {
       <Route exact path="/bookmarks" element={<Bookmarks />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
+
   );
 }

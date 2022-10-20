@@ -1,5 +1,5 @@
 import { useContext } from "react";
-
+import ErrorFetchingResources from "../../pages/ErrorFetchingResources/ErrorFetchingResources";
 import { Context } from "../../appContext";
 import RemoveBookmarkButton from "../Buttons/RemoveBookmarkButton";
 import BookmarkButton from "../Buttons/BookmarkButton";
@@ -15,6 +15,7 @@ export default function Resource({ resource }) {
     <BookmarkButton resource={resource} />
   );
 
+
   return (
     <div className="resource-wrapper" key={resource.url}>
       <a
@@ -22,7 +23,7 @@ export default function Resource({ resource }) {
         target="_blank"
         rel="noreferrer"
         className="resource"
-      >
+      >    
         <h3 className="resource-title">{resource.title}</h3>
         <span className="resource-type">{resource.type}</span>
       </a>

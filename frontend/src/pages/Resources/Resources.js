@@ -8,9 +8,11 @@ import LoadMoreResourcesButton from "../../components/Buttons/LoadMoreResourcesB
 import GoToTopButton from "../../components/Buttons/GoToTopButton";
 import Nav from "../../components/Nav/Nav";
 import Header from "../../components/Header/Header";
+import ErrorFetchingResources from "../ErrorFetchingResources/ErrorFetchingResources";
 
 export default function Resources() {
-  const { setPageTitle, renderedResources, searchTerm } = useContext(Context);
+  const { setPageTitle, renderedResources, searchTerm, error } =
+    useContext(Context);
 
   useEffect(() => {
     setPageTitle("Resources | Coding Resource Finder");
@@ -19,28 +21,36 @@ export default function Resources() {
 
   return (
     <React.Fragment>
-      <GoToTopButton />
-      <Header />
-      <main className="main">
-        <aside className="aside-nav">
-          <Nav />
-        </aside>
-        <section className="main-content">
-          <section className="resource-list">
-            <SearchForm />
-            {renderedResources.length ? (
-              <div className="resources-list">
-                <ResourceList resources={renderedResources} />
-                <LoadMoreResourcesButton />
-              </div>
-            ) : searchTerm ? (
-              <h2 className="content-placeholder">Resource(s) not found...</h2>
-            ) : (
-              <ResourceSkeletonList />
-            )}
-          </section>
-        </section>
-      </main>
+      {error ? (
+        <ErrorFetchingResources />
+      ) : (
+        <div>
+          <GoToTopButton />
+          <Header />
+          <main className="main">
+            <aside className="aside-nav">
+              <Nav />
+            </aside>
+            <section className="main-content">
+              <section className="resource-list">
+                <SearchForm />
+                {renderedResources && renderedResources.length ? (
+                  <div className="resources-list">
+                    <ResourceList resources={renderedResources} />
+                    <LoadMoreResourcesButton />
+                  </div>
+                ) : searchTerm ? (
+                  <h2 className="content-placeholder">
+                    Resource(s) not found...
+                  </h2>
+                ) : (
+                  <ResourceSkeletonList />
+                )}
+              </section>
+            </section>
+          </main>
+        </div>
+      )}
     </React.Fragment>
   );
 }
