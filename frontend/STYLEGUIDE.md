@@ -53,7 +53,7 @@ As an open-source codebase grows, different developers with differing approaches
 
 <h3 id='1.3'>Quotes</h3>
 
-Always use double quotes (") for JSX attributes.
+Always use double quotes (").
 
 ```javascript
 // bad 👎🏾
@@ -97,10 +97,10 @@ Always use double quotes (") for JSX attributes.
 Always self-close tags that have no children.
 
 ```javascript
-// bad
+// bad 👎🏾
 <Button variant="primary"></Button>
 
-// good
+// good 👍🏾
 <Button variant="secondary" />
 ```
 

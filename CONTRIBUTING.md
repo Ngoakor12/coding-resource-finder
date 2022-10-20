@@ -61,16 +61,9 @@ git push -u origin name-of-my-branch
 
     <br />
 
-## Editor Setup
 
-This project uses Prettier & ESLint to ensure consistency in code style. To ensure you are all set and to reduce friction during code review, please follow the steps below.
+<h2 id='editor_setup'>Editor Setup</h2>
 
-#### Install Prettier & ESLint
-
-Prettier & Eslint are part of the frontend dependencies. They will be installed whenever you run `npm install` in the `frontend` folder.
-
-#### Extras
-
-If you use Visual Studio Code, it is highly recommended that you install the ['Prettier - Code formatter' extension](https://https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and the ['ESLint' extension](https://https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) if you haven't already done so to have the full benefit of automatic code linting and formatting.
+This project uses Prettier & ESLint to ensure consistency in code style. To ensure you are all set and to reduce friction during code review, please install the ['Prettier - Code formatter'](https://https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and the ['ESLint' extensions](https://https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) from Visual Studio Code if you haven't already done so to have the full benefit of automatic code linting and formatting.
 
 For other editors, take a look at the [official Prettier](https://prettier.io/docs/en/editors.html) and [ESLint docs](https://eslint.org/docs/latest/user-guide/integrations#editors).

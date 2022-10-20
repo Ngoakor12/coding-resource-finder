@@ -84,18 +84,6 @@ npm start
 
 #### Set up ESLint & Prettier
 
-This project uses Prettier & ESLint to ensure consistency in code style. To reduce friction during code review, please follow the steps below to get set up.
+This project uses Prettier & ESLint to ensure consistency in code style. To reduce friction during code review, please follow [the steps in CONTRIBUTING.md](CONTRIBUTING.md#editor_setup) to get set up.
 
-**Install**
 
-Prettier & Eslint are part of the frontend dependencies. They will be installed whenever you run `npm install` in the **frontend** folder.
-
-**Set up Prettier**
-
-If you use Visual Studio Code (recommmended), install the ['Prettier - Code formatter' extension](https://https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode). For other editors, take a look at the [official Prettier docs](https://prettier.io/docs/en/editors.html).
-
-Your code will now be formatted using Prettier, following code style as much as automatically possible once you save.
-
-**Set up ESLint**
-
-If you use Visual Studio Code (recommmended), install the ['ESLint' extension](<[https://https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)>). For other editors, take a look at the [official ESLint docs](https://eslint.org/docs/latest/user-guide/integrations#editors).
