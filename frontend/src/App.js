@@ -1,5 +1,4 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import ErrorFetchingResources from "./pages/ErrorFetchingResources/ErrorFetchingResources";
 import "./App.css";
 import Bookmarks from "./pages/Bookmarks/Bookmarks";
 import Resources from "./pages/Resources/Resources";
