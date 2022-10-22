@@ -1,1 +1,0 @@
-# Coding resource finder

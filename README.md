@@ -81,3 +81,9 @@ npm install
 ```
 npm start
 ```
+
+#### Set up ESLint & Prettier
+
+This project uses Prettier & ESLint to ensure consistency in code style. To reduce friction during code review, please follow [the steps in CONTRIBUTING.md](CONTRIBUTING.md#editor_setup) to get set up.
+
+
