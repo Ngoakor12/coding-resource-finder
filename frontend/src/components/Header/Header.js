@@ -1,3 +1,5 @@
+import React from "react";
+
 import { CLIENT_BASE_URL } from "../../constants";
 
 export default function Header() {

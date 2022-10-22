@@ -1,17 +1,12 @@
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
-import {
-  ALL_RESOURCES_URL,
-  ERROR,
-  FIRST_PAGE_RESOURCES_URL,
-} from "./constants";
+import { ALL_RESOURCES_URL, FIRST_PAGE_RESOURCES_URL } from "./constants";
 
 export const Context = createContext();
 
 export function ContextProvider({ children }) {
   const [allResources, setAllResources] = useState([]);
   // eslint-disable-next-line
-  const [firstPageResources, setFirstPageResources] = useState([]);
   const [bookmarks, setBookmarks] = useState(() => {
     const saved = localStorage.getItem("bookmarks");
     const initialValue = JSON.parse(saved);
@@ -20,7 +15,7 @@ export function ContextProvider({ children }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [pageTitle, setPageTitle] = useState("Coding Resource Finder");
   const [renderedResources, setRenderedResources] = useState([]);
-  const [error,setError] = useState(false);
+  const [hasFetchError, setHasFetchError] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
@@ -31,11 +26,7 @@ export function ContextProvider({ children }) {
   }, [pageTitle]);
 
   useEffect(() => {
-    try {
-      getAndSetInitialResources();
-    } catch (error) {
-      console.log(error);
-    }
+    getAndSetInitialResources();
     // eslint-disable-next-line
   }, []);
 
@@ -44,10 +35,9 @@ export function ContextProvider({ children }) {
       getFirstPageOfResources(FIRST_PAGE_RESOURCES_URL),
       getAllResources(ALL_RESOURCES_URL),
     ]);
-    const [firstPageResources, allResources] = responseData;
-    setRenderedResources(firstPageResources);
-    setFirstPageResources(firstPageResources);
-    setAllResources(allResources);
+    const [firstPageResourcesResponse, allResourcesResponse] = responseData;
+    setRenderedResources(firstPageResourcesResponse);
+    setAllResources(allResourcesResponse);
   }
 
   async function getAllResources(url) {
@@ -57,9 +47,7 @@ export function ContextProvider({ children }) {
       const allResources = await data.data;
       return allResources;
     } catch (error) {
-      // alert(ERROR.FETCH);
-      console.error(error);
-      setError(true);
+      setHasFetchError(true);
     }
   }
 
@@ -70,9 +58,7 @@ export function ContextProvider({ children }) {
       const firstPageResources = await data.data;
       return firstPageResources;
     } catch (error) {
-      // alert(ERROR.FETCH);
-      setError(true);
-      console.error(error);
+      setHasFetchError(true);
     }
   }
 
@@ -107,7 +93,7 @@ export function ContextProvider({ children }) {
         searchTerm,
         setSearchTerm,
         setPageTitle,
-        error
+        hasFetchError,
       }}
     >
       {children}

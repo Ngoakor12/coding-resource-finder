@@ -1,3 +1,4 @@
+import React from "react";
 import { useContext } from "react";
 
 import { Context } from "../../appContext";
@@ -16,6 +17,7 @@ export default function LoadMoreResourcesButton() {
 
   return (
     <button
+      type="button"
       className="load-more-btn"
       onClick={handleClick}
       disabled={handleDisableClick()}

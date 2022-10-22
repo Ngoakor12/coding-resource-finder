@@ -11,7 +11,7 @@ import Header from "../../components/Header/Header";
 import ErrorFetchingResources from "../ErrorFetchingResources/ErrorFetchingResources";
 
 export default function Resources() {
-  const { setPageTitle, renderedResources, searchTerm, error } =
+  const { setPageTitle, renderedResources, searchTerm, hasFetchError } =
     useContext(Context);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function Resources() {
 
   return (
     <React.Fragment>
-      {error ? (
+      {hasFetchError ? (
         <ErrorFetchingResources />
       ) : (
         <div>
