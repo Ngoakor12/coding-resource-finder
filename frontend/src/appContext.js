@@ -51,8 +51,6 @@ export function ContextProvider({ children }) {
       const allResources = await data.data;
       return allResources;
     } catch (error) {
-      // alert(ERROR.FETCH);
-      console.error(error);
       setError(true);
     }
   }
@@ -64,9 +62,7 @@ export function ContextProvider({ children }) {
       const firstPageResources = await data.data;
       return firstPageResources;
     } catch (error) {
-      // alert(ERROR.FETCH);
       setError(true);
-      console.error(error);
     }
   }
 
