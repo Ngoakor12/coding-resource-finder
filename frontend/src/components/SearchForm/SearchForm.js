@@ -29,13 +29,11 @@ export default function SearchForm() {
           if (suggestion.isSelected) {
             setSearchTerm("");
             return { text: suggestion.text, isSelected: false };
-          } else {
-            setSearchTerm(suggestion.text.toLocaleLowerCase());
-            return { text: suggestion.text, isSelected: true };
           }
-        } else {
-          return { text: suggestion.text, isSelected: false };
+          setSearchTerm(suggestion.text.toLocaleLowerCase());
+          return { text: suggestion.text, isSelected: true };
         }
+        return { text: suggestion.text, isSelected: false };
       })
     );
   }
