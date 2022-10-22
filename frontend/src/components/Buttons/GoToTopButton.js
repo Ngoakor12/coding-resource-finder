@@ -9,8 +9,9 @@ export default function GoToTopButton() {
 
   return (
     <button
-      onClick={handleClick}
+      type="button"
       className={"go-to-top-button"}
+      onClick={handleClick}
       title="Go to Top"
     >
       {goToTopIcon}

@@ -13,6 +13,7 @@ export default function RemoveBookmarkButton({ resource }) {
 
   return (
     <button
+      type="button"
       className={"remove-bookmark-button"}
       onClick={handleClick}
       title="remove bookmark"
