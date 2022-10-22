@@ -15,7 +15,7 @@ export default function ErrorFetchingResources() {
 
         <ul className="error-fetching-list">
           <li>Make sure the development server is running</li>
-          <li>Check that the address you're trying to fetch from exists</li>
+          <li>{"Check that the address you're trying to fetch from exists"}</li>
         </ul>
 
         <p>Otherwise</p>
