@@ -6,8 +6,8 @@ function getCurrentCollectionName() {
 }
 
 function isPageNumber(page) {
-  page = Number(page);
-  if (page && typeof page === "number") return true;
+  const pageNumber = Number(page);
+  if (pageNumber && typeof pageNumber === "number") return true;
   return false;
 }
 

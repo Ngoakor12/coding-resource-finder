@@ -14,27 +14,22 @@ projectsRouter.get("/", async (_, res) => {
     const projectsData = { num_of_projects: projects.length, data: projects };
     res.status(200).json(projectsData);
   } catch (error) {
-    throw error;
+    res.json(error);
   }
 });
 
 // get specific project pages
 projectsRouter.get("/:page", async ({ params: { page } }, res) => {
-  if (!isPageNumber(page))
-    return res
-      .status(400)
-      .json({ message: `parameter ${page} should be a valid number` });
-
   try {
     const resources = await getResourcesFromDB();
     const projects = resources.data.filter(
       (resource) => resource.type === "project"
     );
     const projectsData = { num_of_projects: projects.length, data: projects };
-    const data = await getPageData(projectsData.data, page);
+    const data = getPageData(projectsData.data, page);
     res.status(200).json(data);
   } catch (error) {
-    throw error;
+    res.json(error);
   }
 });
 
