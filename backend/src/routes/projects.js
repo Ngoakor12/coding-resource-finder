@@ -2,7 +2,6 @@ const projectsRouter = require("express").Router();
 
 const { getPageData } = require("../format-resources");
 const { getResourcesFromDB } = require("../get-resources-from-database");
-const { isPageNumber } = require("../utils");
 
 // get all available projects
 projectsRouter.get("/", async (_, res) => {

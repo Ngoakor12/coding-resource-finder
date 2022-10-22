@@ -1,17 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
 
-import {
-  ALL_RESOURCES_URL,
-  ERROR,
-  FIRST_PAGE_RESOURCES_URL,
-} from "./constants";
+import { ALL_RESOURCES_URL, FIRST_PAGE_RESOURCES_URL } from "./constants";
 
 export const Context = createContext();
 
 export function ContextProvider({ children }) {
   const [allResources, setAllResources] = useState([]);
   // eslint-disable-next-line
-  const [firstPageResources, setFirstPageResources] = useState([]);
   const [bookmarks, setBookmarks] = useState(() => {
     const saved = localStorage.getItem("bookmarks");
     const initialValue = JSON.parse(saved);
@@ -46,7 +41,6 @@ export function ContextProvider({ children }) {
     ]);
     const [firstPageResources, allResources] = responseData;
     setRenderedResources(firstPageResources);
-    setFirstPageResources(firstPageResources);
     setAllResources(allResources);
   }
 

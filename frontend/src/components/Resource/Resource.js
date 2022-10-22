@@ -1,7 +1,6 @@
 import React from "react";
 import { useContext } from "react";
 
-import ErrorFetchingResources from "../../pages/ErrorFetchingResources/ErrorFetchingResources";
 import { Context } from "../../appContext";
 import RemoveBookmarkButton from "../Buttons/RemoveBookmarkButton";
 import BookmarkButton from "../Buttons/BookmarkButton";
