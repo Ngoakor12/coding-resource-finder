@@ -56,6 +56,20 @@ export default function SearchForm() {
     }
   }
 
+  function handleInputSearchTerm(e) {
+    setSearchTerm(e.target.value);
+  }
+
+  function handleClickSearchTerm() {
+    setSearchTerm("");
+  }
+
+  function handleClickSearchWithSuggestion(suggestion) {
+    return () => {
+      searchWithSuggestion(suggestion.text);
+    };
+  }
+
   return (
     <div className="search-input-wrapper">
       <div className="search-input-inner-wrapper">
@@ -63,14 +77,12 @@ export default function SearchForm() {
           type="text"
           className="search-input"
           placeholder="Search a resource..."
-          onInput={(e) => {
-            setSearchTerm(e.target.value);
-          }}
+          onInput={handleInputSearchTerm}
           value={searchTerm}
         />
         <div
           className="clear-button"
-          onClick={() => setSearchTerm("")}
+          onClick={handleClickSearchTerm}
           title="clear search text"
         >
           {clearSearchIcon}
@@ -84,9 +96,7 @@ export default function SearchForm() {
               className={`search-suggestion ${
                 suggestion.isSelected ? "active" : ""
               }`}
-              onClick={() => {
-                searchWithSuggestion(suggestion.text);
-              }}
+              onClick={handleClickSearchWithSuggestion(suggestion)}
             >
               {suggestion.text}
             </p>
