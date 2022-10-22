@@ -14,7 +14,7 @@ projectsRouter.get("/", async (_, res) => {
     const projectsData = { num_of_projects: projects.length, data: projects };
     res.status(200).json(projectsData);
   } catch (error) {
-    throw error;
+    res.json(error);
   }
 });
 
@@ -34,7 +34,7 @@ projectsRouter.get("/:page", async ({ params: { page } }, res) => {
     const data = await getPageData(projectsData.data, page);
     res.status(200).json(data);
   } catch (error) {
-    throw error;
+    res.json(error);
   }
 });
 

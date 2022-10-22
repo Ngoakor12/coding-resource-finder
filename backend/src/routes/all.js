@@ -10,7 +10,7 @@ allRouter.get("/", async (_, res) => {
     const resources = await getResourcesFromDB();
     res.status(200).json(resources);
   } catch (error) {
-    throw error;
+    res.json(error);
   }
 });
 
@@ -26,7 +26,7 @@ allRouter.get("/:page", async ({ params: { page } }, res) => {
     const data = await getPageData(resources.data, page);
     res.status(200).json(data);
   } catch (error) {
-    throw error;
+    res.json(error);
   }
 });
 

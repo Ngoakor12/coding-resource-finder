@@ -14,7 +14,7 @@ topicsRouter.get("/", async (_, res) => {
     const topicsData = { num_of_topics: topics.length, data: topics };
     res.status(200).json(topicsData);
   } catch (error) {
-    throw error;
+    res.json(error);
   }
 });
 
@@ -34,7 +34,7 @@ topicsRouter.get("/:page", async ({ params: { page } }, res) => {
     const data = await getPageData(topicsData.data, page);
     res.status(200).json(data);
   } catch (error) {
-    throw error;
+    res.json(error);
   }
 });
 
