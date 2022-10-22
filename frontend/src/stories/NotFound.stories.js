@@ -1,3 +1,5 @@
+import React from "react";
+
 import NotFound from "../pages/NotFound/NotFound";
 
 export default {

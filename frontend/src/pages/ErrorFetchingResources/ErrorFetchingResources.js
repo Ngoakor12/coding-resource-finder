@@ -1,4 +1,5 @@
 import React from "react";
+
 import { alertIcon } from "../../svgs";
 
 export default function ErrorFetchingResources() {

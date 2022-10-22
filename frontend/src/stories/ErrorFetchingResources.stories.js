@@ -1,3 +1,5 @@
+import React from "react";
+
 import ErrorFetchingResources from "../pages/ErrorFetchingResources/ErrorFetchingResources";
 
 export default {

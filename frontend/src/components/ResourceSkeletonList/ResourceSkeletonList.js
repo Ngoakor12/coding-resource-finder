@@ -1,3 +1,5 @@
+import React from "react";
+
 import ResourceSkeleton from "../ResourceSkeleton/ResourceSkeleton";
 
 export default function ResourceSkeletonList({ resources }) {

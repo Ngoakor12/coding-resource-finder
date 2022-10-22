@@ -1,3 +1,4 @@
+import React from "react";
 import { goToTopIcon } from "../../svgs";
 
 export default function GoToTopButton() {

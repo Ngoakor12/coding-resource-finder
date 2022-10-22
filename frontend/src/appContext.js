@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 import {
   ALL_RESOURCES_URL,
@@ -20,7 +20,7 @@ export function ContextProvider({ children }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [pageTitle, setPageTitle] = useState("Coding Resource Finder");
   const [renderedResources, setRenderedResources] = useState([]);
-  const [error,setError] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
@@ -107,7 +107,7 @@ export function ContextProvider({ children }) {
         searchTerm,
         setSearchTerm,
         setPageTitle,
-        error
+        error,
       }}
     >
       {children}

@@ -1,5 +1,4 @@
-import { useEffect, useContext } from "react";
-import React from "react";
+import React, { useEffect, useContext } from "react";
 
 import { Context } from "../../appContext";
 import ClearBookmarksButton from "../../components/Buttons/ClearBookmarksButton";
