@@ -8,7 +8,6 @@ async function updateResources(resources) {
       url: resource.url,
       type: resource.type,
     });
-    console.log(resource.title);
   });
 }
 
