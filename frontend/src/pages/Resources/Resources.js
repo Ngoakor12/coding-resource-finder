@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import { Context } from "../../appContext";
 import SearchForm from "../../components/SearchForm/SearchForm";
@@ -13,11 +13,17 @@ import ErrorFetchingResources from "../ErrorFetchingResources/ErrorFetchingResou
 export default function Resources() {
   const { setPageTitle, renderedResources, searchTerm, hasFetchError } =
     useContext(Context);
+  const [resourceFilter, setResourceFilter] = useState("all");
+  const filters = ["project", "topic"];
 
   useEffect(() => {
     setPageTitle("Resources | Coding Resource Finder");
     // eslint-disable-next-line
   }, []);
+
+  function handleClickFilterChip(filter) {
+    setResourceFilter(resourceFilter === filter ? "all" : filter);
+  }
 
   return (
     <React.Fragment>
@@ -34,9 +40,31 @@ export default function Resources() {
             <section className="main-content">
               <section className="resource-list">
                 <SearchForm />
+                <div className="search-suggestions">
+                  <h4 class="header-description">Filters:</h4>
+                  {filters.map((filter, filterIdx) => {
+                    return (
+                      <p
+                        key={filterIdx}
+                        className={`search-suggestion ${resourceFilter === filter ? "active" : ""}`}
+                        onClick={() => handleClickFilterChip(filter)}
+                      >
+                        {filter.charAt(0).toUpperCase() + filter.slice(1)}
+                      </p>
+                    );
+                  })}
+                </div>
                 {renderedResources && renderedResources.length ? (
                   <div className="resources-list">
-                    <ResourceList resources={renderedResources} />
+                    {resourceFilter === "all" ? (
+                      <ResourceList resources={renderedResources} />
+                    ) : (
+                      <ResourceList
+                        resources={renderedResources.filter(
+                          (r) => r.type === resourceFilter
+                        )}
+                      />
+                    )}
                     <LoadMoreResourcesButton />
                   </div>
                 ) : searchTerm ? (
