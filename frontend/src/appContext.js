@@ -16,6 +16,7 @@ export function ContextProvider({ children }) {
   const [pageTitle, setPageTitle] = useState("Coding Resource Finder");
   const [renderedResources, setRenderedResources] = useState([]);
   const [hasFetchError, setHasFetchError] = useState(false);
+  const [resourceFilter, setResourceFilter] = useState("all");
 
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
@@ -94,6 +95,8 @@ export function ContextProvider({ children }) {
         setSearchTerm,
         setPageTitle,
         hasFetchError,
+        resourceFilter,
+        setResourceFilter,
       }}
     >
       {children}
