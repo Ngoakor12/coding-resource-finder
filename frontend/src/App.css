@@ -266,7 +266,7 @@ header {
   position: relative;
 }
 
-.search-suggestions {
+.chips-wrapper {
   display: flex;
   max-width: 600px;
   flex-wrap: wrap;
@@ -274,7 +274,7 @@ header {
   margin-bottom: 15px;
 }
 
-.search-suggestion {
+.chip {
   border: 1px solid rgb(92, 92, 92);
   border-radius: 20px;
   padding: 4px 15px;
@@ -283,7 +283,7 @@ header {
   transition: all 200ms ease;
 }
 
-.search-suggestion:hover {
+.chip:hover {
   color: #8fffab;
   background-color: rgb(31, 31, 31);
 }
@@ -537,6 +537,7 @@ header {
   font-family: "Roboto Mono";
   margin: 10px 0 20px 0;
 }
+
 .error-fetching-container {
   min-height: 100vh;
   display: flex;
@@ -544,6 +545,7 @@ header {
   justify-content: center;
   align-items: flex-start;
 }
+
 .error-fetching-heading {
   font-family: "Roboto Mono";
   font-style: normal;
@@ -574,6 +576,7 @@ header {
   justify-content: center;
   align-items: flex-start;
 }
+
 .error-fetching-content {
   font-family: "Roboto Mono";
   font-style: normal;
@@ -581,9 +584,11 @@ header {
   font-size: 14px;
   line-height: 28px;
 }
+
 .error-fetching-list {
   margin-left: 20px;
 }
+
 .reload-button {
   cursor: pointer;
   min-width: 116px;

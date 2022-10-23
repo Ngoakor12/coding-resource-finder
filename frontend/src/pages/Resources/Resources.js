@@ -11,8 +11,24 @@ import Header from "../../components/Header/Header";
 import ErrorFetchingResources from "../ErrorFetchingResources/ErrorFetchingResources";
 
 export default function Resources() {
-  const { setPageTitle, renderedResources, searchTerm, hasFetchError } =
-    useContext(Context);
+  const {
+    setPageTitle,
+    renderedResources,
+    searchTerm,
+    hasFetchError,
+    resourceFilter,
+  } = useContext(Context);
+
+  const filteredResources =
+    resourceFilter === "all" ? (
+      <ResourceList resources={renderedResources} />
+    ) : (
+      <ResourceList
+        resources={renderedResources.filter(
+          (resource) => resource.type === resourceFilter
+        )}
+      />
+    );
 
   useEffect(() => {
     setPageTitle("Resources | Coding Resource Finder");
@@ -36,7 +52,7 @@ export default function Resources() {
                 <SearchForm />
                 {renderedResources && renderedResources.length ? (
                   <div className="resources-list">
-                    <ResourceList resources={renderedResources} />
+                    {filteredResources}
                     <LoadMoreResourcesButton />
                   </div>
                 ) : searchTerm ? (
