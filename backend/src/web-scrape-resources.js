@@ -57,8 +57,8 @@ async function getAllResources() {
   const resourceTypes = ["Topics", "Projects"];
 
   resourceTypes.forEach(resourceType => {
-    const _ = $("#sidebar").find(`li[title=${resourceType}] ul li a`);
-    _.each(function (i, el) {
+    const resourceElements = $("#sidebar").find(`li[title=${resourceType}] ul li a`);
+    resourceElements.each(function () {
       resources.push({
         title: $(this).text().replace(/\n/g, "").trim(),
         // remove the preceding `/` from `href`
