@@ -1,49 +1,75 @@
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+const http = require("http");
+const cheerio = require("cheerio");
 
 const { ACN_URL } = require("./constants");
 
-async function getHTML() {
-  return (await JSDOM.fromURL(ACN_URL)).window.document;
-}
+// use node's core http API to reduce overhead
+/**
+ * Fetches HTML document from {ACN_URL} - http://syllabus.africacode.net/
+ * 
+ * @returns {Promise}
+ */
+function getHTML() {
+  return new Promise((resolve, reject) => {
+    try {
+      http.get(ACN_URL, (res) => {
+        const { statusCode } = res;
 
-async function getTopicsFromACN() {
-  const html = await getHTML();
-  // topics are initially a nodelist and has to be converted to an array
-  const topicElements = Array(
-    ...html.querySelectorAll(`li[title="Topics"] ul li a`)
-  );
-  const topics = topicElements.map((topic) => {
-    return {
-      title: topic.textContent.trim(),
-      url: topic.href,
-      type: "topic",
-    };
+        if (statusCode !== 200) {
+          throw new Error(`Request failed\nReceived status code ${statusCode}\nExpected status code 200`);
+        }
+
+        let html = "";
+        res.on("data", (chunk) => html += chunk);
+        res.on("end", () => resolve(html));
+      });
+    } catch (e) {
+      console.error(e.message);
+      reject(new Error(`Failed to fetch HTML document from ${ACN_URL}`));
+    }
   });
-  return topics;
 }
 
-async function getProjectsFromACN() {
-  const html = await getHTML();
-  // projects are initially a nodelist and has to be converted to an array
-  const projectElements = Array(
-    ...html.querySelectorAll(`li[title="Projects"] ul li a`)
-  );
-  const projects = projectElements.map((project) => {
-    return {
-      title: project.textContent.trim(),
-      url: project.href,
-      type: "project",
-    };
-  });
-  return projects;
-}
+/**
+ * @typedef {Object} Resource
+ * @property {String} title - Resource title
+ * @property {String} url - Resource URL
+ * @property {String} type - Resource type
+ */
 
+/**
+ * Returns all resources categorized by "topic" or "project"
+ * 
+ * @returns {Resource[]} - Array of resources
+ */
 async function getAllResources() {
-  const topics = await getTopicsFromACN();
-  const projects = await getProjectsFromACN();
-  const allResources = [...topics, ...projects];
-  return allResources;
+  let html = null;
+  try {
+    html = await getHTML();
+  } catch (e) {
+    console.error(e.message);
+    return [];
+  }
+
+  const $ = cheerio.load(html);
+
+  const resources = [];
+  const resourceTypes = ["Topics", "Projects"];
+
+  resourceTypes.forEach(resourceType => {
+    const resourceElements = $("#sidebar").find(`li[title=${resourceType}] ul li a`);
+    resourceElements.each(function () {
+      resources.push({
+        title: $(this).text().replace(/\n/g, "").trim(),
+        // remove the preceding `/` from `href`
+        url: `${ACN_URL}${$(this).attr("href").slice(1)}`,
+        // Assuming the `resourceType` is a singular lowercased version of itself
+        type: resourceType.toLowerCase().slice(0, -1)
+      });
+    });
+  });
+
+  return resources;
 }
 
 module.exports = {
