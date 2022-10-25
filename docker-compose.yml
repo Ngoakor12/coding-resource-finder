@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "2856:2856"
+    container_name: coding-resource-finder-backend
+  frontend:
+    depends_on:
+      - backend
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    container_name: coding-resource-finder-frontend
