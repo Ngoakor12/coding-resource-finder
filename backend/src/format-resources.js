@@ -34,5 +34,5 @@ async function getPageData(resources, page) {
 }
 
 module.exports = {
-  getPageData,
+  getPageData, getPages
 };
