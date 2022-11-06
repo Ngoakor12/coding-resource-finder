@@ -29,7 +29,7 @@ To solve these problems that only someone who visits the site frequently notices
 - **ReactJS** - for the frontend
 - **Context** - global state management
 - **React Router** - Internal routing
-- JSDOM - web scraping
+- **Cheerio** - web scraping
 - **ExpressJS** - API development
 
 ## Features
