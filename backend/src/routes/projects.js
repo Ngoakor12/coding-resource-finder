@@ -2,11 +2,19 @@ const projectsRouter = require("express").Router();
 
 const { getPageData } = require("../format-resources");
 const { getResourcesFromDB } = require("../get-resources-from-database");
+const { connectToDb, getDb } = require("../database-config");
+
+let db;
+connectToDb((err) => {
+  if (!err) {
+    db = getDb();
+  }
+});
 
 // get all available projects
 projectsRouter.get("/", async (_, res) => {
   try {
-    const resources = await getResourcesFromDB();
+    const resources = await getResourcesFromDB(db);
     const projects = resources.data.filter(
       (resource) => resource.type === "project"
     );
@@ -20,7 +28,7 @@ projectsRouter.get("/", async (_, res) => {
 // get specific project pages
 projectsRouter.get("/:page", async ({ params: { page } }, res) => {
   try {
-    const resources = await getResourcesFromDB();
+    const resources = await getResourcesFromDB(db);
     const projects = resources.data.filter(
       (resource) => resource.type === "project"
     );
