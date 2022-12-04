@@ -1,11 +1,15 @@
-const { getDocs, resourcesQuery } = require("./firebase");
+const { connectToDb, getDb } = require("./database-config");
+const { getCurrentCollectionName } = require("./utils");
 
-async function getResourcesFromDB() {
+async function getResourcesFromDB(database) {
+  const collectionName = getCurrentCollectionName();
   const resources = [];
-  const resourcesDocs = await getDocs(resourcesQuery);
-  resourcesDocs.forEach((doc) => {
-    resources.push(doc.data());
-  });
+  await database
+    .collection(collectionName)
+    .find({}, { projection: { _id: 0, type: 1, url: 1, title: 1 } })
+    .forEach((resource) => {
+      resources.push(resource);
+    });
   const allResourcesData = {
     num_of_resources: resources.length,
     data: resources,
@@ -13,6 +17,12 @@ async function getResourcesFromDB() {
   return allResourcesData;
 }
 
-// getResourcesFromDB().then((res) => console.log(res));
+// let db;
+// connectToDb((err) => {
+//   if (!err) {
+//     db = getDb();
+//     getResourcesFromDB(db).then((res) => console.log(res));
+//   }
+// });
 
 module.exports = { getResourcesFromDB };

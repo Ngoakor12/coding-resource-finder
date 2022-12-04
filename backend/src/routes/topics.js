@@ -2,11 +2,19 @@ const topicsRouter = require("express").Router();
 
 const { getPageData } = require("../format-resources");
 const { getResourcesFromDB } = require("../get-resources-from-database");
+const { connectToDb, getDb } = require("../database-config");
+
+let db;
+connectToDb((err) => {
+  if (!err) {
+    db = getDb();
+  }
+});
 
 // get all available topics
 topicsRouter.get("/", async (_, res) => {
   try {
-    const resources = await getResourcesFromDB();
+    const resources = await getResourcesFromDB(db);
     const topics = resources.data.filter(
       (resource) => resource.type === "topic"
     );
@@ -20,7 +28,7 @@ topicsRouter.get("/", async (_, res) => {
 // get specific topic pages
 topicsRouter.get("/:page", async ({ params: { page } }, res) => {
   try {
-    const resources = await getResourcesFromDB();
+    const resources = await getResourcesFromDB(db);
     const topics = resources.data.filter(
       (resource) => resource.type === "topic"
     );
