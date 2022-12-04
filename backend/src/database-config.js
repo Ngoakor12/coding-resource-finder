@@ -17,6 +17,4 @@ const connectToDb = (cb) => {
 
 const getDb = () => dbConnection;
 
-// connect to db and start server
-
 module.exports = { getDb, connectToDb };
