@@ -44,8 +44,8 @@ export function ContextProvider({ children }) {
   async function getAllResources(url) {
     try {
       const response = await fetch(url);
-      const data = await response.json();
-      const allResources = await data.data;
+      const responseData = await response.json();
+      const allResources = await responseData.data;
       return allResources;
     } catch (error) {
       setHasFetchError(true);
@@ -56,8 +56,8 @@ export function ContextProvider({ children }) {
   async function getFirstPageOfResources(url) {
     try {
       const response = await fetch(url);
-      const data = await response.json();
-      const firstPageResources = await data.data;
+      const responseData = await response.json();
+      const firstPageResources = await responseData.data;
       return firstPageResources;
     } catch (error) {
       setHasFetchError(true);
