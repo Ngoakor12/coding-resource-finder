@@ -2,7 +2,14 @@ const { getDb, connectToDb } = require("./database-config");
 const { getCurrentCollectionName } = require("./utils");
 const { getAllResources } = require("./web-scrape-resources");
 
-async function updateResources(resources = [], database) {
+/**
+ * A function that adds resources to the database
+ * @param {Object} database representing the database connection/instance
+ * @param {Array} resources
+ * @returns {void}
+ */
+
+async function updateResources(database, resources = []) {
   const formattedResources = resources.map((resource) => ({
     title: resource.title,
     url: resource.url,
@@ -18,8 +25,9 @@ async function updateResources(resources = [], database) {
 // connectToDb(async (err) => {
 //   if (!err) {
 //     db = await getDb();
+//     console.log(typeof db);
 //     getAllResources().then((res) => {
-//       updateResources(res, db);
+//       updateResources(db, res);
 //     });
 //   }
 // });
