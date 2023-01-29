@@ -2,23 +2,24 @@ const { getDb, connectToDb } = require("./database-config");
 const { getCurrentCollectionName } = require("./utils");
 const { getAllResources } = require("./web-scrape-resources");
 
-async function updateResources(resources, database) {
+async function updateResources(resources = [], database) {
   const formattedResources = resources.map((resource) => ({
     title: resource.title,
     url: resource.url,
     type: resource.type,
   }));
   const collectionName = getCurrentCollectionName();
-  console.log(database);
   await database.collection(collectionName).insertMany(formattedResources);
 }
 
+/* Uncomment and run to update to the latest resources */
+
 // let db;
-// connectToDb((err) => {
+// connectToDb(async (err) => {
 //   if (!err) {
-//     db = getDb();
-//     getAllResources().then((resources) => {
-//       updateResources(resources, db);
+//     db = await getDb();
+//     getAllResources().then((res) => {
+//       updateResources(res, db);
 //     });
 //   }
 // });
