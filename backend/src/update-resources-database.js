@@ -25,7 +25,6 @@ async function updateResources(database, resources = []) {
 // connectToDb(async (err) => {
 //   if (!err) {
 //     db = await getDb();
-//     console.log(typeof db);
 //     getAllResources().then((res) => {
 //       updateResources(db, res);
 //     });
