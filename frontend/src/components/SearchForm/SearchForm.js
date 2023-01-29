@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 
-import { Context } from "../../appContext";
+import { Context } from "../../AppContext";
 import { clearSearchIcon } from "../../svgs";
 import Chip from "../Chip/Chip";
 

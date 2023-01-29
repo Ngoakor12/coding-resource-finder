@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 
-import { Context } from "../../appContext";
+import { Context } from "../../AppContext";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import ResourceList from "../../components/ResourceList/ResourceList";
 import ResourceSkeletonList from "../../components/ResourceSkeletonList/ResourceSkeletonList";

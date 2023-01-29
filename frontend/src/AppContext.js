@@ -49,6 +49,7 @@ export function ContextProvider({ children }) {
       return allResources;
     } catch (error) {
       setHasFetchError(true);
+      console.log(error);
     }
   }
 
@@ -60,6 +61,7 @@ export function ContextProvider({ children }) {
       return firstPageResources;
     } catch (error) {
       setHasFetchError(true);
+      console.log(error);
     }
   }
 
