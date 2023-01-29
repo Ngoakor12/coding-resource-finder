@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 
-import { Context } from "../../appContext";
+import { Context } from "../../AppContext";
 import ClearBookmarksButton from "../../components/Buttons/ClearBookmarksButton";
 import ResourceList from "../../components/ResourceList/ResourceList";
 import GoToTopButton from "../../components/Buttons/GoToTopButton";

@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 
-import { Context } from "../../appContext";
+import { Context } from "../../AppContext";
 import { bookmarkIcon } from "../../svgs";
 
 export default function RemoveBookmarkButton({ resource }) {

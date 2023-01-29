@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 
-import { Context } from "../../appContext";
+import { Context } from "../../AppContext";
 
 export default function ClearBookmarksButton() {
   const { setBookmarks } = useContext(Context);

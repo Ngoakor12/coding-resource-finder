@@ -7,6 +7,7 @@ async function getResourcesFromDB(database) {
   await database
     .collection(collectionName)
     .find({}, { projection: { _id: 0, type: 1, url: 1, title: 1 } })
+    .sort({ title: 1 })
     .forEach((resource) => {
       resources.push(resource);
     });

@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
-import { Context } from "../../appContext";
+import { Context } from "../../AppContext";
 
 export default function Nav() {
   const { renderedResources, bookmarks } = useContext(Context);

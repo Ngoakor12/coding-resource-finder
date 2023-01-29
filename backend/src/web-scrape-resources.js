@@ -6,7 +6,7 @@ const { ACN_URL } = require("./constants");
 // use node's core http API to reduce overhead
 /**
  * Fetches HTML document from {ACN_URL} - http://syllabus.africacode.net/
- * 
+ *
  * @returns {Promise}
  */
 function getHTML() {
@@ -16,11 +16,13 @@ function getHTML() {
         const { statusCode } = res;
 
         if (statusCode !== 200) {
-          throw new Error(`Request failed\nReceived status code ${statusCode}\nExpected status code 200`);
+          throw new Error(
+            `Request failed\nReceived status code ${statusCode}\nExpected status code 200`
+          );
         }
 
         let html = "";
-        res.on("data", (chunk) => html += chunk);
+        res.on("data", (chunk) => (html += chunk));
         res.on("end", () => resolve(html));
       });
     } catch (e) {
@@ -39,7 +41,7 @@ function getHTML() {
 
 /**
  * Returns all resources categorized by "topic" or "project"
- * 
+ *
  * @returns {Resource[]} - Array of resources
  */
 async function getAllResources() {
@@ -56,15 +58,17 @@ async function getAllResources() {
   const resources = [];
   const resourceTypes = ["Topics", "Projects"];
 
-  resourceTypes.forEach(resourceType => {
-    const resourceElements = $("#sidebar").find(`li[title=${resourceType}] ul li a`);
+  resourceTypes.forEach((resourceType) => {
+    const resourceElements = $("#sidebar").find(
+      `li[title=${resourceType}] ul li a`
+    );
     resourceElements.each(function () {
       resources.push({
         title: $(this).text().replace(/\n/g, "").trim(),
         // remove the preceding `/` from `href`
         url: `${ACN_URL}${$(this).attr("href").slice(1)}`,
         // Assuming the `resourceType` is a singular lowercased version of itself
-        type: resourceType.toLowerCase().slice(0, -1)
+        type: resourceType.toLowerCase().slice(0, -1),
       });
     });
   });
