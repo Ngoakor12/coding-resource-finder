@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon ./src/server.js",
     "start": "node ./src/server.js",
-    "update": "node ./src/update-resources-database.js"
+    "update": "node ./src/update-resources-database.js",
+    "deploy": "git push heroku master",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,7 @@
     "swagger-ui-express": "^4.5.0"
   },
   "devDependencies": {
+    "jest": "^29.2.0",
     "cors": "^2.8.5",
     "nodemon": "^2.0.15"
   }
