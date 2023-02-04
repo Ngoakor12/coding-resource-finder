@@ -5,10 +5,10 @@
   "dependencies": {
     "@babel/preset-env": "^7.19.4",
     "esprima": "^4.0.1",
-    "nanoid": "^3.3.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^6.2.1",
+    "nanoid": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
     "react-scripts": "^5.0.0"
   },
   "scripts": {
@@ -16,7 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint '**/*.js' --fix",
+    "lint": "eslint '**/*.js' --fix & prettier --write .",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },

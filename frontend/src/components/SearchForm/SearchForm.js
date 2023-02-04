@@ -1,7 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { nanoid } from "nanoid";
 
-import { Context } from "../../appContext";
+import { Context } from "../../AppContext";
 import { clearSearchIcon } from "../../svgs";
+import Chip from "../Chip/Chip";
 
 const initialSuggestions = [
   { text: "JavaScript", isSelected: false },
@@ -13,9 +15,17 @@ const initialSuggestions = [
 ];
 
 export default function SearchForm() {
-  const { allResources, searchTerm, setSearchTerm, setRenderedResources } =
-    useContext(Context);
+  const {
+    allResources,
+    searchTerm,
+    setSearchTerm,
+    setRenderedResources,
+    resourceFilter,
+    setResourceFilter,
+  } = useContext(Context);
   const [suggestions, setSuggestions] = useState(initialSuggestions || "");
+
+  const filters = ["project", "topic"];
 
   useEffect(() => {
     handleSearch();
@@ -29,13 +39,11 @@ export default function SearchForm() {
           if (suggestion.isSelected) {
             setSearchTerm("");
             return { text: suggestion.text, isSelected: false };
-          } else {
-            setSearchTerm(suggestion.text.toLocaleLowerCase());
-            return { text: suggestion.text, isSelected: true };
           }
-        } else {
-          return { text: suggestion.text, isSelected: false };
+          setSearchTerm(suggestion.text.toLocaleLowerCase());
+          return { text: suggestion.text, isSelected: true };
         }
+        return { text: suggestion.text, isSelected: false };
       })
     );
   }
@@ -58,6 +66,24 @@ export default function SearchForm() {
     }
   }
 
+  function handleInputSearchTerm(e) {
+    setSearchTerm(e.target.value);
+  }
+
+  function handleClickSearchTerm() {
+    setSearchTerm("");
+  }
+
+  function handleClickSearchWithSuggestion(suggestion) {
+    return () => {
+      searchWithSuggestion(suggestion.text);
+    };
+  }
+
+  function handleClickFilterChip(filter) {
+    setResourceFilter(resourceFilter === filter ? "all" : filter);
+  }
+
   return (
     <div className="search-input-wrapper">
       <div className="search-input-inner-wrapper">
@@ -65,33 +91,39 @@ export default function SearchForm() {
           type="text"
           className="search-input"
           placeholder="Search a resource..."
-          onInput={(e) => {
-            setSearchTerm(e.target.value);
-          }}
+          onInput={handleInputSearchTerm}
           value={searchTerm}
         />
         <div
           className="clear-button"
-          onClick={() => setSearchTerm("")}
+          onClick={handleClickSearchTerm}
           title="clear search text"
         >
           {clearSearchIcon}
         </div>
       </div>
-      <div className="search-suggestions">
+      <div className="chips-wrapper">
         {suggestions.map((suggestion) => {
           return (
-            <p
+            <Chip
               key={suggestion.text}
-              className={`search-suggestion ${
-                suggestion.isSelected ? "active" : ""
-              }`}
-              onClick={() => {
-                searchWithSuggestion(suggestion.text);
-              }}
-            >
-              {suggestion.text}
-            </p>
+              title={suggestion.text}
+              isActive={suggestion.isSelected}
+              onClick={handleClickSearchWithSuggestion(suggestion)}
+            />
+          );
+        })}
+      </div>
+      <div className="chips-wrapper" style={{ alignItems: "center" }}>
+        <h4 style={{ fontSize: "14px" }}>Filters:</h4>
+        {filters.map((filter) => {
+          return (
+            <Chip
+              key={nanoid()}
+              title={filter.charAt(0).toUpperCase() + filter.slice(1)}
+              isActive={resourceFilter === filter}
+              onClick={() => handleClickFilterChip(filter)}
+            />
           );
         })}
       </div>

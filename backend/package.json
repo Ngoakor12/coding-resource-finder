@@ -25,15 +25,16 @@
   },
   "homepage": "https://github.com/Ngoakor12/coding-resource-finder#readme",
   "dependencies": {
-    "cors": "^2.8.5",
+    "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.0.0",
     "express": "^4.17.1",
     "firebase": "^9.6.10",
-    "jsdom": "^19.0.0",
+    "mongodb": "^4.12.1",
     "swagger-ui-express": "^4.5.0"
   },
   "devDependencies": {
     "jest": "^29.2.0",
+    "cors": "^2.8.5",
     "nodemon": "^2.0.15"
   }
 }

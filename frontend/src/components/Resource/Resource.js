@@ -1,6 +1,7 @@
+import React from "react";
 import { useContext } from "react";
 
-import { Context } from "../../appContext";
+import { Context } from "../../AppContext";
 import RemoveBookmarkButton from "../Buttons/RemoveBookmarkButton";
 import BookmarkButton from "../Buttons/BookmarkButton";
 

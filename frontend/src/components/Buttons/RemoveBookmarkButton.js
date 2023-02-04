@@ -1,16 +1,21 @@
+import React from "react";
 import { useContext } from "react";
 
-import { Context } from "../../appContext";
+import { Context } from "../../AppContext";
 import { removeBookmarkIcon } from "../../svgs";
 
 export default function RemoveBookmarkButton({ resource }) {
   const { removeBookmark } = useContext(Context);
+
+  function handleClick() {
+    removeBookmark(resource.url);
+  }
+
   return (
     <button
+      type="button"
       className={"remove-bookmark-button"}
-      onClick={() => {
-        removeBookmark(resource.url);
-      }}
+      onClick={handleClick}
       title="remove bookmark"
     >
       {removeBookmarkIcon}
