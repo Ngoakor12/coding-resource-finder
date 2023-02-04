@@ -26,5 +26,5 @@ function getPageData(resources, page) {
 }
 
 module.exports = {
-  getPageData, getPages
+  getPageData,
 };
