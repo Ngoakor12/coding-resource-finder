@@ -10,9 +10,6 @@
     "deploy": "git push heroku master",
     "test": "jest"
   },
-  "jest": {
-    "collectCoverage":true
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ngoakor12/coding-resource-finder.git"
