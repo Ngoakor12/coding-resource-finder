@@ -1,13 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 import { alertIcon } from "../../svgs";
 
 export default function ErrorFetchingResources() {
-  const navigate = useNavigate();
 
   function navigateToHomepage() {
-    // navigate("/");
+   
     window.location.href = "/";
   }
 
