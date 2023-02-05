@@ -7,7 +7,8 @@ export default function ErrorFetchingResources() {
   const navigate = useNavigate();
 
   function navigateToHomepage() {
-    navigate("/");
+    // navigate("/");
+    window.location.href = "/";
   }
 
   return (
