@@ -5,7 +5,7 @@ const { MongoClient } = require("mongodb");
 const localUri =
   "mongodb+srv://local:local@cluster0.7khoml9.mongodb.net/coding-resource-finder?retryWrites=true&w=majority";
 
-const uri = localUri || process.env.MONGO_URI;
+const uri = process.env.MONGO_URI || localUri;
 
 let dbConnection;
 const connectToDb = (cb) => {
