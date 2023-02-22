@@ -1,6 +1,11 @@
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
-const uri = process.env.MONGO_URI;
+
+// for local development
+const localUri =
+  "mongodb+srv://local:local@cluster0.7khoml9.mongodb.net/coding-resource-finder?retryWrites=true&w=majority";
+
+const uri = localUri || process.env.MONGO_URI;
 
 let dbConnection;
 const connectToDb = (cb) => {
