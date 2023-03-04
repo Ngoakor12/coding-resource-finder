@@ -33,6 +33,18 @@ body {
   background: #79e192;
 }
 
+:root {
+  --modal-main-background: #393939;
+  --modal-header-background: #5c5c5c;
+  --modal-border: 1px solid #5c5c5c;
+  --modal-border-primary-color: 1px solid #8fffab;
+  --modal-border-radius: 8px;
+  --modal-padding: 16px;
+  --modal-big-gap: 28px;
+  --modal-primary-color: #8fffab;
+  --modal-white: #f1f1f1;
+}
+
 #root {
   display: flex;
   flex-direction: column;
@@ -613,6 +625,82 @@ header {
   to {
     background-color: #949494;
   }
+}
+
+/* New bookmark group modal */
+.new-bookmark-group-modal {
+  background-color: var(--modal-main-background);
+  border-radius: var(--modal-border-radius);
+  border: var(--modal-border);
+}
+
+.new-bookmark-group-modal::before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #292929;
+  filter: opacity(0.6);
+  z-index: -1;
+}
+
+.new-bookmark-group-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--modal-big-gap);
+  padding: var(--modal-padding);
+  padding-top: var(--modal-big-gap);
+  background-color: var(--modal-main-background);
+}
+
+.new-bookmark-group-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.new-bookmark-group-form-fields input {
+  padding: var(--modal-border-radius);
+  border: none;
+  border: var(--modal-border);
+  border-radius: var(--modal-border-radius);
+  font-size: 16px;
+}
+
+.new-bookmark-group-form-header {
+  display: flex;
+  justify-content: center;
+  background-color: var(--modal-header-background);
+  padding: var(--modal-border-radius);
+  border-top-left-radius: var(--modal-border-radius);
+  border-top-right-radius: var(--modal-border-radius);
+  perspective: 1px;
+}
+
+.new-bookmark-group-form-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+}
+
+.new-bookmark-group-form-buttons button {
+  padding: var(--modal-border-radius);
+  border-radius: var(--modal-border-radius);
+  cursor: pointer;
+}
+
+.new-bookmark-group-form-cancel {
+  color: var(--modal-white);
+  border: 0;
+  background-color: var(--modal-header-background);
+}
+
+.new-bookmark-group-form-submit {
+  color: var(--modal-primary-color);
+  border: var(--modal-border-primary-color);
+  background: none;
 }
 
 @media (min-width: 800px) {
