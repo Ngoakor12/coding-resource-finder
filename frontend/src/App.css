@@ -38,6 +38,7 @@ body {
   --modal-header-background: #5c5c5c;
   --modal-border: 1px solid #5c5c5c;
   --modal-border-primary-color: 1px solid #8fffab;
+  --modal-border-primary-color-focus: 2px solid #8fffab;
   --modal-border-radius: 8px;
   --modal-padding: 16px;
   --modal-big-gap: 28px;
@@ -662,11 +663,22 @@ header {
 }
 
 .new-bookmark-group-form-fields input {
+  color: var(--modal-white);
+  background-color: var(--modal-header-background);
   padding: var(--modal-border-radius);
   border: none;
   border: var(--modal-border);
   border-radius: var(--modal-border-radius);
   font-size: 16px;
+}
+
+.new-bookmark-group-form-fields input:focus,
+.new-bookmark-group-form-buttons button:focus {
+  outline: var(--modal-border-primary-color-focus);
+}
+.new-bookmark-group-form-fields input:focus {
+  color: #292929;
+  background-color: var(--modal-white);
 }
 
 .new-bookmark-group-form-header {
