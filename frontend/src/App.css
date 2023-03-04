@@ -686,7 +686,7 @@ header {
 }
 
 .new-bookmark-group-form-buttons button {
-  padding: var(--modal-border-radius);
+  padding: var(--modal-border-radius) var(--modal-padding);
   border-radius: var(--modal-border-radius);
   cursor: pointer;
 }
