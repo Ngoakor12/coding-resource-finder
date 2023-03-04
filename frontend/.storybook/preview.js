@@ -1,5 +1,6 @@
-import { ContextProvider } from "../src/appContext";
+import { ContextProvider } from "../src/AppContext";
 import "../src/App.css";
+import { BrowserRouter as Router } from "react-router-dom";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -14,7 +15,9 @@ export const parameters = {
 export const decorators = [
   (Story) => (
     <ContextProvider>
-      <Story />
+      <Router>
+        <Story />
+      </Router>
     </ContextProvider>
   ),
 ];
