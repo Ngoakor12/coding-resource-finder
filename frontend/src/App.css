@@ -672,11 +672,6 @@ header {
   font-size: 14px;
 }
 
-/* .bookmark-group-modal-form-field-inline {
-  display: flex;
-  gap: 10px;
-} */
-
 .bookmark-group-modal-form-field {
   display: flex;
   flex-direction: column;
