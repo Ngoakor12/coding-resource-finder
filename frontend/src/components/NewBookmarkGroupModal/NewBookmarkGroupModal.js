@@ -1,9 +1,10 @@
 import React from "react";
 
-export default function NewBookmarkModal() {
+export default function NewBookmarkGroupModal() {
   function handleSubmit(e) {
     e.preventDefault();
   }
+
   return (
     <div className="bookmark-group-modal">
       <div className="bookmark-group-modal-header">New bookmark group</div>
