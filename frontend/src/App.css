@@ -44,6 +44,7 @@ body {
   --modal-big-gap: 30px;
   --modal-primary-color: #8fffab;
   --modal-white: #f1f1f1;
+  --modal-font-weight: 700;
 }
 
 #root {
@@ -706,9 +707,7 @@ header {
   justify-content: center;
   background-color: var(--modal-header-background);
   padding: var(--modal-border-radius);
-  /* border-top-left-radius: var(--modal-border-radius);
-  border-top-right-radius: var(--modal-border-radius); */
-  perspective: 1px;
+  font-weight: var(--modal-font-weight);
 }
 
 .bookmark-group-modal-buttons {
@@ -720,6 +719,7 @@ header {
 .bookmark-group-modal-buttons button {
   padding: var(--modal-border-radius) var(--modal-padding);
   border-radius: var(--modal-border-radius);
+  font-weight: var(--modal-font-weight);
   cursor: pointer;
 }
 
