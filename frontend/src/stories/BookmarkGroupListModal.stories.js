@@ -13,6 +13,6 @@ export const Primary = Template.bind({});
 Primary.args = {
   bookmarkGroupList: [
     { id: "1", title: "Bookmarks" },
-    { id: "2", title: "Frontend revision" },
+    { id: "2", title: "Frontend revision and other things" },
   ],
 };
