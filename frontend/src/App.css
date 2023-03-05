@@ -629,13 +629,13 @@ header {
 }
 
 /* New bookmark group modal */
-.new-bookmark-group-modal {
+.bookmark-group-modal {
   background-color: var(--modal-main-background);
   border-radius: var(--modal-border-radius);
   border: var(--modal-border);
 }
 
-.new-bookmark-group-modal::before {
+.bookmark-group-modal::before {
   content: "";
   height: 100%;
   width: 100%;
@@ -647,12 +647,17 @@ header {
   z-index: -1;
 }
 
+.bookmark-group-modal-body {
+  display: flex;
+  padding: var(--modal-padding);
+  padding-top: var(--modal-big-gap);
+  background-color: var(--modal-main-background);
+}
+
 .new-bookmark-group-form {
   display: flex;
   flex-direction: column;
   gap: var(--modal-big-gap);
-  padding: var(--modal-padding);
-  padding-top: var(--modal-big-gap);
   background-color: var(--modal-main-background);
 }
 
@@ -681,7 +686,7 @@ header {
   background-color: var(--modal-white);
 }
 
-.new-bookmark-group-form-header {
+.bookmark-group-modal-header {
   display: flex;
   justify-content: center;
   background-color: var(--modal-header-background);
