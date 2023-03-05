@@ -38,7 +38,7 @@ body {
   --modal-header-background: #5c5c5c;
   --modal-border: 1px solid #5c5c5c;
   --modal-border-primary-color: 1px solid #8fffab;
-  --modal-border-primary-color-focus: 2px solid #8fffab;
+  --modal-border-primary-color-focus: 3px solid #8fffab;
   --modal-border-radius: 8px;
   --modal-padding: 16px;
   --modal-big-gap: 30px;
@@ -230,7 +230,7 @@ header {
 
 .search-input:focus-visible {
   background-color: #f1f1f1;
-  outline: rgb(92, 92, 92) 4px solid;
+  outline: rgb(92, 92, 92) 3px solid;
 }
 
 .search-input-wrapper {
