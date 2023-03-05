@@ -41,7 +41,7 @@ body {
   --modal-border-primary-color-focus: 2px solid #8fffab;
   --modal-border-radius: 8px;
   --modal-padding: 16px;
-  --modal-big-gap: 28px;
+  --modal-big-gap: 30px;
   --modal-primary-color: #8fffab;
   --modal-white: #f1f1f1;
 }
@@ -663,13 +663,26 @@ header {
   background-color: var(--modal-main-background);
 }
 
-.new-bookmark-group-form-fields {
+.bookmark-group-modal-form-fields {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding-bottom: var(--modal-big-gap);
 }
 
-.new-bookmark-group-form-fields input {
+.bookmark-group-modal-form-field-inline {
+  display: flex;
+  gap: 10px;
+}
+
+.bookmark-group-modal-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.bookmark-group-modal-form-fields input {
   color: var(--modal-white);
   background-color: var(--modal-header-background);
   padding: var(--modal-border-radius);
@@ -679,11 +692,11 @@ header {
   font-size: 16px;
 }
 
-.new-bookmark-group-form-fields input:focus,
+.bookmark-group-modal-form-fields input:focus,
 .bookmark-group-modal-buttons button:focus {
   outline: var(--modal-border-primary-color-focus);
 }
-.new-bookmark-group-form-fields input:focus {
+.bookmark-group-modal-form-fields input:focus {
   color: #292929;
   background-color: var(--modal-white);
 }
