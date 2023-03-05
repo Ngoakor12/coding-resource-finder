@@ -724,16 +724,28 @@ header {
   cursor: pointer;
 }
 
+.bookmark-group-modal-buttons button:active {
+  opacity: 0.8;
+}
+
 .new-bookmark-group-form-cancel {
   color: var(--modal-white);
   border: 0;
   background-color: var(--modal-header-background);
+  transition: background-color 300ms ease;
 }
 
 .new-bookmark-group-form-submit {
   color: var(--modal-white);
   border: var(--modal-border-primary-color);
   background: none;
+  transition: background 300ms ease;
+}
+
+.new-bookmark-group-form-cancel:hover,
+.new-bookmark-group-form-submit:hover {
+  color: var(--modal-primary-color);
+  background-color: #292929;
 }
 
 /* custom checkmark */
@@ -765,7 +777,6 @@ header {
   margin-right: 10px;
   border-radius: 4px;
   border: 1px solid var(--modal-white);
-  /* transition: background-color 300ms ease; */
 }
 
 .checkmark-container label:hover::before,
@@ -781,9 +792,11 @@ header {
 
 /* when label input is checked */
 .checkmark-container input[type="checkbox"]:checked + label::before {
+  background-color: var(--modal-white);
   background: url(./assets/checkmark.svg);
   background-position: center;
   overflow: hidden;
+  transition: background 300ms ease;
 }
 
 @media (min-width: 800px) {
