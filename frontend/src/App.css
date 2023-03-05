@@ -680,7 +680,7 @@ header {
 }
 
 .new-bookmark-group-form-fields input:focus,
-.new-bookmark-group-form-buttons button:focus {
+.bookmark-group-modal-buttons button:focus {
   outline: var(--modal-border-primary-color-focus);
 }
 .new-bookmark-group-form-fields input:focus {
@@ -698,13 +698,13 @@ header {
   perspective: 1px;
 }
 
-.new-bookmark-group-form-buttons {
+.bookmark-group-modal-buttons {
   display: flex;
+  justify-content: space-between;
   gap: 10px;
-  justify-content: end;
 }
 
-.new-bookmark-group-form-buttons button {
+.bookmark-group-modal-buttons button {
   padding: var(--modal-border-radius) var(--modal-padding);
   border-radius: var(--modal-border-radius);
   cursor: pointer;
