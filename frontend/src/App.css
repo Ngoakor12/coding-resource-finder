@@ -633,6 +633,8 @@ header {
   background-color: var(--modal-main-background);
   border-radius: var(--modal-border-radius);
   border: var(--modal-border);
+  box-shadow: 2px 2px 5px 0px #00000040;
+  overflow: hidden;
 }
 
 .bookmark-group-modal::before {
@@ -691,8 +693,8 @@ header {
   justify-content: center;
   background-color: var(--modal-header-background);
   padding: var(--modal-border-radius);
-  border-top-left-radius: var(--modal-border-radius);
-  border-top-right-radius: var(--modal-border-radius);
+  /* border-top-left-radius: var(--modal-border-radius);
+  border-top-right-radius: var(--modal-border-radius); */
   perspective: 1px;
 }
 
