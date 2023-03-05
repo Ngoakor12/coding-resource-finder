@@ -13,8 +13,12 @@ export default function BookmarkGroupListModal({ bookmarkGroupList }) {
           <div className="bookmark-group-modal-form-fields">
             {bookmarkGroupList.map((bookmarkGroup) => {
               return (
-                <div className="bookmark-group-modal-form-field-inline">
-                  <input type="checkbox" id={bookmarkGroup.id} />
+                <div className="bookmark-group-modal-form-field-inline checkmark-container">
+                  <input
+                    type="checkbox"
+                    id={bookmarkGroup.id}
+                    className="checkmark"
+                  />
                   <label htmlFor={bookmarkGroup.id}>
                     {bookmarkGroup.title}
                   </label>

@@ -669,12 +669,13 @@ header {
   flex-direction: column;
   gap: 10px;
   padding-bottom: var(--modal-big-gap);
+  font-size: 14px;
 }
 
-.bookmark-group-modal-form-field-inline {
+/* .bookmark-group-modal-form-field-inline {
   display: flex;
   gap: 10px;
-}
+} */
 
 .bookmark-group-modal-form-field {
   display: flex;
@@ -693,11 +694,11 @@ header {
   font-size: 16px;
 }
 
-.bookmark-group-modal-form-fields input:focus,
-.bookmark-group-modal-buttons button:focus {
+.bookmark-group-modal-form-fields input[type="text"]:focus,
+.bookmark-group-modal-buttons button:focus-visible {
   outline: var(--modal-border-primary-color-focus);
 }
-.bookmark-group-modal-form-fields input:focus {
+.bookmark-group-modal-form-fields input:focus-visible {
   color: #292929;
   background-color: var(--modal-white);
 }
@@ -730,9 +731,59 @@ header {
 }
 
 .new-bookmark-group-form-submit {
-  color: var(--modal-primary-color);
+  color: var(--modal-white);
   border: var(--modal-border-primary-color);
   background: none;
+}
+
+/* custom checkmark */
+
+.checkmark-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkmark-container label {
+  display: flex;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* remove default checkbox */
+
+.checkmark-container input[type="checkbox"] {
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+}
+
+/* create new checkmark */
+.checkmark-container label::before {
+  content: "";
+  height: 18px;
+  width: 18px;
+  margin-right: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--modal-white);
+  /* transition: background-color 300ms ease; */
+}
+
+.checkmark-container label:hover::before,
+.checkmark-container input[type="checkbox"]:hover + label::before {
+  background-color: var(--modal-white);
+  transition: background-color 300ms ease;
+}
+
+.checkmark-container label:focus-visible::before,
+.checkmark-container input[type="checkbox"]:focus-visible + label::before {
+  outline: var(--modal-border-primary-color-focus);
+}
+
+/* when label input is checked */
+.checkmark-container input[type="checkbox"]:checked + label::before {
+  background: url(./assets/checkmark.svg);
+  background-position: center;
+  overflow: hidden;
 }
 
 @media (min-width: 800px) {
