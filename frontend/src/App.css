@@ -397,7 +397,7 @@ header {
   justify-content: center;
   position: absolute;
   top: 20px;
-  right: 20px;
+  right: 30px;
   width: 33px;
   height: 33px;
   border: 0;
@@ -408,6 +408,14 @@ header {
   transition: background-color 300ms ease;
   margin: 2px;
   padding: 5px;
+  border: .1px solid rgb(92, 92, 92);
+  border-radius: 3px;
+  border-right: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  flex-grow: 1;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .remove-bookmark-button {
@@ -417,7 +425,7 @@ header {
   font-size: 18px;
   position: absolute;
   top: 20px;
-  right: 20px;
+  right: 30px;
   width: 33px;
   height: 33px;
   border: 0;
@@ -428,6 +436,14 @@ header {
   transition: background-color 200ms ease, color 200ms ease;
   padding: 5px;
   margin: 2px;
+  border: .1px solid rgb(92, 92, 92);
+  border-radius: 3px;
+  border-right: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  flex-grow: 1;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .resource-wrapper:hover .bookmark-button {
@@ -908,4 +924,43 @@ header {
     background-color: #8f8f8f48;
     border-radius: 100%;
   }
+}
+.resource-wrapper:hover .story-button {
+  color: hsl(135, 100%, 78%);
+}
+
+.resource-wrapper:hover .story-button:hover {
+  background-color: hsla(135, 100%, 78%, 0.192);
+}
+.icon-button {
+  display: flex;
+}
+
+.story-button {
+  color: rgb(255, 255, 131);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  width: 33px;
+  height: 33px;
+  border: 0;
+  border-radius: 100%;
+  background-color: transparent;
+  cursor: pointer;
+  transition: color 300ms ease;
+  transition: background-color 300ms ease;
+  margin: 2px;
+  padding: 5px;
+  border: .001px solid rgb(92, 92, 92);
+  border-radius: 3px; 
+  border-right: .01em solid rgb(92, 92, 92);
+  border-left: .1% solid rgb(92, 92, 92);
+  flex-grow: 1;
+  box-sizing: border-box;
+  text-align: center;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
