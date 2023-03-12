@@ -393,7 +393,6 @@ header {
 .bookmark-buttons-group {
   display: flex;
   width: 88px;
-  /* height: 38px; */
 }
 
 .bookmark-buttons-group-bookmark,
@@ -424,6 +423,23 @@ header {
 .bookmark-buttons-group-expand {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+.bookmark-buttons-group-bookmark:hover,
+.bookmark-buttons-group-expand:hover {
+  color: hsl(135, 100%, 78%);
+  background-color: hsla(135, 100%, 78%, 0.192);
+}
+
+.bookmark-buttons-group-bookmark:focus-visible,
+.bookmark-buttons-group-expand:focus-visible {
+  outline: #8fffab 3px solid;
+  border-color: transparent;
+  border-radius: 5px;
+}
+
+.bookmark-buttons-group-bookmark:focus-visible + button {
+  z-index: -1;
 }
 
 .bookmark-buttons-group svg {
