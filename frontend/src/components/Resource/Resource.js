@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { Context } from "../../AppContext";
 import RemoveBookmarkButton from "../Buttons/RemoveBookmarkButton";
 import BookmarkButton from "../Buttons/BookmarkButton";
+
 export default function Resource({ resource }) {
   const { bookmarks } = useContext(Context);
   const isBookmarked = bookmarks.find((bookmark) => {
