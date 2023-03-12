@@ -390,6 +390,47 @@ header {
   position: relative;
 }
 
+.bookmark-buttons-group {
+  display: flex;
+  width: 88px;
+  /* height: 38px; */
+}
+
+.bookmark-buttons-group-bookmark,
+.bookmark-buttons-group-expand {
+  color: rgb(255, 255, 131);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height: 30px; */
+  width: 44px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: color 300ms ease;
+  transition: background-color 300ms ease;
+  /* margin: 2px; */
+  padding: 8px;
+  border: 0;
+  border-radius: 5px;
+  border: 1px solid rgb(92, 92, 92);
+}
+
+.bookmark-buttons-group-bookmark {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+}
+
+.bookmark-buttons-group-expand {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.bookmark-buttons-group svg {
+  height: 28px;
+  width: 28px;
+}
+
 .bookmark-button {
   color: rgb(255, 255, 131);
   display: flex;

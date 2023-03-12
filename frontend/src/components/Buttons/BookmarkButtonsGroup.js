@@ -13,13 +13,17 @@ export default function BookmarkButtonsGroup() {
     <div className="bookmark-buttons-group">
       <button
         type="button"
-        className={"bookmark-button"}
+        className={"bookmark-buttons-group-bookmark"}
         // onClick={handleClick}
         title="add bookmark"
       >
         {bookmarkIcon}
       </button>
-      <button type="button" className={"story-button"} title="add bookmark">
+      <button
+        type="button"
+        className={"bookmark-buttons-group-expand"}
+        title="add bookmark to group"
+      >
         {expandIcon}
       </button>
     </div>
