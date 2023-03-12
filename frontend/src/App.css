@@ -397,7 +397,7 @@ header {
   justify-content: center;
   position: absolute;
   top: 20px;
-  right: 30px;
+  right: 20px;
   width: 33px;
   height: 33px;
   border: 0;
@@ -408,13 +408,13 @@ header {
   transition: background-color 300ms ease;
   margin: 2px;
   padding: 5px;
-  border: .1px solid rgb(92, 92, 92);
+  /* border: .1px solid rgb(92, 92, 92);
   border-radius: 3px;
   border-right: none;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
   flex-grow: 1;
-  box-sizing: border-box;
+  box-sizing: border-box; */
   text-align: center;
 }
 
@@ -425,7 +425,7 @@ header {
   font-size: 18px;
   position: absolute;
   top: 20px;
-  right: 30px;
+  right: 20px;
   width: 33px;
   height: 33px;
   border: 0;
@@ -436,14 +436,14 @@ header {
   transition: background-color 200ms ease, color 200ms ease;
   padding: 5px;
   margin: 2px;
-  border: .1px solid rgb(92, 92, 92);
+  /* border: 0.1px solid rgb(92, 92, 92);
   border-radius: 3px;
   border-right: none;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
   flex-grow: 1;
   box-sizing: border-box;
-  text-align: center;
+  text-align: center; */
 }
 
 .resource-wrapper:hover .bookmark-button {
@@ -925,7 +925,7 @@ header {
     border-radius: 100%;
   }
 }
-.resource-wrapper:hover .story-button {
+/* .resource-wrapper:hover .story-button {
   color: hsl(135, 100%, 78%);
 }
 
@@ -954,13 +954,13 @@ header {
   transition: background-color 300ms ease;
   margin: 2px;
   padding: 5px;
-  border: .001px solid rgb(92, 92, 92);
-  border-radius: 3px; 
-  border-right: .01em solid rgb(92, 92, 92);
-  border-left: .1% solid rgb(92, 92, 92);
+  border: 0.001px solid rgb(92, 92, 92);
+  border-radius: 3px;
+  border-right: 0.01em solid rgb(92, 92, 92);
+  border-left: 0.1% solid rgb(92, 92, 92);
   flex-grow: 1;
   box-sizing: border-box;
   text-align: center;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-}
+} */

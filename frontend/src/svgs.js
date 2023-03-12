@@ -28,26 +28,24 @@ export const bookmarkIcon = (
     </g>
   </svg>
 );
-// add storybook
-export const storybookIcon = (
-  <svg 
-    aria-hidden="true" 
-    height="32" 
-    viewBox="0 0 16 16" 
+
+export const expandIcon = (
+  <svg
+    aria-hidden="true"
+    height="32"
+    viewBox="0 0 16 16"
     preserveAspectRatio="xMidYMid meet"
-    version="1.1" 
-    width="32" 
+    version="1.1"
+    width="32"
     role="img"
-    data-view-component="true" 
+    data-view-component="true"
     className="octicon octicon-triangle-down v-align-middle stroy"
   >
-    <path 
-      fill="currentColor" 
+    <path
+      fill="currentColor"
       d="M4.427 7.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.396 7H4.604a.25.25 0 00-.177.427z"
-    >
-    </path>
+    ></path>
   </svg>
-
 );
 export const clearSearchIcon = (
   <svg
