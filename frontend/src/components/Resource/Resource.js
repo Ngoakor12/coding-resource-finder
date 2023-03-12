@@ -26,7 +26,7 @@ export default function Resource({ resource }) {
         <h3 className="resource-title">{resource.title}</h3>
         <span className="resource-type">{resource.type}</span>
       </a>
-      <div className="icon-button">{icon}</div>
+      {icon}
     </div>
   );
 }
