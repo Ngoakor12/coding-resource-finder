@@ -408,14 +408,14 @@ header {
   transition: background-color 300ms ease;
   margin: 2px;
   padding: 5px;
-  /* border: .1px solid rgb(92, 92, 92);
+  /* border: 0.1px solid rgb(92, 92, 92);
   border-radius: 3px;
   border-right: none;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
   flex-grow: 1;
-  box-sizing: border-box; */
-  text-align: center;
+  box-sizing: border-box;
+  text-align: center; */
 }
 
 .remove-bookmark-button {

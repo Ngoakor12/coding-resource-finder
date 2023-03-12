@@ -10,11 +10,11 @@ export default function BookmarkButtonsGroup() {
     addBookmark(resource.url);
   }
   return (
-    <div>
+    <div className="bookmark-buttons-group">
       <button
         type="button"
         className={"bookmark-button"}
-        onClick={handleClick}
+        // onClick={handleClick}
         title="add bookmark"
       >
         {bookmarkIcon}
