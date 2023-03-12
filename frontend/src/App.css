@@ -390,6 +390,63 @@ header {
   position: relative;
 }
 
+.bookmark-buttons-group {
+  display: flex;
+  width: 88px;
+}
+
+.bookmark-buttons-group-bookmark,
+.bookmark-buttons-group-expand {
+  color: rgb(255, 255, 131);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height: 30px; */
+  width: 44px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: color 300ms ease;
+  transition: background-color 300ms ease;
+  /* margin: 2px; */
+  padding: 8px;
+  border: 0;
+  border-radius: 5px;
+  border: 1px solid rgb(92, 92, 92);
+}
+
+.bookmark-buttons-group-bookmark {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+}
+
+.bookmark-buttons-group-expand {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.bookmark-buttons-group-bookmark:hover,
+.bookmark-buttons-group-expand:hover {
+  color: hsl(135, 100%, 78%);
+  background-color: hsla(135, 100%, 78%, 0.192);
+}
+
+.bookmark-buttons-group-bookmark:focus-visible,
+.bookmark-buttons-group-expand:focus-visible {
+  outline: #8fffab 3px solid;
+  border-color: transparent;
+  border-radius: 5px;
+}
+
+.bookmark-buttons-group-bookmark:focus-visible + button {
+  z-index: -1;
+}
+
+.bookmark-buttons-group svg {
+  height: 28px;
+  width: 28px;
+}
+
 .bookmark-button {
   color: rgb(255, 255, 131);
   display: flex;
@@ -408,6 +465,14 @@ header {
   transition: background-color 300ms ease;
   margin: 2px;
   padding: 5px;
+  /* border: 0.1px solid rgb(92, 92, 92);
+  border-radius: 3px;
+  border-right: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  flex-grow: 1;
+  box-sizing: border-box;
+  text-align: center; */
 }
 
 .remove-bookmark-button {
@@ -428,6 +493,14 @@ header {
   transition: background-color 200ms ease, color 200ms ease;
   padding: 5px;
   margin: 2px;
+  /* border: 0.1px solid rgb(92, 92, 92);
+  border-radius: 3px;
+  border-right: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  flex-grow: 1;
+  box-sizing: border-box;
+  text-align: center; */
 }
 
 .resource-wrapper:hover .bookmark-button {
@@ -909,3 +982,42 @@ header {
     border-radius: 100%;
   }
 }
+/* .resource-wrapper:hover .story-button {
+  color: hsl(135, 100%, 78%);
+}
+
+.resource-wrapper:hover .story-button:hover {
+  background-color: hsla(135, 100%, 78%, 0.192);
+}
+.icon-button {
+  display: flex;
+}
+
+.story-button {
+  color: rgb(255, 255, 131);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  width: 33px;
+  height: 33px;
+  border: 0;
+  border-radius: 100%;
+  background-color: transparent;
+  cursor: pointer;
+  transition: color 300ms ease;
+  transition: background-color 300ms ease;
+  margin: 2px;
+  padding: 5px;
+  border: 0.001px solid rgb(92, 92, 92);
+  border-radius: 3px;
+  border-right: 0.01em solid rgb(92, 92, 92);
+  border-left: 0.1% solid rgb(92, 92, 92);
+  flex-grow: 1;
+  box-sizing: border-box;
+  text-align: center;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+} */
