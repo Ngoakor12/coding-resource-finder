@@ -64,6 +64,7 @@ export default function Resources() {
               </section>
             </section>
           </main>
+          // changed the order of GoToTopButton
           <GoToTopButton />
         </div>
       )}
