@@ -41,7 +41,6 @@ export default function Resources() {
         <ErrorFetchingResources />
       ) : (
         <div>
-          <GoToTopButton />
           <Header />
           <main className="main">
             <aside className="aside-nav">
@@ -65,6 +64,7 @@ export default function Resources() {
               </section>
             </section>
           </main>
+          <GoToTopButton />
         </div>
       )}
     </React.Fragment>
