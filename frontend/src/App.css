@@ -708,7 +708,6 @@ header {
   }
 }
 
-/* New bookmark group modal */
 .bookmark-group-modal {
   background-color: var(--modal-main-background);
   border-radius: var(--modal-border-radius);
@@ -734,6 +733,43 @@ header {
   padding: var(--modal-padding);
   padding-top: var(--modal-big-gap);
   background-color: var(--modal-main-background);
+}
+
+.prompt-modal-container {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(41, 41, 41, 60%);
+}
+.prompt-modal {
+  background-color: var(--modal-main-background);
+  border-radius: var(--modal-border-radius);
+  border: var(--modal-border);
+  box-shadow: 2px 2px 5px 0px #00000040;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  max-width: 500px;
+  min-width: 200px;
+}
+.prompt-modal-body {
+  display: flex;
+  padding: var(--modal-padding);
+  padding-top: var(--modal-big-gap);
+  background-color: var(--modal-main-background);
+  flex-direction: column;
+  gap: var(--modal-big-gap);
+}
+.prompt-modal-promt {
+  text-align: center;
 }
 
 .new-bookmark-group-form {
