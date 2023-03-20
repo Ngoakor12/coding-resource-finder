@@ -2,7 +2,7 @@ import React from "react";
 import ConfirmModal from "../components/ConfirmModal/ConfirmModal";
 
 export default {
-  title: "components/ConfirmModal",
+  title: "components/Modals/ConfirmModal",
   component: ConfirmModal,
 };
 const Template = (args) => <ConfirmModal {...args} />;

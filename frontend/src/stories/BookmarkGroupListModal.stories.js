@@ -2,7 +2,7 @@ import React from "react";
 import BookmarkGroupListModal from "../components/BookmarkGroupListModal/BookmarkGroupListModal";
 
 export default {
-  title: "components/BookmarkGroupListModal",
+  title: "components/Modals/BookmarkGroupListModal",
   component: BookmarkGroupListModal,
 };
 
