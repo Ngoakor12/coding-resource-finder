@@ -907,6 +907,19 @@ header {
   transition: background 300ms ease;
 }
 
+.card {
+  color: #f1f1f1;
+  text-decoration: none;
+  background-color: transparent;
+  padding: 20px;
+  border: 1px solid rgb(92, 92, 92);
+  border-radius: 8px;
+}
+
+.full-width {
+  width: 100%;
+}
+
 @media (min-width: 800px) {
   body {
     display: flex;
