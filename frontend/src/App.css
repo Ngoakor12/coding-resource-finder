@@ -920,6 +920,29 @@ header {
   width: 100%;
 }
 
+.bookmark-group-card {
+  text-decoration: none;
+}
+
+.bookmark-group-card:hover .card {
+  background-color: #1f1f1f;
+  border-radius: var(--modal-border-radius);
+  border: var(--modal-border-primary-color);
+}
+.bookmark-group-card:hover .bookmark-group-card-title {
+  color: #8fffaa;
+}
+
+.bookmark-group-card-title {
+  font-size: 18px;
+}
+
+.bookmark-group-card-count {
+  font-size: 36px;
+  font-weight: 700;
+  color: #949494;
+}
+
 @media (min-width: 800px) {
   body {
     display: flex;
