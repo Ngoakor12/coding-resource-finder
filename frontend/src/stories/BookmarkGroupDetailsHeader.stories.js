@@ -9,5 +9,22 @@ export default {
 export const Default = (args) => <BookmarkGroupDetailsHeader {...args} />;
 
 Default.args = {
-  heading: "Frontend revision",
+  heading: "All bookmarks",
+  bookmarkGroups: [
+    {
+      title: "All bookmarks",
+      count: 10,
+      link: "",
+    },
+    {
+      title: "Frontend revision",
+      count: 4,
+      link: "",
+    },
+    {
+      title: "React native",
+      count: 7,
+      link: "",
+    },
+  ],
 };
