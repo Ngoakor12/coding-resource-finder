@@ -714,8 +714,8 @@ header {
   border: var(--modal-border);
   box-shadow: 2px 2px 5px 0px #00000040;
   overflow: hidden;
-  max-width: 500px;
-  min-width: 250px;
+  max-width: 300px;
+  min-width: 200px;
 }
 
 .bookmark-group-modal-body {
@@ -770,6 +770,10 @@ header {
   background-color: var(--modal-main-background);
 }
 
+.bookmark-group-modal-form {
+  width: 100%;
+}
+
 .bookmark-group-modal-form-fields {
   display: flex;
   flex-direction: column;
@@ -822,7 +826,6 @@ header {
 .bookmark-group-modal-buttons {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
 }
 
 .bookmark-group-modal-buttons button {
