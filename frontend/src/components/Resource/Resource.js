@@ -10,11 +10,7 @@ export default function Resource({ resource }) {
   const isBookmarked = bookmarks.find((bookmark) => {
     return bookmark.url === resource.url;
   });
-  const icon = isBookmarked ? (
-    <RemoveBookmarkButton resource={resource} />
-  ) : (
-    <BookmarkButton resource={resource} />
-  );
+  const icon = <BookmarkButton resource={resource} />;
 
   return (
     <div className="resource-wrapper" key={resource.url}>

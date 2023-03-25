@@ -8,7 +8,7 @@ export default function RemoveBookmarkButton({ resource }) {
   const { removeBookmark } = useContext(Context);
 
   function handleClick() {
-    removeBookmark(resource.url);
+    removeBookmark({ resourceUrl: resource.url });
   }
 
   return (

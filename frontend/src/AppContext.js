@@ -65,17 +65,38 @@ export function ContextProvider({ children }) {
     }
   }
 
-  function addBookmark(resourceUrl) {
+  function addBookmark({ resourceUrl, bookmarkGroup = "All bookmarks" }) {
+    // find resource passed in from all resources
     const newBookmark = allResources.find(
       (resource) => resource.url === resourceUrl
     );
-    setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
-    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+
+    // check if it's not already bookmarked
+    let isBookmarked = false;
+    bookmarks.forEach((bookmark) => {
+      if (bookmark.url === newBookmark.url) isBookmarked = true;
+    });
+
+    if (!isBookmarked) {
+      // update bookmark groups field
+      newBookmark.groups = [...newBookmark.groups, bookmarkGroup];
+
+      // add bookmark
+      setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
+      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+    } else {
+      // update bookmark groups field if bookmarkGroup is not in the group yet
+      if (!newBookmark.groups.includes(bookmarkGroup)) {
+        newBookmark.groups = [...newBookmark.groups, bookmarkGroup];
+        setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
+        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+      }
+    }
   }
 
-  function removeBookmark(bookmarkUrl) {
+  function removeBookmark({ resourceUrl, bookmarkGroup }) {
     const newBookmarks = bookmarks.filter(
-      (bookmark) => bookmark.url !== bookmarkUrl
+      (bookmark) => bookmark.url !== resourceUrl
     );
     setBookmarks(newBookmarks);
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
