@@ -106,24 +106,31 @@ export function ContextProvider({ children }) {
   }
 
   function removeBookmark({ resourceUrl, bookmarkGroup = "All bookmarks" }) {
-    // // find bookmark passed in from all bookmarks
-    // const bookmarkToUpdate = allResources.find(
-    //   (resource) => resource.url === resourceUrl
-    // );
-    // // update bookmark groups field
-    // bookmarkToUpdate.groups = bookmarkToUpdate.groups.filter(
-    //   (bookmark) => bookmark !== bookmarkGroup
-    // );
-    // // add bookmark
-    // if (bookmarkToUpdate.groups) {
-    //   setBookmarks((prevBookmarks) => [...prevBookmarks, bookmarkToUpdate]);
-    //   localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-    // } else {
-    //   setBookmarks((prevBookmarks) => {
-    //     return prevBookmarks.filter((bookmark) => bookmark.url !== resourceUrl);
-    //   });
-    //   localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-    // }
+    const foundBookmark = bookmarks.find(
+      (resource) => resource.url === resourceUrl
+    );
+    // 1. if bookmark is in one group
+    // - remove bookmark from other bookmarks
+    // 2. if bookmark is in more than one group
+    // - remove group from bookmark
+    // - remove bookmark from bookmarks
+    if (foundBookmark) {
+      if (foundBookmark.groups.length === 1) {
+        console.log("one bookmark group");
+        setBookmarks((prevBookmarks) => {
+          const newBookmarks = [];
+          prevBookmarks.forEach((bookmark) => {
+            if (bookmark.url !== resourceUrl) {
+              newBookmarks.push(bookmark);
+            }
+          });
+          return newBookmarks;
+        });
+        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+      } else {
+        console.log("multiple bookmark groups");
+      }
+    }
   }
 
   return (
