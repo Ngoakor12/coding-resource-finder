@@ -14,6 +14,7 @@ async function updateResources(database, resources = []) {
     title: resource.title,
     url: resource.url,
     type: resource.type,
+    groups: [],
   }));
   const collectionName = getCurrentCollectionName();
   await database.collection(collectionName).insertMany(formattedResources);
@@ -21,12 +22,12 @@ async function updateResources(database, resources = []) {
 
 /* Uncomment and run to update to the latest resources */
 
-// let db;
-// connectToDb(async (err) => {
-//   if (!err) {
-//     db = await getDb();
-//     getAllResources().then((res) => {
-//       updateResources(db, res);
-//     });
-//   }
-// });
+let db;
+connectToDb(async (err) => {
+  if (!err) {
+    db = await getDb();
+    getAllResources().then((res) => {
+      updateResources(db, res);
+    });
+  }
+});
