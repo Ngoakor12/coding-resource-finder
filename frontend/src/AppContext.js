@@ -129,6 +129,19 @@ export function ContextProvider({ children }) {
         localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
       } else {
         console.log("multiple bookmark groups");
+        setBookmarks((prevBookmarks) => {
+          return prevBookmarks.map((bookmark) => {
+            if (bookmark.groups.includes(bookmarkGroup)) {
+              const newBookmark = bookmark;
+              newBookmark.groups = newBookmark.groups.filter(
+                (group) => group !== bookmarkGroup
+              );
+              return newBookmark;
+            }
+            return bookmark;
+          });
+        });
+        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
       }
     }
   }
