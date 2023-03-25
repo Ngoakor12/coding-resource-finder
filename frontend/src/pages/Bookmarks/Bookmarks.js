@@ -29,7 +29,7 @@ export default function Bookmarks() {
               <React.Fragment>
                 <ClearBookmarksButton />
                 <div className="resources-list">
-                  <ResourceList resources={bookmarks} />
+                  <ResourceList resources={bookmarks} isBookmarksPage={true} />
                 </div>
               </React.Fragment>
             ) : (

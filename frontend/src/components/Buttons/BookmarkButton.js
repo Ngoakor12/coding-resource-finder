@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { Context } from "../../AppContext";
 import { bookmarkIcon } from "../../svgs";
 
-export default function RemoveBookmarkButton({ resource }) {
+export default function BookmarkButton({ resource }) {
   const { addBookmark } = useContext(Context);
 
   function handleClick() {

@@ -5,12 +5,17 @@ import { Context } from "../../AppContext";
 import RemoveBookmarkButton from "../Buttons/RemoveBookmarkButton";
 import BookmarkButton from "../Buttons/BookmarkButton";
 
-export default function Resource({ resource }) {
+export default function Resource({ resource, isBookmarksPage }) {
   const { bookmarks } = useContext(Context);
   const isBookmarked = bookmarks.find((bookmark) => {
     return bookmark.url === resource.url;
   });
-  const icon = <BookmarkButton resource={resource} />;
+
+  const icon = isBookmarksPage ? (
+    <RemoveBookmarkButton resource={resource} />
+  ) : (
+    <BookmarkButton resource={resource} />
+  );
 
   return (
     <div className="resource-wrapper" key={resource.url}>

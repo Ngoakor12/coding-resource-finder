@@ -66,40 +66,64 @@ export function ContextProvider({ children }) {
   }
 
   function addBookmark({ resourceUrl, bookmarkGroup = "All bookmarks" }) {
-    // find resource passed in from all resources
-    const newBookmark = allResources.find(
+    const foundBookmark = bookmarks.find(
       (resource) => resource.url === resourceUrl
     );
+    // 1. if bookmark does not exist
+    // - update the bookmark's groups
+    // - add that bookmark to the other bookmarks
+    // 2. if bookmark does exist
+    // - if bookmarkGroup is the already in the found bookmark's group
+    //    - do nothing
+    // - if bookmarkGroup is not in the found bookmark's group
+    //    - add bookmarkGroup in the bookmark's groups
+    //    - replace the older bookmark with the new bookmark
 
-    // check if it's not already bookmarked
-    let isBookmarked = false;
-    bookmarks.forEach((bookmark) => {
-      if (bookmark.url === newBookmark.url) isBookmarked = true;
-    });
-
-    if (!isBookmarked) {
-      // update bookmark groups field
+    if (!foundBookmark) {
+      const newBookmark = allResources.find(
+        (bookmark) => bookmark.url === resourceUrl
+      );
       newBookmark.groups = [...newBookmark.groups, bookmarkGroup];
 
-      // add bookmark
       setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
+
       localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
     } else {
-      // update bookmark groups field if bookmarkGroup is not in the group yet
-      if (!newBookmark.groups.includes(bookmarkGroup)) {
-        newBookmark.groups = [...newBookmark.groups, bookmarkGroup];
-        setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
-        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-      }
+      setBookmarks((prevBookmarks) => {
+        return prevBookmarks.map((bookmark) => {
+          if (bookmark.url === foundBookmark.url) {
+            if (!bookmark.groups.includes(bookmarkGroup)) {
+              const newBookmarkGroup = [...bookmark.groups, bookmarkGroup];
+              return { ...bookmark, groups: newBookmarkGroup };
+            }
+          }
+          return bookmark;
+        });
+      });
+
+      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
     }
   }
 
-  function removeBookmark({ resourceUrl, bookmarkGroup }) {
-    const newBookmarks = bookmarks.filter(
-      (bookmark) => bookmark.url !== resourceUrl
-    );
-    setBookmarks(newBookmarks);
-    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  function removeBookmark({ resourceUrl, bookmarkGroup = "All bookmarks" }) {
+    // // find bookmark passed in from all bookmarks
+    // const bookmarkToUpdate = allResources.find(
+    //   (resource) => resource.url === resourceUrl
+    // );
+    // // update bookmark groups field
+    // bookmarkToUpdate.groups = bookmarkToUpdate.groups.filter(
+    //   (bookmark) => bookmark !== bookmarkGroup
+    // );
+    // // add bookmark
+    // if (bookmarkToUpdate.groups) {
+    //   setBookmarks((prevBookmarks) => [...prevBookmarks, bookmarkToUpdate]);
+    //   localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+    // } else {
+    //   setBookmarks((prevBookmarks) => {
+    //     return prevBookmarks.filter((bookmark) => bookmark.url !== resourceUrl);
+    //   });
+    //   localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+    // }
   }
 
   return (
