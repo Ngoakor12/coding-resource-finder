@@ -6,9 +6,13 @@ export const Context = createContext();
 
 export function ContextProvider({ children }) {
   const [allResources, setAllResources] = useState([]);
-  // eslint-disable-next-line
   const [bookmarks, setBookmarks] = useState(() => {
     const saved = localStorage.getItem("bookmarks");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
+  const [bookmarkGroups, setBookmarkGroups] = useState(() => {
+    const saved = localStorage.getItem("bookmarkGroups");
     const initialValue = JSON.parse(saved);
     return initialValue || [];
   });
@@ -21,6 +25,10 @@ export function ContextProvider({ children }) {
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   }, [bookmarks]);
+
+  useEffect(() => {
+    localStorage.setItem("bookmarkGroups", JSON.stringify(bookmarkGroups));
+  }, [bookmarkGroups]);
 
   useEffect(() => {
     document.title = pageTitle;
@@ -86,8 +94,17 @@ export function ContextProvider({ children }) {
       newBookmark.groups = [...newBookmark.groups, bookmarkGroup];
 
       setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
+      updateBookmarksLocalStorage();
 
-      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+      // const bookmarkGroupNames = bookmarkGroups.map(
+      //   (bookmarkGroup) => bookmarkGroup.name
+      // );
+      // if (!bookmarkGroupNames.includes(bookmarkGroup)) {
+      //   setBookmarkGroups((prevBookmarkGroups) => {
+      //     return [...prevBookmarkGroups, { name: bookmarkGroup, count: 0 }];
+      //   });
+      //   updateBookmarkGroupsLocalStorage();
+      // }
     } else {
       setBookmarks((prevBookmarks) => {
         return prevBookmarks.map((bookmark) => {
@@ -100,8 +117,23 @@ export function ContextProvider({ children }) {
           return bookmark;
         });
       });
+      updateBookmarksLocalStorage();
 
-      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+      // const bookmarkGroupNames = bookmarkGroups.map(
+      //   (bookmarkGroup) => bookmarkGroup.name
+      // );
+      // if (!bookmarkGroupNames.includes(bookmarkGroup)) {
+      //   setBookmarkGroups((prevBookmarkGroups) => {
+      //     let count = 0;
+      //     bookmarks.forEach((bookmark) => {
+      //       if (bookmark.groups.includes(bookmarkGroup)) {
+      //         count++;
+      //       }
+      //     });
+      //     return [...prevBookmarkGroups, { name: bookmarkGroup, count }];
+      //   });
+      //   updateBookmarkGroupsLocalStorage();
+      // }
     }
   }
 
@@ -124,7 +156,7 @@ export function ContextProvider({ children }) {
             (prevBookmark) => prevBookmark.url !== foundBookmark.url
           );
         });
-        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+        updateBookmarksLocalStorage();
       } else if (
         foundBookmark.groups.length > 1 &&
         foundBookmark.groups.includes(bookmarkGroup)
@@ -141,9 +173,16 @@ export function ContextProvider({ children }) {
             return bookmark;
           });
         });
-        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+        updateBookmarksLocalStorage();
       }
     }
+  }
+
+  function updateBookmarkGroupsLocalStorage() {
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarkGroups));
+  }
+  function updateBookmarksLocalStorage() {
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   }
 
   return (
