@@ -65,7 +65,7 @@ export function ContextProvider({ children }) {
     }
   }
 
-  function addBookmark({ resourceUrl, bookmarkGroup = "All bookmarks" }) {
+  function addBookmark({ resourceUrl, bookmarkGroup = "bookmarks" }) {
     const foundBookmark = bookmarks.find(
       (resource) => resource.url === resourceUrl
     );
@@ -93,7 +93,7 @@ export function ContextProvider({ children }) {
         return prevBookmarks.map((bookmark) => {
           if (bookmark.url === foundBookmark.url) {
             if (!bookmark.groups.includes(bookmarkGroup)) {
-              const newBookmarkGroup = [...bookmark.groups, bookmarkGroup];
+              const newBookmarkGroup = [...foundBookmark.groups, bookmarkGroup];
               return { ...bookmark, groups: newBookmarkGroup };
             }
           }
@@ -105,9 +105,9 @@ export function ContextProvider({ children }) {
     }
   }
 
-  function removeBookmark({ resourceUrl, bookmarkGroup = "All bookmarks" }) {
+  function removeBookmark({ resourceUrl, bookmarkGroup = "bookmarks" }) {
     const foundBookmark = bookmarks.find(
-      (resource) => resource.url === resourceUrl
+      (bookmark) => bookmark.url === resourceUrl
     );
     // 1. if bookmark is in one group
     // - remove bookmark from other bookmarks
@@ -115,20 +115,20 @@ export function ContextProvider({ children }) {
     // - remove group from bookmark
     // - remove bookmark from bookmarks
     if (foundBookmark) {
-      if (foundBookmark.groups.length === 1) {
-        console.log("one bookmark group");
+      if (
+        foundBookmark.groups.length === 1 &&
+        foundBookmark.groups.includes(bookmarkGroup)
+      ) {
         setBookmarks((prevBookmarks) => {
-          const newBookmarks = [];
-          prevBookmarks.forEach((bookmark) => {
-            if (bookmark.url !== resourceUrl) {
-              newBookmarks.push(bookmark);
-            }
-          });
-          return newBookmarks;
+          return prevBookmarks.filter(
+            (prevBookmark) => prevBookmark.url !== foundBookmark.url
+          );
         });
         localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-      } else {
-        console.log("multiple bookmark groups");
+      } else if (
+        foundBookmark.groups.length > 1 &&
+        foundBookmark.groups.includes(bookmarkGroup)
+      ) {
         setBookmarks((prevBookmarks) => {
           return prevBookmarks.map((bookmark) => {
             if (bookmark.groups.includes(bookmarkGroup)) {
