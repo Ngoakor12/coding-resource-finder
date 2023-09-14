@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, {useContext, useEffect, useState} from "react";
 
-import { Context } from "../../AppContext";
+import {Context} from "../../AppContext";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import ResourceList from "../../components/ResourceList/ResourceList";
 import ResourceSkeletonList from "../../components/ResourceSkeletonList/ResourceSkeletonList";
@@ -19,54 +19,56 @@ export default function Resources() {
     resourceFilter,
   } = useContext(Context);
 
-  const filteredResources =
-    resourceFilter === "all" ? (
-      <ResourceList resources={renderedResources} />
-    ) : (
-      <ResourceList
-        resources={renderedResources.filter(
-          (resource) => resource.type === resourceFilter
-        )}
-      />
-    );
-
   useEffect(() => {
     setPageTitle("Resources | Coding Resource Finder");
     // eslint-disable-next-line
   }, []);
 
+  const [filteredResources, setFilteredResources] = useState(null);
+
+  useEffect(() => {
+    const newFilteredState = resourceFilter === 'all' ? <ResourceList resources={renderedResources}/> :
+        <ResourceList
+            resources={renderedResources.filter(
+                (resource) => resource.type?.toLowerCase() === resourceFilter?.toLowerCase()
+            )}
+        />
+
+    setFilteredResources(newFilteredState)
+  },[searchTerm, resourceFilter])
+
   return (
-    <React.Fragment>
-      {hasFetchError ? (
-        <ErrorFetchingResources />
-      ) : (
-        <div>
-          <Header />
-          <main className="main">
-            <aside className="aside-nav">
-              <Nav />
-            </aside>
-            <section className="main-content">
-              <section className="resource-list">
-                <SearchForm />
-                {renderedResources && renderedResources.length ? (
-                  <div className="resources-list">
-                    {filteredResources}
-                    <LoadMoreResourcesButton />
-                  </div>
-                ) : searchTerm ? (
-                  <h2 className="content-placeholder">
-                    Resource(s) not found...
-                  </h2>
-                ) : (
-                  <ResourceSkeletonList />
-                )}
-              </section>
-            </section>
-          </main>
-          <GoToTopButton />
-        </div>
-      )}
-    </React.Fragment>
+      <React.Fragment>
+        {hasFetchError ? (
+            <ErrorFetchingResources/>
+        ) : (
+            <div>
+              <Header/>
+              <main className="main">
+                <aside className="aside-nav">
+                  <Nav/>
+                </aside>
+                <section className="main-content">
+                  <section className="resource-list">
+                    <SearchForm/>
+                    {renderedResources && renderedResources.length ? (
+                        <div className="resources-list">
+                          {filteredResources}
+                          <LoadMoreResourcesButton/>
+                        </div>
+                    ) : searchTerm ? (
+                        <h2 className="content-placeholder">
+                          Resource(s) not found...
+                        </h2>
+                    ) : (
+                        <ResourceSkeletonList/>
+                    )}
+                  </section>
+                </section>
+              </main>
+              <GoToTopButton/>
+            </div>
+        )}
+      </React.Fragment>
   );
 }
