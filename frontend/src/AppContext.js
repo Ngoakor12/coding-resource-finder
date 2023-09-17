@@ -23,11 +23,11 @@ export function ContextProvider({ children }) {
   const [resourceFilter, setResourceFilter] = useState("all");
 
   useEffect(() => {
-    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+    updateBookmarksLocalStorage();
   }, [bookmarks]);
 
   useEffect(() => {
-    localStorage.setItem("bookmarkGroups", JSON.stringify(bookmarkGroups));
+    updateBookmarkGroupsLocalStorage();
   }, [bookmarkGroups]);
 
   useEffect(() => {
@@ -73,18 +73,40 @@ export function ContextProvider({ children }) {
     }
   }
 
-  function addBookmark({ resource, bookmarkGroup = "bookmarks" }) {
+  function addBookmarkGroup({ bookmarkGroup }) {
+    const foundBookmarkGroup = bookmarkGroups.find(
+      (group) => group.name === bookmarkGroup
+    );
+
+    setBookmarkGroups((prevBookmarkGroups) => {
+      return prevBookmarkGroups.map((prevBookmarkGroup) => {
+        if (!foundBookmarkGroup) {
+          return { name: bookmarkGroup, count: 1 };
+        } else {
+          if (prevBookmarkGroup.name === bookmarkGroup) {
+            return {
+              name: bookmarkGroup,
+              count: prevBookmarkGroup.count + 1,
+            };
+          } else {
+            return prevBookmarkGroup;
+          }
+        }
+      });
+    });
+  }
+
+  function addBookmark({ resource, bookmarkGroup = "bookmarksiey" }) {
     const foundBookmark = bookmarks.find(
       (bookmark) => bookmark.url === resource.url
     );
+
     // if bookmark does not exist
     // - add that bookmarkGroup to resource's groups
-    // - update bookmarks with resource
     // - add bookmarkGroup to bookmarkGroups
     // if bookmark does exist
     // - if resource's groups don't have bookmarkGroup
-    //  - add that bookmarkGroup to resourceUrl's groups
-    //  - update the old resource in localstorage
+    //  - add that bookmarkGroup to resource's groups
     //  - add bookmarkGroup to bookmarkGroups
 
     if (!foundBookmark) {
@@ -92,7 +114,8 @@ export function ContextProvider({ children }) {
       newBookmark.groups = [...newBookmark.groups, bookmarkGroup];
 
       setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
-      updateBookmarksLocalStorage();
+
+      addBookmarkGroup({ bookmarkGroup });
     } else {
       if (!foundBookmark.groups.includes(bookmarkGroup)) {
         foundBookmark.groups = [...foundBookmark.groups, bookmarkGroup];
@@ -102,7 +125,8 @@ export function ContextProvider({ children }) {
           );
           return [...newBookmarks, foundBookmark];
         });
-        updateBookmarksLocalStorage();
+
+        addBookmarkGroup({ bookmarkGroup });
       }
     }
   }
@@ -126,7 +150,6 @@ export function ContextProvider({ children }) {
             (prevBookmark) => prevBookmark.url !== foundBookmark.url
           );
         });
-        updateBookmarksLocalStorage();
       } else if (
         foundBookmark.groups.length > 1 &&
         foundBookmark.groups.includes(bookmarkGroup)
@@ -143,16 +166,15 @@ export function ContextProvider({ children }) {
             return bookmark;
           });
         });
-        updateBookmarksLocalStorage();
       }
     }
   }
 
-  function updateBookmarkGroupsLocalStorage() {
-    localStorage.setItem("bookmarkGroups", JSON.stringify(bookmarkGroups));
-  }
   function updateBookmarksLocalStorage() {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  }
+  function updateBookmarkGroupsLocalStorage() {
+    localStorage.setItem("bookmarkGroups", JSON.stringify(bookmarkGroups));
   }
 
   return (
