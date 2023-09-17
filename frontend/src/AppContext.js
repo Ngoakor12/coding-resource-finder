@@ -73,16 +73,16 @@ export function ContextProvider({ children }) {
     }
   }
 
-  function addBookmarkGroup({ bookmarkGroup }) {
+  function addBookmarkGroupReusable({ bookmarkGroup }) {
     const foundBookmarkGroup = bookmarkGroups.find(
       (group) => group.name === bookmarkGroup
     );
 
     setBookmarkGroups((prevBookmarkGroups) => {
-      return prevBookmarkGroups.map((prevBookmarkGroup) => {
-        if (!foundBookmarkGroup) {
-          return { name: bookmarkGroup, count: 1 };
-        } else {
+      if (!foundBookmarkGroup) {
+        return [...prevBookmarkGroups, { name: bookmarkGroup, count: 1 }];
+      } else {
+        return prevBookmarkGroups.map((prevBookmarkGroup) => {
           if (prevBookmarkGroup.name === bookmarkGroup) {
             return {
               name: bookmarkGroup,
@@ -91,17 +91,14 @@ export function ContextProvider({ children }) {
           } else {
             return prevBookmarkGroup;
           }
-        }
-      });
+        });
+      }
     });
   }
 
-  function addBookmark({ resource, bookmarkGroup = "bookmarksiey" }) {
-    const foundBookmark = bookmarks.find(
-      (bookmark) => bookmark.url === resource.url
-    );
-
+  function addBookmark({ resource, bookmarkGroup = "bookmarks" }) {
     // if bookmark does not exist
+    // - add bookmark to bookmarks
     // - add that bookmarkGroup to resource's groups
     // - add bookmarkGroup to bookmarkGroups
     // if bookmark does exist
@@ -109,13 +106,17 @@ export function ContextProvider({ children }) {
     //  - add that bookmarkGroup to resource's groups
     //  - add bookmarkGroup to bookmarkGroups
 
+    const foundBookmark = bookmarks.find(
+      (bookmark) => bookmark.url === resource.url
+    );
+
     if (!foundBookmark) {
       const newBookmark = resource;
       newBookmark.groups = [...newBookmark.groups, bookmarkGroup];
 
       setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
 
-      addBookmarkGroup({ bookmarkGroup });
+      addBookmarkGroupReusable({ bookmarkGroup });
     } else {
       if (!foundBookmark.groups.includes(bookmarkGroup)) {
         foundBookmark.groups = [...foundBookmark.groups, bookmarkGroup];
@@ -126,48 +127,26 @@ export function ContextProvider({ children }) {
           return [...newBookmarks, foundBookmark];
         });
 
-        addBookmarkGroup({ bookmarkGroup });
+        addBookmarkGroupReusable({ bookmarkGroup });
       }
     }
   }
 
-  function removeBookmark({ resourceUrl, bookmarkGroup = "bookmarks" }) {
-    const foundBookmark = bookmarks.find(
-      (bookmark) => bookmark.url === resourceUrl
-    );
-    // 1. if bookmark is in one group
-    // - remove bookmark from other bookmarks
-    // 2. if bookmark is in more than one group
-    // - remove group from bookmark
+  function removeBookmark({ bookmark, bookmarkGroup = "bookmarks" }) {
+    // - remove that bookmarkGroup to bookmark's groups
     // - remove bookmark from bookmarks
-    if (foundBookmark) {
-      if (
-        foundBookmark.groups.length === 1 &&
-        foundBookmark.groups.includes(bookmarkGroup)
-      ) {
-        setBookmarks((prevBookmarks) => {
-          return prevBookmarks.filter(
-            (prevBookmark) => prevBookmark.url !== foundBookmark.url
-          );
-        });
-      } else if (
-        foundBookmark.groups.length > 1 &&
-        foundBookmark.groups.includes(bookmarkGroup)
-      ) {
-        setBookmarks((prevBookmarks) => {
-          return prevBookmarks.map((bookmark) => {
-            if (bookmark.groups.includes(bookmarkGroup)) {
-              const newBookmark = bookmark;
-              newBookmark.groups = newBookmark.groups.filter(
-                (group) => group !== bookmarkGroup
-              );
-              return newBookmark;
-            }
-            return bookmark;
-          });
-        });
+    // - remove bookmarkGroup to bookmarkGroups
+
+    bookmark.groups = bookmarkGroups.filter(
+      (group) => group.name !== bookmarkGroup
+    );
+
+    setBookmarks((prevBookmarks) => {
+      if (bookmark.groups.length > 1) {
+        return prevBookmarks.map();
+      } else {
       }
-    }
+    });
   }
 
   function updateBookmarksLocalStorage() {
