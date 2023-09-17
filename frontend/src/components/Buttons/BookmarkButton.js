@@ -8,7 +8,7 @@ export default function BookmarkButton({ resource }) {
   const { addBookmark } = useContext(Context);
 
   function handleClick() {
-    addBookmark({ resourceUrl: resource.url });
+    addBookmark({ resource });
   }
 
   return (

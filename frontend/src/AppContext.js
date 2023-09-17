@@ -73,67 +73,37 @@ export function ContextProvider({ children }) {
     }
   }
 
-  function addBookmark({ resourceUrl, bookmarkGroup = "bookmarks" }) {
+  function addBookmark({ resource, bookmarkGroup = "bookmarks" }) {
     const foundBookmark = bookmarks.find(
-      (resource) => resource.url === resourceUrl
+      (bookmark) => bookmark.url === resource.url
     );
-    // 1. if bookmark does not exist
-    // - update the bookmark's groups
-    // - add that bookmark to the other bookmarks
-    // 2. if bookmark does exist
-    // - if bookmarkGroup is the already in the found bookmark's group
-    //    - do nothing
-    // - if bookmarkGroup is not in the found bookmark's group
-    //    - add bookmarkGroup in the bookmark's groups
-    //    - replace the older bookmark with the new bookmark
+    // if bookmark does not exist
+    // - add that bookmarkGroup to resource's groups
+    // - update bookmarks with resource
+    // - add bookmarkGroup to bookmarkGroups
+    // if bookmark does exist
+    // - if resource's groups don't have bookmarkGroup
+    //  - add that bookmarkGroup to resourceUrl's groups
+    //  - update the old resource in localstorage
+    //  - add bookmarkGroup to bookmarkGroups
 
     if (!foundBookmark) {
-      const newBookmark = allResources.find(
-        (bookmark) => bookmark.url === resourceUrl
-      );
+      const newBookmark = resource;
       newBookmark.groups = [...newBookmark.groups, bookmarkGroup];
 
       setBookmarks((prevBookmarks) => [...prevBookmarks, newBookmark]);
       updateBookmarksLocalStorage();
-
-      // const bookmarkGroupNames = bookmarkGroups.map(
-      //   (bookmarkGroup) => bookmarkGroup.name
-      // );
-      // if (!bookmarkGroupNames.includes(bookmarkGroup)) {
-      //   setBookmarkGroups((prevBookmarkGroups) => {
-      //     return [...prevBookmarkGroups, { name: bookmarkGroup, count: 0 }];
-      //   });
-      //   updateBookmarkGroupsLocalStorage();
-      // }
     } else {
-      setBookmarks((prevBookmarks) => {
-        return prevBookmarks.map((bookmark) => {
-          if (bookmark.url === foundBookmark.url) {
-            if (!bookmark.groups.includes(bookmarkGroup)) {
-              const newBookmarkGroup = [...foundBookmark.groups, bookmarkGroup];
-              return { ...bookmark, groups: newBookmarkGroup };
-            }
-          }
-          return bookmark;
+      if (!foundBookmark.groups.includes(bookmarkGroup)) {
+        foundBookmark.groups = [...foundBookmark.groups, bookmarkGroup];
+        setBookmarks((prevBookmarks) => {
+          const newBookmarks = prevBookmarks.filter(
+            (prevBookmark) => prevBookmark.url !== foundBookmark.url
+          );
+          return [...newBookmarks, foundBookmark];
         });
-      });
-      updateBookmarksLocalStorage();
-
-      // const bookmarkGroupNames = bookmarkGroups.map(
-      //   (bookmarkGroup) => bookmarkGroup.name
-      // );
-      // if (!bookmarkGroupNames.includes(bookmarkGroup)) {
-      //   setBookmarkGroups((prevBookmarkGroups) => {
-      //     let count = 0;
-      //     bookmarks.forEach((bookmark) => {
-      //       if (bookmark.groups.includes(bookmarkGroup)) {
-      //         count++;
-      //       }
-      //     });
-      //     return [...prevBookmarkGroups, { name: bookmarkGroup, count }];
-      //   });
-      //   updateBookmarkGroupsLocalStorage();
-      // }
+        updateBookmarksLocalStorage();
+      }
     }
   }
 
@@ -179,7 +149,7 @@ export function ContextProvider({ children }) {
   }
 
   function updateBookmarkGroupsLocalStorage() {
-    localStorage.setItem("bookmarks", JSON.stringify(bookmarkGroups));
+    localStorage.setItem("bookmarkGroups", JSON.stringify(bookmarkGroups));
   }
   function updateBookmarksLocalStorage() {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
