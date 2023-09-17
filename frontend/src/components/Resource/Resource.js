@@ -12,7 +12,7 @@ export default function Resource({ resource, isBookmarksPage }) {
   });
 
   const icon = isBookmarksPage ? (
-    <RemoveBookmarkButton resource={resource} />
+    <RemoveBookmarkButton bookmark={resource} />
   ) : (
     <BookmarkButton resource={resource} />
   );

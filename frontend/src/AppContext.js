@@ -96,7 +96,7 @@ export function ContextProvider({ children }) {
     });
   }
 
-  function addBookmark({ resource, bookmarkGroup = "bookmarks" }) {
+  function addBookmark({ resource, bookmarkGroup = "x-men" }) {
     // if bookmark does not exist
     // - add bookmark to bookmarks
     // - add that bookmarkGroup to resource's groups
@@ -133,25 +133,38 @@ export function ContextProvider({ children }) {
   }
 
   function removeBookmark({ bookmark, bookmarkGroup = "bookmarks" }) {
-    // - remove that bookmarkGroup to bookmark's groups
-    // - remove bookmark from bookmarks
-    // - remove bookmarkGroup to bookmarkGroups
+    // - if bookmark groups includes bookmarkGroup
+    //  - remove that bookmarkGroup to bookmark's groups
+    //  - remove bookmark from bookmarks
+    //  - remove bookmarkGroup to bookmarkGroups
 
-    bookmark.groups = bookmarkGroups.filter(
-      (group) => group.name !== bookmarkGroup
-    );
+    if (bookmark.groups.includes(bookmarkGroup)) {
+      bookmark.groups = bookmark.groups.filter(
+        (group) => group !== bookmarkGroup
+      );
 
-    setBookmarks((prevBookmarks) => {
-      if (bookmark.groups.length > 1) {
-        return prevBookmarks.map();
-      } else {
-      }
-    });
+      setBookmarks((prevBookmarks) => {
+        if (bookmark.groups.length > 0) {
+          return prevBookmarks.map((prevBookmark) => {
+            if (prevBookmark.url === bookmark.url) {
+              return bookmark;
+            } else {
+              return prevBookmark;
+            }
+          });
+        } else {
+          return prevBookmarks.filter(
+            (prevBookmark) => prevBookmark.url !== bookmark.url
+          );
+        }
+      });
+    }
   }
 
   function updateBookmarksLocalStorage() {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   }
+
   function updateBookmarkGroupsLocalStorage() {
     localStorage.setItem("bookmarkGroups", JSON.stringify(bookmarkGroups));
   }
