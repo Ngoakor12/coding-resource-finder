@@ -96,7 +96,7 @@ export function ContextProvider({ children }) {
     });
   }
 
-  function addBookmark({ resource, bookmarkGroup = "x-men" }) {
+  function addBookmark({ resource, bookmarkGroup = "bookmarks" }) {
     // if bookmark does not exist
     // - add bookmark to bookmarks
     // - add that bookmarkGroup to resource's groups
@@ -132,6 +132,29 @@ export function ContextProvider({ children }) {
     }
   }
 
+  function removeBookmarkGroupReusable({ bookmarkGroup }) {
+    const foundBookmarkGroup = bookmarkGroups.find(
+      (group) => group.name === bookmarkGroup
+    );
+
+    setBookmarkGroups((prevBookmarkGroups) => {
+      if (foundBookmarkGroup.count === 1) {
+        return bookmarkGroups.filter((group) => group.name !== bookmarkGroup);
+      } else {
+        return prevBookmarkGroups.map((prevBookmarkGroup) => {
+          if (prevBookmarkGroup.name === bookmarkGroup) {
+            return {
+              name: bookmarkGroup,
+              count: prevBookmarkGroup.count - 1,
+            };
+          } else {
+            return prevBookmarkGroup;
+          }
+        });
+      }
+    });
+  }
+
   function removeBookmark({ bookmark, bookmarkGroup = "bookmarks" }) {
     // - if bookmark groups includes bookmarkGroup
     //  - remove that bookmarkGroup to bookmark's groups
@@ -158,6 +181,8 @@ export function ContextProvider({ children }) {
           );
         }
       });
+
+      removeBookmarkGroupReusable({ bookmarkGroup });
     }
   }
 
