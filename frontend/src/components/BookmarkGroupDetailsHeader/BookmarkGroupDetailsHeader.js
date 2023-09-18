@@ -29,11 +29,9 @@ export default function BookmarkGroupDetailsHeader({
             <Link
               to={group.link}
               style={{ textDecoration: "none", color: "#f1f1f1" }}
-              className={`chip ${
-                group.title.includes(heading) ? "active" : ""
-              }`}
+              className={`chip ${group.name.includes(heading) ? "active" : ""}`}
             >
-              {`${group.title}(${group.count})`}
+              {`${group.name}(${group.count})`}
             </Link>
           );
         })}

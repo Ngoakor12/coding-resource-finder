@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 import Card from "../Card/Card";
 
-export default function BookmarkGroupCard(bookmarkGroup) {
-  const { title, count, bookmarkLink } = bookmarkGroup;
+export default function BookmarkGroupCard({ bookmarkGroup }) {
+  const { name, count, link } = bookmarkGroup;
   return (
-    <Link to={`/${bookmarkLink}`} className={"bookmark-group-card"}>
+    <Link to={`/bookmarks/${link}`} className={"bookmark-group-card"}>
       <Card fullWidth={true}>
-        <p className="bookmark-group-card-title">{title}</p>
+        <p className="bookmark-group-card-title">{name}</p>
         <p className="bookmark-group-card-count">{count}</p>
       </Card>
     </Link>

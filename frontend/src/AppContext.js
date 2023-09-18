@@ -73,6 +73,10 @@ export function ContextProvider({ children }) {
     }
   }
 
+  function slugify(text) {
+    return text.toLowerCase().replaceAll(/\s/g, "-");
+  }
+
   function addBookmarkGroupReusable({ bookmarkGroup }) {
     const foundBookmarkGroup = bookmarkGroups.find(
       (group) => group.name === bookmarkGroup
@@ -80,13 +84,17 @@ export function ContextProvider({ children }) {
 
     setBookmarkGroups((prevBookmarkGroups) => {
       if (!foundBookmarkGroup) {
-        return [...prevBookmarkGroups, { name: bookmarkGroup, count: 1 }];
+        return [
+          ...prevBookmarkGroups,
+          { name: bookmarkGroup, count: 1, link: slugify(bookmarkGroup) },
+        ];
       } else {
         return prevBookmarkGroups.map((prevBookmarkGroup) => {
           if (prevBookmarkGroup.name === bookmarkGroup) {
             return {
               name: bookmarkGroup,
               count: prevBookmarkGroup.count + 1,
+              link: slugify(bookmarkGroup),
             };
           } else {
             return prevBookmarkGroup;
@@ -96,7 +104,7 @@ export function ContextProvider({ children }) {
     });
   }
 
-  function addBookmark({ resource, bookmarkGroup = "bookmarks" }) {
+  function addBookmark({ resource, bookmarkGroup = "x-men" }) {
     // if bookmark does not exist
     // - add bookmark to bookmarks
     // - add that bookmarkGroup to resource's groups
@@ -138,9 +146,7 @@ export function ContextProvider({ children }) {
     );
 
     setBookmarkGroups((prevBookmarkGroups) => {
-      if (foundBookmarkGroup.count === 1) {
-        return bookmarkGroups.filter((group) => group.name !== bookmarkGroup);
-      } else {
+      if (foundBookmarkGroup.count > 0) {
         return prevBookmarkGroups.map((prevBookmarkGroup) => {
           if (prevBookmarkGroup.name === bookmarkGroup) {
             return {
@@ -151,6 +157,8 @@ export function ContextProvider({ children }) {
             return prevBookmarkGroup;
           }
         });
+      } else {
+        return prevBookmarkGroups;
       }
     });
   }
@@ -212,6 +220,7 @@ export function ContextProvider({ children }) {
         hasFetchError,
         resourceFilter,
         setResourceFilter,
+        bookmarkGroups,
       }}
     >
       {children}

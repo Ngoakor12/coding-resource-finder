@@ -6,9 +6,10 @@ import ResourceList from "../../components/ResourceList/ResourceList";
 import GoToTopButton from "../../components/Buttons/GoToTopButton";
 import Nav from "../../components/Nav/Nav";
 import Header from "../../components/Header/Header";
+import BookmarkGroupCard from "../../components/BookmarkGroupCard/BookmarkGroupCard";
 
 export default function Bookmarks() {
-  const { bookmarks, setPageTitle } = useContext(Context);
+  const { bookmarks, setPageTitle, bookmarkGroups } = useContext(Context);
 
   useEffect(() => {
     setPageTitle("Bookmarks | Coding Resource Finder");
@@ -27,6 +28,9 @@ export default function Bookmarks() {
           <section className="resource-list">
             {bookmarks.length ? (
               <React.Fragment>
+                {bookmarkGroups.map((group) => (
+                  <BookmarkGroupCard bookmarkGroup={group} />
+                ))}
                 <ClearBookmarksButton />
                 <div className="resources-list">
                   <ResourceList resources={bookmarks} isBookmarksPage={true} />
