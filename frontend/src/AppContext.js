@@ -4,6 +4,10 @@ import { ALL_RESOURCES_URL, FIRST_PAGE_RESOURCES_URL } from "./constants";
 
 export const Context = createContext();
 
+export function slugify(text) {
+  return text.toLowerCase().replaceAll(/\s/g, "-");
+}
+
 export function ContextProvider({ children }) {
   const [allResources, setAllResources] = useState([]);
   const [bookmarks, setBookmarks] = useState(() => {
@@ -71,10 +75,6 @@ export function ContextProvider({ children }) {
       setHasFetchError(true);
       console.log(error);
     }
-  }
-
-  function slugify(text) {
-    return text.toLowerCase().replaceAll(/\s/g, "-");
   }
 
   function addBookmarkGroupReusable({ bookmarkGroup }) {

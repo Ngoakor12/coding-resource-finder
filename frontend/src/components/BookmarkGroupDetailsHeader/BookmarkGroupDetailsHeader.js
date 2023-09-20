@@ -1,6 +1,8 @@
 import React from "react";
 import { backArrowIcon } from "../../svgs";
 import { Link } from "react-router-dom";
+import { CLIENT_BASE_URL } from "../../constants";
+import { slugify } from "../../AppContext";
 
 export default function BookmarkGroupDetailsHeader({
   heading,
@@ -10,7 +12,10 @@ export default function BookmarkGroupDetailsHeader({
     <div className="bookmark-group-details-header">
       <div className="bookmark-group-details-header-first-row">
         <div className="bookmark-group-details-header-left">
-          <Link to={""} className="bookmark-group-details-header-back">
+          <Link
+            to={`${CLIENT_BASE_URL}/bookmarks`}
+            className="bookmark-group-details-header-back"
+          >
             {backArrowIcon}
           </Link>
           <h2 className="bookmark-group-details-header-heading">{heading}</h2>
@@ -27,7 +32,7 @@ export default function BookmarkGroupDetailsHeader({
         {bookmarkGroups.map((group) => {
           return (
             <Link
-              to={group.link}
+              to={`${CLIENT_BASE_URL}/bookmarks/${slugify(group.name)}`}
               style={{ textDecoration: "none", color: "#f1f1f1" }}
               className={`chip ${group.name.includes(heading) ? "active" : ""}`}
             >
