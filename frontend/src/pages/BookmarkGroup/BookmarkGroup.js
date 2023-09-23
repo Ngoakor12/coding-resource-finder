@@ -11,16 +11,19 @@ import BookmarkGroupDetailsHeader from "../../components/BookmarkGroupDetailsHea
 import { useParams } from "react-router-dom";
 
 export default function BookmarkGroup() {
-  const { bookmarks, setPageTitle, bookmarkGroups } = useContext(Context);
+  const { bookmarks, setPageTitle, bookmarkGroups, clearBookmarkGroup } =
+    useContext(Context);
   const { group } = useParams();
-  const foundGroup = bookmarkGroups.find((g) => g.link === group);
 
   useEffect(() => {
     setPageTitle("Bookmarks | Coding Resource Finder");
     // eslint-disable-next-line
   }, []);
 
-  console.log("!!", group);
+  function handleClickClearBookmarkGroup(group) {
+    clearBookmarkGroup({ bookmarkGroup: group });
+  }
+
   return (
     <React.Fragment>
       <GoToTopButton />
@@ -31,24 +34,25 @@ export default function BookmarkGroup() {
         </aside>
         <section className="main-content">
           <section className="resource-list">
-            {bookmarks.length ? (
-              <React.Fragment>
-                <BookmarkGroupDetailsHeader
-                  bookmarkGroups={bookmarkGroups}
-                  heading={group}
-                />
-                <div className="resources-list">
+            <React.Fragment>
+              <BookmarkGroupDetailsHeader
+                bookmarkGroups={bookmarkGroups}
+                heading={group}
+                handleClickClearBookmarkGroup={handleClickClearBookmarkGroup}
+              />
+              <div className="resources-list">
+                {bookmarks.length ? (
                   <ResourceList
                     resources={bookmarks.filter((b) =>
                       b.groups.includes(group)
                     )}
                     isBookmarksPage={true}
                   />
-                </div>
-              </React.Fragment>
-            ) : (
-              <h2 className="content-placeholder">No bookmarks yet...</h2>
-            )}
+                ) : (
+                  <h2 className="content-placeholder">No bookmarks yet...</h2>
+                )}
+              </div>
+            </React.Fragment>
           </section>
         </section>
       </main>

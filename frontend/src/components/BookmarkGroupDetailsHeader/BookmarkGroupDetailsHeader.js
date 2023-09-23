@@ -7,6 +7,7 @@ import { slugify } from "../../AppContext";
 export default function BookmarkGroupDetailsHeader({
   heading,
   bookmarkGroups,
+  handleClickClearBookmarkGroup,
 }) {
   return (
     <div className="bookmark-group-details-header">
@@ -22,7 +23,12 @@ export default function BookmarkGroupDetailsHeader({
         </div>
         <div className="bookmark-group-details-header-right">
           <button className="bookmark-group-details-header-edit">Edit</button>
-          <button className="bookmark-group-details-header-clear">Clear</button>
+          <button
+            className="bookmark-group-details-header-clear"
+            onClick={() => handleClickClearBookmarkGroup(heading.toLowerCase())}
+          >
+            Clear
+          </button>
           <button className="bookmark-group-details-header-delete">
             Delete
           </button>

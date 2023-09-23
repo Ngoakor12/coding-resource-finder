@@ -82,18 +82,18 @@ export default function Bookmarks() {
         </aside>
         <section className="main-content">
           <section className="resource-list">
-            {bookmarks.length ? (
-              <React.Fragment>
-                <AddBookmarkGroupButton
-                  handleClick={handleClickNewBookmarkGroupOpen}
-                />
-                {bookmarkGroups.map((group) => (
+            <React.Fragment>
+              <AddBookmarkGroupButton
+                handleClick={handleClickNewBookmarkGroupOpen}
+              />
+              {bookmarkGroups.length ? (
+                bookmarkGroups.map((group) => (
                   <BookmarkGroupCard bookmarkGroup={group} />
-                ))}
-              </React.Fragment>
-            ) : (
-              <h2 className="content-placeholder">No bookmarks yet...</h2>
-            )}
+                ))
+              ) : (
+                <h2 className="content-placeholder">No bookmarks yet...</h2>
+              )}
+            </React.Fragment>
           </section>
         </section>
       </main>

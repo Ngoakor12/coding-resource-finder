@@ -77,7 +77,6 @@ export function ContextProvider({ children }) {
       console.log(error);
     }
   }
-  console.log("location", window.location);
 
   function addBookmarkGroupReusable({ bookmarkGroup }) {
     const foundBookmarkGroup = bookmarkGroups.find(
@@ -200,6 +199,33 @@ export function ContextProvider({ children }) {
     }
   }
 
+  function clearBookmarkGroup({ bookmarkGroup }) {
+    // - reset bookmarkGroup count in bookmarkGroups
+    // - filter out bookgroup in groups of all bookmarks
+
+    setBookmarkGroups((prevBookmarkGroups) => {
+      return prevBookmarkGroups.map((group) => {
+        if (group.name === bookmarkGroup) {
+          return { ...group, count: 0 };
+        }
+        return group;
+      });
+    });
+
+    setBookmarks((prevBookmarks) => {
+      const newBookmarks = [];
+      prevBookmarks.forEach((bookmark) => {
+        if (bookmark.groups.includes(bookmarkGroup)) {
+          bookmark.groups = bookmark.groups.filter((b) => b !== bookmarkGroup);
+          if (bookmark?.groups?.length) {
+            newBookmarks.push(bookmark);
+          }
+        }
+      });
+      return newBookmarks;
+    });
+  }
+
   function updateBookmarksLocalStorage() {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   }
@@ -228,6 +254,7 @@ export function ContextProvider({ children }) {
         setResourceFilter,
         bookmarkGroups,
         addBookmarkGroupReusable,
+        clearBookmarkGroup,
       }}
     >
       {children}
