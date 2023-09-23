@@ -1,17 +1,8 @@
 import React from "react";
-import { useContext } from "react";
 
-import { Context } from "../../AppContext";
-
-export default function AddBookmarkGroupButton() {
-  const { setBookmarks } = useContext(Context);
-
-  function handleClick() {
-    // setBookmarks([]);
-  }
-
+export default function AddBookmarkGroupButton({ handleClick }) {
   return (
-    <button type="button" className="clear-bookmarks" onClick={handleClick}>
+    <button type="button" className="add-bookmarks-group" onClick={handleClick}>
       Add bookmark group
     </button>
   );

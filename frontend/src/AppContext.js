@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 
 import { ALL_RESOURCES_URL, FIRST_PAGE_RESOURCES_URL } from "./constants";
+import { useLocation } from "react-router-dom";
 
 export const Context = createContext();
 
@@ -76,17 +77,22 @@ export function ContextProvider({ children }) {
       console.log(error);
     }
   }
+  console.log("location", window.location);
 
   function addBookmarkGroupReusable({ bookmarkGroup }) {
     const foundBookmarkGroup = bookmarkGroups.find(
       (group) => group.name === bookmarkGroup
     );
-
+    const isInitialBookmarkGroup = window.location.pathname === "/bookmarks";
     setBookmarkGroups((prevBookmarkGroups) => {
       if (!foundBookmarkGroup) {
         return [
           ...prevBookmarkGroups,
-          { name: bookmarkGroup, count: 1, link: slugify(bookmarkGroup) },
+          {
+            name: bookmarkGroup,
+            count: isInitialBookmarkGroup ? 0 : 1,
+            link: slugify(bookmarkGroup),
+          },
         ];
       } else {
         return prevBookmarkGroups.map((prevBookmarkGroup) => {
@@ -104,7 +110,7 @@ export function ContextProvider({ children }) {
     });
   }
 
-  function addBookmark({ resource, bookmarkGroup = "x-men" }) {
+  function addBookmark({ resource, bookmarkGroup = "namek" }) {
     // if bookmark does not exist
     // - add bookmark to bookmarks
     // - add that bookmarkGroup to resource's groups
@@ -221,6 +227,7 @@ export function ContextProvider({ children }) {
         resourceFilter,
         setResourceFilter,
         bookmarkGroups,
+        addBookmarkGroupReusable,
       }}
     >
       {children}

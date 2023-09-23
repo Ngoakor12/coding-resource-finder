@@ -14,7 +14,9 @@ export default function Nav() {
   return (
     <nav className="nav">
       <NavLink to="/resources" className={className}>
-        {`Resources ${renderedResources && `(${renderedResources.length})`}`}
+        {`Resources ${
+          renderedResources && `(${renderedResources.length || 0})`
+        }`}
       </NavLink>
       <NavLink to="/bookmarks" className={className}>
         {`Bookmarks ${bookmarks && `(${bookmarks.length})`}`}
