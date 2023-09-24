@@ -207,7 +207,7 @@ export function ContextProvider({ children }) {
       return prevBookmarkGroups.map((group) => {
         console.log(group);
         if (group.name === bookmarkGroup) {
-          return { ...group, count: 0 };
+          return { ...group, count: 0, link: slugify(group.name) };
         }
         return group;
       });
@@ -228,6 +228,16 @@ export function ContextProvider({ children }) {
         }
       });
       return newBookmarks;
+    });
+  }
+  function deleteBookmarkGroup({ bookmarkGroup }) {
+    // - clearBookmarkGroup(...)
+    // - remove bookmarkGroup from bookmarkGroups
+
+    clearBookmarkGroup({ bookmarkGroup });
+
+    setBookmarkGroups((prevBookmarkGroups) => {
+      return prevBookmarkGroups.filter((group) => group.name !== bookmarkGroup);
     });
   }
 
@@ -260,6 +270,7 @@ export function ContextProvider({ children }) {
         bookmarkGroups,
         addBookmarkGroupReusable,
         clearBookmarkGroup,
+        deleteBookmarkGroup,
       }}
     >
       {children}
