@@ -19,7 +19,7 @@ export default function Nav() {
         }`}
       </NavLink>
       <NavLink to="/bookmarks" className={className}>
-        {`Bookmarks ${bookmarks && `(${bookmarks.length})`}`}
+        {`Bookmarks ${bookmarks ? `(${bookmarks.length})` : `(0)`}`}
       </NavLink>
     </nav>
   );

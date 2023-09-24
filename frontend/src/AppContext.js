@@ -109,7 +109,7 @@ export function ContextProvider({ children }) {
     });
   }
 
-  function addBookmark({ resource, bookmarkGroup = "namek" }) {
+  function addBookmark({ resource, bookmarkGroup = "super" }) {
     // if bookmark does not exist
     // - add bookmark to bookmarks
     // - add that bookmarkGroup to resource's groups
@@ -217,20 +217,19 @@ export function ContextProvider({ children }) {
       const newBookmarks = [];
       prevBookmarks.forEach((bookmark) => {
         if (bookmark.groups.includes(bookmarkGroup)) {
-          console.log("groups before", bookmark.groups);
           bookmark.groups = bookmark.groups.filter((b) => b !== bookmarkGroup);
-          console.log("groups after", bookmark.groups);
-          if (bookmark?.groups?.length) {
+          if (bookmark?.groups.length) {
             newBookmarks.push(bookmark);
           }
         } else {
-          newBookmarks.push(bookmark);
+          if (bookmark?.groups.length) {
+            newBookmarks.push(bookmark);
+          }
         }
       });
       return newBookmarks;
     });
   }
-  console.log(bookmarks);
 
   function updateBookmarksLocalStorage() {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
