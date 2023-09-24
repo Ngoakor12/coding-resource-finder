@@ -47,6 +47,7 @@ export default function BookmarkGroup() {
                       b.groups.includes(group)
                     )}
                     isBookmarksPage={true}
+                    bookmarkGroup={group}
                   />
                 ) : (
                   <h2 className="content-placeholder">No bookmarks yet...</h2>

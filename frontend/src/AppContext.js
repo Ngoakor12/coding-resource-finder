@@ -205,6 +205,7 @@ export function ContextProvider({ children }) {
 
     setBookmarkGroups((prevBookmarkGroups) => {
       return prevBookmarkGroups.map((group) => {
+        console.log(group);
         if (group.name === bookmarkGroup) {
           return { ...group, count: 0 };
         }
@@ -216,15 +217,20 @@ export function ContextProvider({ children }) {
       const newBookmarks = [];
       prevBookmarks.forEach((bookmark) => {
         if (bookmark.groups.includes(bookmarkGroup)) {
+          console.log("groups before", bookmark.groups);
           bookmark.groups = bookmark.groups.filter((b) => b !== bookmarkGroup);
+          console.log("groups after", bookmark.groups);
           if (bookmark?.groups?.length) {
             newBookmarks.push(bookmark);
           }
+        } else {
+          newBookmarks.push(bookmark);
         }
       });
       return newBookmarks;
     });
   }
+  console.log(bookmarks);
 
   function updateBookmarksLocalStorage() {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
