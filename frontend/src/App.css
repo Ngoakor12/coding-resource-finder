@@ -1025,6 +1025,10 @@ header {
   color: #8fffaa;
   /* border: 1px solid #8fffaa; */
 }
+.bookmark-group-details-header-clear:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 @media (min-width: 800px) {
   body {

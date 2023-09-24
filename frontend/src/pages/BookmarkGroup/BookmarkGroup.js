@@ -1,16 +1,13 @@
 import React, { useEffect, useContext, useState } from "react";
 
 import { Context } from "../../AppContext";
-import ClearBookmarksButton from "../../components/Buttons/ClearBookmarksButton";
 import ResourceList from "../../components/ResourceList/ResourceList";
 import GoToTopButton from "../../components/Buttons/GoToTopButton";
 import Nav from "../../components/Nav/Nav";
 import Header from "../../components/Header/Header";
-import BookmarkGroupCard from "../../components/BookmarkGroupCard/BookmarkGroupCard";
 import BookmarkGroupDetailsHeader from "../../components/BookmarkGroupDetailsHeader/BookmarkGroupDetailsHeader";
 import { useNavigate, useParams } from "react-router-dom";
 import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
-import { CLIENT_BASE_URL } from "../../constants";
 
 export default function BookmarkGroup() {
   const {
@@ -61,11 +58,16 @@ export default function BookmarkGroup() {
 
   useEffect(() => {
     if (deleteBookmarkGroupConfirm) {
-      console.log("hello", group);
       deleteBookmarkGroup({ bookmarkGroup: foundBookmarkGroup.name });
-      navigate(`/bookmarks`, { replace: true });
+      navigate(`/bookmarks`);
     }
   }, [deleteBookmarkGroupConfirm]);
+
+  useEffect(() => {
+    setFoundBookmarkGroup(() => bookmarkGroups.find((b) => b.link === group));
+  }, [group]);
+
+  console.log(foundBookmarkGroup, group);
 
   return (
     <React.Fragment>
@@ -91,6 +93,7 @@ export default function BookmarkGroup() {
               <BookmarkGroupDetailsHeader
                 bookmarkGroups={bookmarkGroups}
                 heading={foundBookmarkGroup.name}
+                count={foundBookmarkGroup.count}
                 handleClickClearBookmarkGroup={handleClickClearBookmarkGroup}
                 handleClickDeleteBookmarkGroup={handleClickDeleteBookmarkGroup}
               />
@@ -98,10 +101,10 @@ export default function BookmarkGroup() {
                 {bookmarks.length ? (
                   <ResourceList
                     resources={bookmarks.filter((b) =>
-                      b.groups.includes(foundBookmarkGroup.name || group)
+                      b.groups.includes(foundBookmarkGroup.name)
                     )}
                     isBookmarksPage={true}
-                    bookmarkGroup={foundBookmarkGroup.name || group}
+                    bookmarkGroup={foundBookmarkGroup.name}
                   />
                 ) : (
                   <h2 className="content-placeholder">No bookmarks yet...</h2>
