@@ -9,6 +9,7 @@ export default function BookmarkGroupDetailsHeader({
   bookmarkGroups,
   handleClickClearBookmarkGroup,
   handleClickDeleteBookmarkGroup,
+  handleClickEditBookmarkGroup,
   count,
 }) {
   return (
@@ -24,19 +25,22 @@ export default function BookmarkGroupDetailsHeader({
           <h2 className="bookmark-group-details-header-heading">{heading}</h2>
         </div>
         <div className="bookmark-group-details-header-right">
-          <button className="bookmark-group-details-header-edit">Edit</button>
+          <button
+            className="bookmark-group-details-header-edit"
+            onClick={handleClickEditBookmarkGroup}
+          >
+            Edit
+          </button>
           <button
             className="bookmark-group-details-header-clear"
-            onClick={() => handleClickClearBookmarkGroup(heading.toLowerCase())}
+            onClick={handleClickClearBookmarkGroup}
             disabled={!count}
           >
             Clear
           </button>
           <button
             className="bookmark-group-details-header-delete"
-            onClick={() =>
-              handleClickDeleteBookmarkGroup(heading.toLowerCase())
-            }
+            onClick={handleClickDeleteBookmarkGroup}
           >
             Delete
           </button>

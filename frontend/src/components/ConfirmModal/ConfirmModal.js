@@ -1,13 +1,8 @@
 import React from "react";
 
-export default function ConfirmModal({
-  prompt,
-  confirm,
-  handleConfirm,
-  handleCancel,
-}) {
+export default function ConfirmModal({ prompt, handleConfirm, handleCancel }) {
   return (
-    <div className="prompt-modal-container">
+    <div className="prompt-modal-container" onClick={handleCancel}>
       <div className="prompt-modal">
         <div className="prompt-modal-body">
           <div className="prompt-modal-promt">

@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 
 import { ALL_RESOURCES_URL, FIRST_PAGE_RESOURCES_URL } from "./constants";
-import { useLocation } from "react-router-dom";
 
 export const Context = createContext();
 
@@ -241,6 +240,37 @@ export function ContextProvider({ children }) {
     });
   }
 
+  function editBookmarkGroup({ oldBookmarkGroup, newBookmarkGroup }) {
+    // - update all bookmarks groups with oldBookmarkGroup to newBookmarkGroup
+    // - update oldBookmarkGroup in bookmarkGroups with newBookmarkGroup
+
+    setBookmarks((prevBookmarks) => {
+      return prevBookmarks.map((bookmark) => {
+        if (bookmark.groups.includes(oldBookmarkGroup)) {
+          bookmark.groups = bookmark.groups.filter(
+            (g) => g !== oldBookmarkGroup
+          );
+          bookmark.groups.push(newBookmarkGroup);
+          return bookmark;
+        }
+        return bookmark;
+      });
+    });
+
+    setBookmarkGroups((prevBookmarkGroups) => {
+      return prevBookmarkGroups.map((bookmarkGroup) => {
+        if (bookmarkGroup.name === oldBookmarkGroup) {
+          return {
+            ...bookmarkGroup,
+            name: newBookmarkGroup,
+            link: slugify(newBookmarkGroup),
+          };
+        }
+        return bookmarkGroup;
+      });
+    });
+  }
+
   function updateBookmarksLocalStorage() {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   }
@@ -271,6 +301,7 @@ export function ContextProvider({ children }) {
         addBookmarkGroupReusable,
         clearBookmarkGroup,
         deleteBookmarkGroup,
+        editBookmarkGroup,
       }}
     >
       {children}
