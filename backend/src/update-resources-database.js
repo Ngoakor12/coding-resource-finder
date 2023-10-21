@@ -1,4 +1,4 @@
-const { getDb, connectToDb } = require("./database-config");
+const { connectToDb, closeDb } = require("./database-config");
 const { getCurrentCollectionName } = require("./utils");
 const { getAllResources } = require("./web-scrape-resources");
 
@@ -10,37 +10,56 @@ const { getAllResources } = require("./web-scrape-resources");
  */
 
 async function updateResources(database, resources = []) {
-  console.log("In updateResources");
-  console.log("Format all resources");
+  console.log("---In updateResources---");
+  console.log(`Format all resources. Number of resources: ${resources.length}`);
   const formattedResources = resources.map((resource) => ({
     title: resource.title,
     url: resource.url,
     type: resource.type,
+    groups: [],
   }));
   console.log(
-    `Finished formatting all resources: Number of resources: ${formattedResources.length}`
+    `Successfully formatted all resources. Number of resources: ${formattedResources.length}`
   );
   console.log("Run getCurrentCollectionName");
   const collectionName = getCurrentCollectionName();
-  console.log(`Finished getting collection name: ${collectionName}`);
-  await database.collection(collectionName).insertMany(formattedResources);
+  console.log(`Successfully got collection name: ${collectionName}`);
+
+  try {
+    console.log("Run insertMany on collection");
+    await database.collection(collectionName).insertMany(formattedResources);
+    console.log("Successfully ran insertMany");
+  } catch (error) {
+    console.log(`Error running insertMany: ${error}`);
+  }
 }
 
-let db;
-connectToDb(async (err) => {
-  if (!err) {
-    console.log("Start db init");
-    db = await getDb();
-    console.log(`Have access to db: ${db}`);
+async function main() {
+  console.log("---In main---");
+
+  let client;
+
+  try {
+    console.log("Connect to db");
+    client = await connectToDb();
+    const db = client.db();
+    console.log(`Successfully connected to db`);
 
     console.log("Run getAllResources");
-    getAllResources().then((res) => {
-      console.log("Finished running getAllResources");
-      console.log(`Run updateResources. Found resources length: ${res.length}`);
-      updateResources(db, res);
-      console.log("Finished running updateResources");
-    });
-  } else {
-    console.log(`Error: ${err}`);
+    const resources = await getAllResources();
+    console.log("Successfully ran getAllResources");
+    console.log(
+      `Run updateResources. Number of resources: ${resources.length}`
+    );
+    await updateResources(db, resources);
+    console.log("Successfully ran updateResources");
+  } catch (error) {
+    console.log(`Error: ${error}`);
+  } finally {
+    closeDb(client);
+    // prevent node from hanging
+    process.exit(0);
   }
-});
+}
+
+main();
