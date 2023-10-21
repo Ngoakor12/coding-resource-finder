@@ -30,7 +30,9 @@ jobs:
         with:
           node-version: "latest"
       - name: Set MONGO_URI environment variable
-        run: echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> $GITHUB_ENV
+        run: echo "MONGO_URI=$MONGO_URI" >> $GITHUB_ENV
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
       - name: Clean install dependencies
         run: npm ci
       - name: Run update script
