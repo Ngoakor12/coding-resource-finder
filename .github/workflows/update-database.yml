@@ -28,7 +28,7 @@ jobs:
         run: npm run update
 
   update-database-production:
-    if: ${{secrets.MONGO_URI}}
+    if: secrets.MONGO_URI
     runs-on: ubuntu-latest
 
     defaults:
