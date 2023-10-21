@@ -1,4 +1,5 @@
 name: update-database
+
 on:
   schedule:
     - cron: "0 00 1 * *"
@@ -7,48 +8,29 @@ on:
 jobs:
   update-database-local-dev:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ./backend
-
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
-
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
           node-version: "latest"
-
       - name: Clean install dependencies
         run: npm ci
-
       - name: Run update script
         run: npm run update
 
   update-database-production:
     runs-on: ubuntu-latest
-    env:
-      MONGO_URI: ${{ secrets.MONGO_URI }}
-    
-    if: env.MONGO_URI
-    
-    defaults:
-      run:
-        working-directory: ./backend
-
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
-
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
           node-version: "latest"
-
       - name: Clean install dependencies
         run: npm ci
-
       - name: Run update script
         run: npm run update
+    if: github.event.repository.secret.MONGO_URI
