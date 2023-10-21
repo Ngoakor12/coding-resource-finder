@@ -5,6 +5,9 @@ on:
     - cron: "0 00 1 * *"
   workflow_dispatch:
 
+env:
+  MONGO_URI: ${{ secrets.MONGO_URI }}
+
 jobs:
   update-database-local-dev:
     runs-on: ubuntu-latest
@@ -21,8 +24,8 @@ jobs:
         run: npm run update
 
   update-database-production:
+    if: env.MONGO_URI
     runs-on: ubuntu-latest
-    if: secrets.MONGO_URI
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
