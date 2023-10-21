@@ -1,19 +1,28 @@
 const allRouter = require("express").Router();
-
 const { getPageData } = require("../format-resources");
 const { getResourcesFromDB } = require("../get-resources-from-database");
-const { connectToDb, getDb } = require("../database-config");
+const { connectToDb, getDb, closeDb } = require("../database-config");
 
-let db;
-connectToDb((err) => {
-  if (!err) {
-    db = getDb();
-  }
-});
+let dbClient; // Global variable to store the MongoDB client.
 
-// get all topics and projects
-allRouter.get("/", async (_, res) => {
+// Connect to the database when application/router starts.
+(async () => {
   try {
+    dbClient = await connectToDb();
+  } catch (error) {
+    console.error("Error connecting to the database:", error);
+  }
+})();
+
+// Middleware to ensure the database client is available in route handlers.
+const withDb = (req, res, next) => {
+  req.dbClient = dbClient;
+  next();
+};
+
+allRouter.get("/", withDb, async (req, res) => {
+  try {
+    const db = req.dbClient.db(); // Get the database from the client.
     const resources = await getResourcesFromDB(db);
     res.status(200).json(resources);
   } catch (error) {
@@ -21,14 +30,21 @@ allRouter.get("/", async (_, res) => {
   }
 });
 
-// get specific resource
-allRouter.get("/:page", async ({ params: { page } }, res) => {
+allRouter.get("/:page", withDb, async (req, res) => {
   try {
+    const db = req.dbClient.db();
     const resources = await getResourcesFromDB(db);
-    const data = getPageData(resources.data, page);
+    const data = getPageData(resources.data, req.params.page);
     res.status(200).json(data);
   } catch (error) {
     res.json(error);
+  }
+});
+
+// Close the database connection when application exits.
+process.on("exit", () => {
+  if (dbClient) {
+    closeDb(dbClient);
   }
 });
 

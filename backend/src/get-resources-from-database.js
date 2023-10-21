@@ -1,4 +1,3 @@
-const { connectToDb, getDb } = require("./database-config");
 const { getCurrentCollectionName } = require("./utils");
 
 async function getResourcesFromDB(database) {
@@ -17,13 +16,5 @@ async function getResourcesFromDB(database) {
   };
   return allResourcesData;
 }
-
-// let db;
-// connectToDb((err) => {
-//   if (!err) {
-//     db = getDb();
-//     getResourcesFromDB(db).then((res) => console.log(res));
-//   }
-// });
 
 module.exports = { getResourcesFromDB };

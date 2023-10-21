@@ -1,19 +1,28 @@
 const projectsRouter = require("express").Router();
-
 const { getPageData } = require("../format-resources");
 const { getResourcesFromDB } = require("../get-resources-from-database");
-const { connectToDb, getDb } = require("../database-config");
+const { connectToDb, closeDb } = require("../database-config");
 
-let db;
-connectToDb((err) => {
-  if (!err) {
-    db = getDb();
-  }
-});
+let dbClient; // Global variable to store the MongoDB client.
 
-// get all available projects
-projectsRouter.get("/", async (_, res) => {
+// Connect to the database when application/router starts.
+(async () => {
   try {
+    dbClient = await connectToDb();
+  } catch (error) {
+    console.error("Error connecting to the database:", error);
+  }
+})();
+
+// Middleware to ensure the database client is available in route handlers.
+const withDb = (req, res, next) => {
+  req.dbClient = dbClient;
+  next();
+};
+
+projectsRouter.get("/", withDb, async (req, res) => {
+  try {
+    const db = req.dbClient.db(); // Get the database from the client.
     const resources = await getResourcesFromDB(db);
     const projects = resources.data.filter(
       (resource) => resource.type === "project"
@@ -25,18 +34,25 @@ projectsRouter.get("/", async (_, res) => {
   }
 });
 
-// get specific project pages
-projectsRouter.get("/:page", async ({ params: { page } }, res) => {
+projectsRouter.get("/:page", withDb, async (req, res) => {
   try {
+    const db = req.dbClient.db();
     const resources = await getResourcesFromDB(db);
     const projects = resources.data.filter(
       (resource) => resource.type === "project"
     );
     const projectsData = { num_of_projects: projects.length, data: projects };
-    const data = getPageData(projectsData.data, page);
+    const data = getPageData(projectsData.data, req.params.page);
     res.status(200).json(data);
   } catch (error) {
     res.json(error);
+  }
+});
+
+// Close the database connection when application exits.
+process.on("exit", () => {
+  if (dbClient) {
+    closeDb(dbClient);
   }
 });
 
