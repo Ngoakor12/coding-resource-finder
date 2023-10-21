@@ -5,7 +5,30 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-database:
+  update-database-local-dev:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "latest"
+
+      - name: Clean install dependencies
+        run: npm ci
+
+      - name: Run update script
+        run: npm run update
+
+  update-database-production:
+    if: github.event.inputs.MONGO_URI
     runs-on: ubuntu-latest
 
     defaults:
