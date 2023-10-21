@@ -28,9 +28,12 @@ jobs:
         run: npm run update
 
   update-database-production:
-    if: github.event.repository.secret.MONGO_URI
     runs-on: ubuntu-latest
-
+    env:
+      MONGO_URI: ${{ secrets.MONGO_URI }}
+    
+    if: env.MONGO_URI
+    
     defaults:
       run:
         working-directory: ./backend
