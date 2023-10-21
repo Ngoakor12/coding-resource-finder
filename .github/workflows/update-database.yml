@@ -22,6 +22,7 @@ jobs:
 
   update-database-production:
     runs-on: ubuntu-latest
+    if: secrets.MONGO_URI
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
@@ -33,4 +34,3 @@ jobs:
         run: npm ci
       - name: Run update script
         run: npm run update
-    if: github.event.repository.secret.MONGO_URI
