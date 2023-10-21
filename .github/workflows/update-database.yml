@@ -22,7 +22,6 @@ jobs:
 
   update-database-production:
     runs-on: ubuntu-latest
-    if: secrets.MONGO_URI
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
@@ -30,7 +29,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "latest"
+      - name: Set MONGO_URI environment variable
+        run: echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> $GITHUB_ENV
       - name: Clean install dependencies
         run: npm ci
       - name: Run update script
         run: npm run update
+    if: env.MONGO_URI
