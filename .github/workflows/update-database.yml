@@ -49,6 +49,6 @@ jobs:
         run: npm ci
 
       - name: Run update script
-      - if: ${{ env.MONGO_URI != '' }}
+        if: env.MONGO_URI != ''
         run: npm run update
 
