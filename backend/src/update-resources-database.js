@@ -19,14 +19,12 @@ async function updateResources(database, resources = []) {
   await database.collection(collectionName).insertMany(formattedResources);
 }
 
-/* Uncomment and run to update to the latest resources */
-
-// let db;
-// connectToDb(async (err) => {
-//   if (!err) {
-//     db = await getDb();
-//     getAllResources().then((res) => {
-//       updateResources(db, res);
-//     });
-//   }
-// });
+let db;
+connectToDb(async (err) => {
+  if (!err) {
+    db = await getDb();
+    getAllResources().then((res) => {
+      updateResources(db, res);
+    });
+  }
+});
