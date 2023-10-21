@@ -43,7 +43,7 @@ async function main() {
     console.log("Connect to db");
     client = await connectToDb();
     const db = client.db();
-    console.log(`Successfully connected to db`);
+    console.log("Successfully connected to db");
 
     console.log("Run getAllResources");
     const resources = await getAllResources();

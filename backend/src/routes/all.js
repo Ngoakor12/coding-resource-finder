@@ -1,7 +1,7 @@
 const allRouter = require("express").Router();
 const { getPageData } = require("../format-resources");
 const { getResourcesFromDB } = require("../get-resources-from-database");
-const { connectToDb, getDb, closeDb } = require("../database-config");
+const { connectToDb, closeDb } = require("../database-config");
 
 let dbClient; // Global variable to store the MongoDB client.
 
