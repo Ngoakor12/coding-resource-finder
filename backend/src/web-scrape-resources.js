@@ -15,7 +15,7 @@ function getHTML() {
       http.get(ACN_URL, (res) => {
         const { statusCode } = res;
 
-        if (statusCode !== 200) {
+        if (statusCode => 400) {
           throw new Error(
             `Request failed\nReceived status code ${statusCode}\nExpected status code 200`
           );
