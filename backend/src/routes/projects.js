@@ -22,7 +22,7 @@ const withDb = (req, res, next) => {
 
 projectsRouter.get("/", withDb, async (req, res) => {
   try {
-    const db = req.dbClient.db(); // Get the database from the client.
+    const db = req.dbClient;
     const resources = await getResourcesFromDB(db);
     const projects = resources.data.filter(
       (resource) => resource.type === "project"
@@ -36,7 +36,7 @@ projectsRouter.get("/", withDb, async (req, res) => {
 
 projectsRouter.get("/:page", withDb, async (req, res) => {
   try {
-    const db = req.dbClient.db();
+    const db = req.dbClient;
     const resources = await getResourcesFromDB(db);
     const projects = resources.data.filter(
       (resource) => resource.type === "project"
