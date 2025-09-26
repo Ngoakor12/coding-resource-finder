@@ -15,8 +15,6 @@ const client = new MongoClient(uri, {
   },
 });
 
-let dbConnection;
-
 const connectToDb = async () => {
   console.log("---In connectToDb---");
   try {
@@ -36,8 +34,4 @@ const closeDb = (client) => {
   }
 };
 
-const getDb = () => dbConnection;
-
-// connectToDb();
-
-module.exports = { getDb, connectToDb, closeDb };
+module.exports = { connectToDb, closeDb };

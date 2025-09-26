@@ -22,7 +22,7 @@ const withDb = (req, res, next) => {
 
 allRouter.get("/", withDb, async (req, res) => {
   try {
-    const db = req.dbClient; // Get the database from the client.
+    const db = req.dbClient;
     const resources = await getResourcesFromDB(db);
     res.status(200).json(resources);
   } catch (error) {
