@@ -5,7 +5,7 @@
 
 function getCurrentCollectionName() {
   // return `resources_${new Date().getFullYear()}_${new Date().getMonth() + 1}`;
-  return "resources_2025_2";
+  return "resources_2024_4";
 }
 
 /**

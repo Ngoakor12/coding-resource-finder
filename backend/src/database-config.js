@@ -3,7 +3,7 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 
 // for local development
 const localUri =
-  "mongodb+srv://ngoakor12:ngoakor12@cluster0.tmzvtgn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  "mongodb+srv://local:local@cluster0.7khoml9.mongodb.net/coding-resource-finder?retryWrites=true&w=majority&appName=Cluster0";
 
 const uri = process.env.MONGO_URI || localUri;
 
@@ -20,7 +20,7 @@ let dbConnection;
 const connectToDb = async () => {
   console.log("---In connectToDb---");
   try {
-    const database = client.db("coding-resource-finder");
+    const database = client.db();
     return database;
   } catch (err) {
     console.error("Error connecting to the database:", err);
