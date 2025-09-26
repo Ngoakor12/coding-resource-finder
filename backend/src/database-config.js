@@ -3,7 +3,7 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 
 // for local development
 const localUri =
-  "mongodb+srv://local:local@cluster0.7khoml9.mongodb.net/coding-resource-finder?retryWrites=true&w=majority&appName=Cluster0";
+  "mongodb+srv://local:local@cluster0.7khoml9.mongodb.net/coding-resource-finder?retryWrites=true&w=majority";
 
 const uri = process.env.MONGO_URI || localUri;
 
