@@ -1,24 +1,33 @@
 require("dotenv").config();
-const { MongoClient } = require("mongodb");
+const { MongoClient, ServerApiVersion } = require("mongodb");
 
 // for local development
 const localUri =
-  "mongodb+srv://local:local@cluster0.7khoml9.mongodb.net/coding-resource-finder?retryWrites=true&w=majority";
+  "mongodb+srv://ngoakor12:ngoakor12@cluster0.tmzvtgn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 const uri = process.env.MONGO_URI || localUri;
+
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  },
+});
 
 let dbConnection;
 
 const connectToDb = async () => {
   console.log("---In connectToDb---");
   try {
-    const client = await MongoClient.connect(uri);
-    return client; // Return the MongoDB client object.
+    const database = client.db("coding-resource-finder");
+    return database;
   } catch (err) {
     console.error("Error connecting to the database:", err);
     throw err; // Rethrow the error to handle it in the caller.
   }
 };
+
 const closeDb = (client) => {
   console.log("---In closeDb---");
   if (client) {
@@ -28,5 +37,7 @@ const closeDb = (client) => {
 };
 
 const getDb = () => dbConnection;
+
+// connectToDb();
 
 module.exports = { getDb, connectToDb, closeDb };
